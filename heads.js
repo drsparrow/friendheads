@@ -1,4 +1,5 @@
 $(function(){
+  window.FriendHeads = {}
   var $content = $('#js-content')
   var speedMult = 1
   var sizeMult = 1
@@ -147,14 +148,20 @@ $(function(){
     e.preventDefault()
   })
 
-  var id = location.search.split('i=')[1]
-  if(id) {
+
+  window.FriendHeads.start = function(id) {
+    $('.js-form-stuff').addClass('hidden')
     imgSrc = 'https://firebasestorage.googleapis.com/v0/b/friendheads.appspot.com/o/'+id+'?alt=media'
     for(var i = 0; i < 8; i++) { addHead() }
     window.setInterval(moveHeads, 20)
   }
 
-  // $(window).on('hashchange', function(){
-  //   $('img.js-floating-head').attr('src', imgSrc())
-  // })
+  var id = location.search.split('i=')[1]
+  if(id) {
+    window.FriendHeads.start(id)
+  } else {
+    $('.js-form-stuff').removeClass('hidden')
+  }
+
+
 })
