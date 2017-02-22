@@ -1,0 +1,63 @@
+
+.url-input {
+  width: 170px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px solid gray;
+}
+
+.url-input:focus {
+  outline: 0;
+}
+
+.form-stuff * {
+  z-index: 2000;
+  position: relative;
+  font-family: sans-serif;
+  font-size: 18px;
+}
+
+.form-stuff {
+  margin-top: 10vh;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  background: rgba(0,0,0,.5);
+  padding: 10px;
+  position: relative;
+  z-index: 1999;
+  border-radius: 10px;
+}
+
+.form-stuff .or {
+  padding: 10px;
+  font-weight: bold;
+  cursor: default;
+  color: white;
+}
+
+.file-upload-button {
+  border-radius: 5px;
+  width: 170px;
+  background: white;
+  color: gray;
+  padding: 5px 10px;
+  display: inline-block
+}
+
+.file-upload-button:hover {
+  cursor: pointer;
+  color: white;
+  background: gray;
+}
+
+.page-title {
+  font-size: 65px;
+  margin-bottom: 5px;
+  color: white;
+}
+
+.page-description {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: white;
+}

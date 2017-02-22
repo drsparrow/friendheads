@@ -5,13 +5,18 @@
     <script type="text/javascript" src='vendor/jquery.min.js'></script>
     <script src='heads.js'></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="settings.css">
     <title>Friend heads</title>
     <link rel="icon" href="images/icon.png" id='fav-icon'>
   </head>
   <body>
-    <div class="js-form-stuff hidden">
-      <input type="file" id='file-input'>
-      <input type="text" id='url-input'>
+    <div class="js-form-stuff form-stuff hidden center">
+      <div class='page-title'>Friendheads</div>
+      <div class='page-description'>For your friends and their heads</div>
+      <input type="file" id='file-input' class='file-input hidden'>
+      <label for="file-input" class='file-upload-button'>Upload an image</label>
+      <span class='or'>Or</span>
+      <input type="text" id='url-input' placeholder="Enter an image url" class='url-input'>
     </div>
     <div id='js-content'></div>
   </body>
