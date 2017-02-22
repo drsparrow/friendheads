@@ -11,7 +11,7 @@ $('#lol').change(function () {
   var file = document.getElementById('lol').files[0]
   var storageRef = firebase.storage().ref();
 
-  var name = (new Date()).getTime().toString()
+  var name = (new Date()).getTime().toString(36)
   var uploadTask = storageRef.child(name).put(file, {});
 
   uploadTask.on('state_changed', null, null, function() {
