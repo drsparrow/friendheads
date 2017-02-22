@@ -6,7 +6,7 @@ $(function(){
   var flopped = false
   var paused = false
   var hue = 0
-  var imgSrc;
+  var imgSrc='images/j.png';
 
   var getRandomDir = function () {
     var rand = Math.random() + 1
@@ -148,20 +148,24 @@ $(function(){
     e.preventDefault()
   })
 
+  var pathFromId = function(id) {
+    return 'https://firebasestorage.googleapis.com/v0/b/friendheads.appspot.com/o/'+id+'?alt=media'
+  }
 
-  window.FriendHeads.start = function(id) {
-    $('.js-form-stuff').addClass('hidden')
-    imgSrc = 'https://firebasestorage.googleapis.com/v0/b/friendheads.appspot.com/o/'+id+'?alt=media'
+  var start = function(id) {
+    id || $('.js-form-stuff').removeClass('hidden')
     for(var i = 0; i < 8; i++) { addHead() }
     window.setInterval(moveHeads, 20)
+    id && window.setTimeout(function(){window.FriendHeads.update(id)})
+  }
+
+  window.FriendHeads.update = function (id) {
+    $('.js-form-stuff').addClass('hidden')
+    imgSrc = pathFromId(id)
+    $('.js-floating-head').attr('src', imgSrc)
   }
 
   var id = location.search.split('i=')[1]
-  if(id) {
-    window.FriendHeads.start(id)
-  } else {
-    $('.js-form-stuff').removeClass('hidden')
-  }
-
+  start(id)
 
 })
