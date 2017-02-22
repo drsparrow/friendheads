@@ -7,15 +7,15 @@ var config = {
 };
 firebase.initializeApp(config);
 
-$('#lol').change(function () {
-  var file = document.getElementById('lol').files[0]
+$('#file-input').change(function () {
+  var file = this.files[0]
   var storageRef = firebase.storage().ref();
 
   var name = (new Date()).getTime().toString(36)
   var uploadTask = storageRef.child(name).put(file, {});
 
   uploadTask.on('state_changed', null, null, function() {
-    window.FriendHeads.update(name)
     window.history.replaceState('', document.title, '?i='+name);
+    window.FriendHeads.update()
   });
 })

@@ -6,7 +6,7 @@ $(function(){
   var flopped = false
   var paused = false
   var hue = 0
-  var imgSrc='images/j.png';
+  var DEFAULT = 'images/j.png'
 
   var getRandomDir = function () {
     var rand = Math.random() + 1
@@ -50,7 +50,7 @@ $(function(){
     var $head = $('<img>')
     left = (left ? left - realSize/2 : getRandomPos('width'))
     top = (top ? top - realSize/2 : getRandomPos('height'))
-    var src = imgSrc
+    var src = imgSrc()
     $head.attr('src', src)
     $head.data('left', getRandomDir())
     $head.data('top', getRandomDir())
@@ -112,9 +112,16 @@ $(function(){
     $element.css({'-webkit-filter': hueString, filter: hueString})
   }
 
-  // var imgSrc = function () {
-  //   return window.location.hash.split('#')[1] || 'images/j.png'
-  // }
+  var imgSrc = function () {
+    id = location.search.split('i=')[1]
+    url = location.search.split('u=')[1]
+    if(id) {
+      return 'https://firebasestorage.googleapis.com/v0/b/friendheads.appspot.com/o/'+id+'?alt=media'
+    } else if (url) {
+      return url
+    }
+    return DEFAULT
+  }
 
   $('#js-content').click(function(e) {
     if(e.target == this) {
@@ -152,20 +159,19 @@ $(function(){
     return 'https://firebasestorage.googleapis.com/v0/b/friendheads.appspot.com/o/'+id+'?alt=media'
   }
 
-  var start = function(id) {
-    id || $('.js-form-stuff').removeClass('hidden')
+  var start = function() {
+    var isDefault = (imgSrc() == DEFAULT)
+    isDefault && $('.js-form-stuff').removeClass('hidden')
     for(var i = 0; i < 8; i++) { addHead() }
     window.setInterval(moveHeads, 20)
-    id && window.setTimeout(function(){window.FriendHeads.update(id)})
+    isDefault || window.setTimeout(function(){window.FriendHeads.update()})
   }
 
-  window.FriendHeads.update = function (id) {
+  window.FriendHeads.update = function () {
     $('.js-form-stuff').addClass('hidden')
-    imgSrc = pathFromId(id)
-    $('.js-floating-head').attr('src', imgSrc)
+    $('.js-floating-head').attr('src', imgSrc())
   }
 
-  var id = location.search.split('i=')[1]
-  start(id)
+  start()
 
 })

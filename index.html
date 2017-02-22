@@ -6,12 +6,12 @@
     <script src='heads.js'></script>
     <link rel="stylesheet" href="style.css">
     <title>Friend heads</title>
-    <link rel="icon" type="image/png" href="images/icon.png">
+    <link rel="icon" href="images/icon.png" id='fav-icon'>
   </head>
   <body>
     <div class="js-form-stuff hidden">
-      <input type="file" id='lol'>
-      <img src="" id='img-prev' class='hidden'>
+      <input type="file" id='file-input'>
+      <input type="text" id='url-input'>
     </div>
     <div id='js-content'></div>
   </body>
@@ -19,4 +19,5 @@
 
   <script src="vendor/firebase.js"></script>
   <script src='fire.js'></script>
+  <script src='urlinput.js'></script>
 </html>
