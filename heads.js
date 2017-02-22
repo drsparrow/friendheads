@@ -169,7 +169,9 @@ $(function(){
 
   window.FriendHeads.update = function () {
     $('.js-form-stuff').addClass('hidden')
-    $('.js-floating-head').attr('src', imgSrc())
+    var src = imgSrc()
+    $('.js-floating-head').attr('src', src)
+    $('#fav-icon').attr('href', src)
   }
 
   start()
