@@ -5,6 +5,7 @@ $(function(){
      autoProcessQueue: false,
      addRemoveLinks: false,
      clickable: true,
+     previewTemplate: $('.custom-dz-preview-template').html(),
      accept: function(file) {
        var storageRef = firebase.storage().ref();
 

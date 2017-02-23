@@ -1,6 +1,6 @@
 
 .url-input {
-  width: 170px;
+  width: 233px;
   padding: 5px;
   border-radius: 5px;
   border: 2px solid gray;
@@ -19,8 +19,8 @@
 
 .form-stuff {
   margin-top: 10vh;
-  margin-left: 2vw;
-  margin-right: 2vw;
+  margin-left: 12vw;
+  margin-right: 12vw;
   background: rgba(0,0,0,.5);
   padding: 10px;
   position: relative;
@@ -37,11 +37,13 @@
 
 .file-upload-button {
   border-radius: 5px;
-  width: 170px;
+  width: 233px;
   background: white;
   color: gray;
-  padding: 5px 10px;
-  display: inline-block
+  padding: 20px 5px;
+  height: 55px;
+  margin: auto;
+  margin-bottom: 10px;
 }
 
 .file-upload-button:hover {
@@ -60,4 +62,13 @@
   font-size: 20px;
   margin-bottom: 20px;
   color: white;
+}
+
+.loading {
+  width: 35px;
+  margin-top: 8px;
+}
+
+.dz-custom-preview-template {
+  display: none;
 }
