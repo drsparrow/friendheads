@@ -1,8 +1,4 @@
-var config = {
-  apiKey: "AIzaSyCC7YUaWwhg_ROMUZ941CpaAwdLbLm5iUA",
-  authDomain: "friendheads.firebaseapp.com",
-  databaseURL: "https://friendheads.firebaseio.com",
-  storageBucket: "friendheads.appspot.com",
-  messagingSenderId: "253574395902"
-};
-firebase.initializeApp(config);
+(function () {
+  var c = "eyJhcGlLZXkiOiJBSXphU3lDQzdZVWFXd2hnX1JPTVVaOTQxQ3BhQXdkTGJMbTVpVUEiLCJhdXRoRG9tYWluIjoiZnJpZW5kaGVhZHMuZmlyZWJhc2VhcHAuY29tIiwiZGF0YWJhc2VVUkwiOiJodHRwczovL2ZyaWVuZGhlYWRzLmZpcmViYXNlaW8uY29tIiwic3RvcmFnZUJ1Y2tldCI6ImZyaWVuZGhlYWRzLmFwcHNwb3QuY29tIiwibWVzc2FnaW5nU2VuZGVySWQiOiIyNTM1NzQzOTU5MDIifQ==";
+  firebase.initializeApp(JSON.parse(atob(c)));
+})();
