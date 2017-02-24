@@ -1,9 +1,9 @@
 $(function(){
   window.FriendHeads = {}
+  var heads = []
   canvas = document.getElementById("js-content")
   ctx = document.getElementById("js-content").getContext('2d')
   ctx.imageSmoothingEnabled = false;
-  // ctx.scale(2,2)
   canvas.width = 1000;
   canvas.height = 750;
   canvas.style.width = "1000px";
@@ -24,57 +24,45 @@ $(function(){
   }
 
   var getRandomPos = function (dimension) {
-    // console.log($('#js-content')[dimension]())
     return Math.random() * $('#js-content')[dimension]()
   }
 
   var moveHeads = function() {
-    // if(paused) { return }
-    // var height = $content.height()
-    // var width = $content.width()
-    //
-    // $('.js-floating-head').each(function(){
-    //   var $head = $(this)
-    //   var top = $head.position().top + speedMult * $head.data('top')
-    //   if((top+$head.height()) < 0) {
-    //     top = height
-    //   } else if (top > height) {
-    //     top = -$head.height()
-    //   }
-    //   $head.css('top', top)
-    //
-    //
-    //   var left = ($head.position().left + speedMult * $head.data('left'))
-    //   if((left+$head.width()) < 0) {
-    //     left = width
-    //   } else if (left > width) {
-    //     left = -$head.width()
-    //   }
-    //   $head.css('left', left)
-    // })
+    if(paused) { return }
+    var height = $content.height()
+    var width = $content.width()
+
+    heads.forEach(function(head){
+      var top = head.top + speedMult * head.yDir
+      if((top+head.height) < 0) {
+        top = height
+      } else if (top > height) {
+        top = -head.height
+      }
+      head.top = top
+
+      var left = head.left + speedMult * head.xDir
+      if((left+head.width) < 0) {
+        left = width
+      } else if (left > width) {
+        left = -head.width
+      }
+      head.left = left
+    })
+    draw()
   }
 
   var addHead = function (left, top) {
-    var size = 100 * (Math.random() + 1)
-    var realSize = size //* sizeMult
+    var size = 100 * (Math.random() + 1) / imgW
     var $head = $('<img>')
-    left = (left ? left - imgW/2 : getRandomPos('width'))
-    top = (top ? top - imgH/2 : getRandomPos('height'))
+    left = (left ? left - size*imgW/2 : getRandomPos('width'))
+    top = (top ? top - size*imgH/2 : getRandomPos('height'))
     console.log(left)
     var src = imgSrc()
-    // $head.attr('src', src)
-    // $head.data('left', getRandomDir())
-    // $head.data('top', getRandomDir())
-    // $head.data('size', size)
 
-    // $head.css({left: left, top: top, width: realSize})
-    // $head.css('z-index', 1000 - Math.round(size))
-    // $head.addClass('js-floating-head floating-head')
-    // updateHue($head)
     // if(flopped) { $head.addClass('flopped') }
-    // $content.append($head)
     console.log($('#img')[0])
-    ctx.drawImage(document.getElementById('img'),left, top)
+    heads.push({width: imgW*size, height: imgH*size, left: left, top: top, xDir: getRandomDir(), yDir: getRandomDir()})
   }
 
   var reverseHeads = function() {
@@ -172,6 +160,13 @@ $(function(){
     return 'https://firebasestorage.googleapis.com/v0/b/friendheads.appspot.com/o/'+id+'?alt=media'
   }
 
+  var draw = function () {
+    ctx.clearRect(0,0,$(window).width(), $(window).height())
+    heads.forEach(function(head){
+      ctx.drawImage(document.getElementById('img'),head.left, head.top, head.width, head.height)
+    })
+  }
+
   var start = function() {
     resizeFunc()
     var isDefault = (imgSrc() == DEFAULT)
@@ -180,10 +175,10 @@ $(function(){
 
     img.src = imgSrc()
     img.onload = function () {
-      ctx.imageSmoothingEnabled = false;
       imgW = img.width;
       imgH = img.height;
-      for(var i = 0; i < 5; i++) { addHead() }
+      for(var i = 0; i < 25; i++) { addHead() }
+      draw()
     }
     window.setInterval(moveHeads, 20)
     isDefault || window.setTimeout(function(){window.FriendHeads.update()})
@@ -198,6 +193,7 @@ $(function(){
 
 
   var resizeFunc = function(){
+    draw()
     var w = $(window).width();
     var h = $(window).height();
     canvas.width = w;
