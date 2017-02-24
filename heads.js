@@ -66,10 +66,9 @@ $(function(){
   }
 
   var reverseHeads = function() {
-    $('.js-floating-head').each(function(){
-      var $el = $(this)
-      $el.data('top', -$el.data('top'))
-      $el.data('left', -$el.data('left'))
+    heads.forEach(function(head){
+      head.xDir = -head.xDir
+      head.yDir = -head.yDir
     })
   }
 
