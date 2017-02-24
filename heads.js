@@ -15,6 +15,7 @@ $(function(){
   var paused = false
   var hue = 0
   var DEFAULT = 'images/j.png'
+  var imgW, imgH;
 
   var getRandomDir = function () {
     var rand = Math.random() + 1
@@ -55,10 +56,10 @@ $(function(){
 
   var addHead = function (left, top) {
     var size = 100 * (Math.random() + 1)
-    var realSize = size * sizeMult
+    var realSize = size //* sizeMult
     var $head = $('<img>')
-    left = (left ? left - realSize/2 : getRandomPos('width'))
-    top = (top ? top - realSize/2 : getRandomPos('height'))
+    left = (left ? left - imgW/2 : getRandomPos('width'))
+    top = (top ? top - imgH/2 : getRandomPos('height'))
     console.log(left)
     var src = imgSrc()
     // $head.attr('src', src)
@@ -180,6 +181,8 @@ $(function(){
     img.src = imgSrc()
     img.onload = function () {
       ctx.imageSmoothingEnabled = false;
+      imgW = img.width;
+      imgH = img.height;
       for(var i = 0; i < 5; i++) { addHead() }
     }
     window.setInterval(moveHeads, 20)
@@ -198,8 +201,8 @@ $(function(){
     var w = $(window).width();
     var h = $(window).height();
     canvas.width = w;
-    canvas.height = w;
-    canvas.style.width = w +"px";
+    canvas.height = h;
+    canvas.style.width = w + "px";
     canvas.style.height = h + "px";
   }
   $(window).bind("resize", resizeFunc);
