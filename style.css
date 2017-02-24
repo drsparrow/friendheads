@@ -6,10 +6,11 @@ html, body {
 }
 
 #js-content {
-  height: 100%;
-  position: relative;
-  width: 100%;
+  position: fixed;
   overflow-x: hidden; overflow-y: hidden;
+  /*border: 1px solid black;*/
+  top: 0px;
+  left: 0px;
 }
 
 .floating-head {
