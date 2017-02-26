@@ -2,7 +2,7 @@ $(function(){
   var imageFileName
   var audioFileName
   var changePage = function () {
-    var loc = window.location + '?i='+imageFileName
+    var loc = window.location.pathname + '?i='+imageFileName
     if(audioFileName) {
       loc += ('&a=' + audioFileName)
     }
