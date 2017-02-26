@@ -20,6 +20,7 @@ $(function(){
      autoProcessQueue: false,
      addRemoveLinks: false,
      clickable: true,
+     acceptedFiles: 'image/*',
      previewTemplate: $('.custom-dz-preview-template').html(),
      accept: function(file) {
        $('#submit').removeAttr('disabled')
@@ -44,6 +45,7 @@ $(function(){
      autoProcessQueue: false,
      addRemoveLinks: false,
      clickable: true,
+     acceptedFiles: 'audio/*',
      previewTemplate: $('.custom-dz-preview-template').html(),
      accept: function(file) {
       //  $('.audio-upload-button .loading').addClass('hidden').removeClass('hidden')
