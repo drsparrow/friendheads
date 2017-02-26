@@ -30,10 +30,10 @@ $(function(){
        var uploadTask = storageRef.child('image-'+imageFileName).put(file, {});
 
        uploadTask.on('state_changed', null, null, function(a,b,c) {
-         if($('.js-advanced-settings').is('.hidden')) {
-           changePage()
-         } else {
+         if($('.js-advanced-settings').is(':visible')) {
            $('#loading-img').attr('src',uploadTask.snapshot.downloadURL)
+         } else {
+           changePage()
          }
        });
      }
