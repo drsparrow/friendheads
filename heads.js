@@ -16,8 +16,8 @@ $(function(){
   var hue = 0
   var DEFAULT = 'images/j.png'
   var imgW, imgH;
-  var feet = true;
-  var hands = true;
+  var feet;
+  var hands;
   var footRatio;
   var handRatio;
 
@@ -125,6 +125,12 @@ $(function(){
     return DEFAULT
   }
 
+  var setHandsAndFeet = function () {
+    var params = window.FriendHeads.params()
+    params.feet && (feet = true)
+    params.hands && (hands = true)
+  }
+
   var playAudio = function() {
     var id = window.FriendHeads.params('a')
     if(!id) { return }
@@ -193,6 +199,7 @@ $(function(){
   var start = function() {
     resizeFunc()
     playAudio()
+    setHandsAndFeet()
     var isDefault = (imgSrc() == DEFAULT)
     isDefault && $('.js-form-stuff').removeClass('hidden')
     var img = $('#img')[0]
