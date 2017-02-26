@@ -139,14 +139,12 @@ $(function(){
   }
 
   var getHeadIndexAtClick = function (e) {
-    var head;
-    for(var i = 0; i < heads.length; i++) {
-      head = heads[i]
-      if (e.clientX > head.left && e.clientX < head.left+head.width && e.clientY > head.top && e.clientY < head.top+head.height) {
-        return i
-      }
-    }
-    return -1
+    return _.findIndex(heads, function(head){
+      return (e.clientX > head.left &&
+              e.clientX < head.left+head.width &&
+              e.clientY > head.top &&
+              e.clientY < head.top+head.height);
+    })
   }
 
   $('#js-content').click(function(e) {
