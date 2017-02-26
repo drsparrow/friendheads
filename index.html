@@ -25,7 +25,7 @@
         <input type="checkbox" name="hands" id='js-include-hands'>
         <div class='audio-upload-button'>Upload/Drop an mp3 file</div>
         <div class="js-audio-file-name"></div>
-        <button id='submit'>Go</button>
+        <button id='submit' disabled="disabled">Go</button>
       </div>
     </div>
     <canvas id="js-content"></canvas>
@@ -34,6 +34,10 @@
     <img id='right-hand' class='hidden' src='right.png'>
     <img id='left-foot' class='hidden' src='left-foot.png'>
     <img id='right-foot' class='hidden' src='right-foot.png'>
+
+    <audio id='audio'>
+      <source id='audio-source'>
+    </audio>
   </body>
 
 

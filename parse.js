@@ -8,7 +8,7 @@ $(function(){
       var item = part.split("=");
       result[item[0]] = decodeURIComponent(item[1]);
     });
-    return result;
+    return arguments.length ? result[arguments[0]] : result
   }
 
 })

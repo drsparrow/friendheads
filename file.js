@@ -22,10 +22,11 @@ $(function(){
      clickable: true,
      previewTemplate: $('.custom-dz-preview-template').html(),
      accept: function(file) {
+       $('#submit').removeAttr('disabled')
        var storageRef = firebase.storage().ref();
 
        imageFileName = (new Date()).getTime().toString(36)
-       var uploadTask = storageRef.child(imageFileName).put(file, {});
+       var uploadTask = storageRef.child('image-'+imageFileName).put(file, {});
 
        uploadTask.on('state_changed', null, null, function(a,b,c) {
          if($('.js-advanced-settings').is('.hidden')) {
@@ -49,7 +50,7 @@ $(function(){
       $('#submit').attr('disabled', true)
        var storageRef = firebase.storage().ref();
        audioFileName = (new Date()).getTime().toString(36)
-       var uploadTask = storageRef.child(audioFileName).put(file, {});
+       var uploadTask = storageRef.child('audio-'+audioFileName).put(file, {});
 
        uploadTask.on('state_changed', null, null, function() {
          $('#submit').removeAttr('disabled')

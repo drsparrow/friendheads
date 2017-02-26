@@ -118,11 +118,18 @@ $(function(){
   }
 
   var imgSrc = function () {
-    id = window.FriendHeads.params().i
+    var id = window.FriendHeads.params('i')
     if(id) {
-      return 'https://firebasestorage.googleapis.com/v0/b/friendheads.appspot.com/o/'+id+'?alt=media'
+      return 'https://firebasestorage.googleapis.com/v0/b/friendheads.appspot.com/o/image-'+id+'?alt=media'
     }
     return DEFAULT
+  }
+
+  var playAudio = function() {
+    var id = window.FriendHeads.params('a')
+    if(!id) { return }
+    $('#audio-source').attr('src', 'https://firebasestorage.googleapis.com/v0/b/friendheads.appspot.com/o/audio-'+id+'?alt=media')
+    $('#audio')[0].play()
   }
 
   $('#js-content').click(function(e) {
@@ -185,6 +192,7 @@ $(function(){
 
   var start = function() {
     resizeFunc()
+    playAudio()
     var isDefault = (imgSrc() == DEFAULT)
     isDefault && $('.js-form-stuff').removeClass('hidden')
     var img = $('#img')[0]
