@@ -16,6 +16,10 @@ $(function(){
   var hue = 0
   var DEFAULT = 'images/j.png'
   var imgW, imgH;
+  var feet = true;
+  var hands = true;
+  var footRatio;
+  var handRatio;
 
   var getRandomDir = function () {
     var rand = Math.random() + 1
@@ -34,18 +38,21 @@ $(function(){
 
     heads.forEach(function(head){
       var top = head.top + speedMult * head.yDir
-      if((top+head.height) < 0) {
+      var fullHeight = feet ? (2*head.height/3)+(footRatio*head.width/2) : head.height
+      if((top+fullHeight) < 0) {
         top = height
       } else if (top > height) {
-        top = -head.height
+        top = -fullHeight
       }
       head.top = top
 
       var left = head.left + speedMult * head.xDir
-      if((left+head.width) < 0) {
-        left = width
-      } else if (left > width) {
-        left = -head.width
+      var leftMost = hands ? 1*head.width/4 - head.width/2 : 0;
+      var rightMost = hands ? 3*head.width/4 + head.width/2 : head.width;
+      if(rightMost+left < 0) {
+        left = width + -(leftMost)
+      } else if (leftMost+left > width) {
+        left = -(rightMost)
       }
       head.left = left
     })
@@ -164,11 +171,17 @@ $(function(){
     var rightFoot = document.getElementById('right-foot')
     var leftHand = document.getElementById('left-hand')
     var rightHand = document.getElementById('right-hand')
+    footRatio = leftFoot.height/leftFoot.width
+    handRatio = leftHand.height/leftHand.width
     heads.forEach(function(head){
-      ctx.drawImage(leftFoot,head.left, head.top+2*head.height/3, head.width/2, head.height/2)
-      ctx.drawImage(rightFoot,head.left+head.width/2, head.top+2*head.height/3, head.width/2, head.height/2)
-      ctx.drawImage(leftHand,head.left-head.width/4, head.top+head.height/4, head.width/2, head.height/2)
-      ctx.drawImage(rightHand,head.left+3*head.width/4, head.top+head.height/4, head.width/2, head.height/2)
+      if(feet) {
+        ctx.drawImage(leftFoot,head.left, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
+        ctx.drawImage(rightFoot,head.left+head.width/2, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
+      }
+      if (hands) {
+        ctx.drawImage(leftHand,head.left-1*head.width/4, head.top+head.height/3, head.width/2, handRatio*head.width/2)
+        ctx.drawImage(rightHand,head.left+3*head.width/4, head.top+head.height/3, head.width/2, handRatio*head.width/2)
+      }
       ctx.drawImage(face,head.left, head.top, head.width, head.height)
     })
   }
@@ -183,7 +196,7 @@ $(function(){
     img.onload = function () {
       imgW = img.width;
       imgH = img.height;
-      for(var i = 0; i < 25; i++) { addHead() }
+      for(var i = 0; i < 3; i++) { addHead() }
       draw()
     }
     window.setInterval(moveHeads, 20)
