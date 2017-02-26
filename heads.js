@@ -159,8 +159,17 @@ $(function(){
 
   var draw = function () {
     ctx.clearRect(0,0,$(window).width(), $(window).height())
+    var face = document.getElementById('img')
+    var leftFoot = document.getElementById('left-foot')
+    var rightFoot = document.getElementById('right-foot')
+    var leftHand = document.getElementById('left-hand')
+    var rightHand = document.getElementById('right-hand')
     heads.forEach(function(head){
-      ctx.drawImage(document.getElementById('img'),head.left, head.top, head.width, head.height)
+      ctx.drawImage(leftFoot,head.left, head.top+2*head.height/3, head.width/2, head.height/2)
+      ctx.drawImage(rightFoot,head.left+head.width/2, head.top+2*head.height/3, head.width/2, head.height/2)
+      ctx.drawImage(leftHand,head.left-head.width/4, head.top+head.height/4, head.width/2, head.height/2)
+      ctx.drawImage(rightHand,head.left+3*head.width/4, head.top+head.height/4, head.width/2, head.height/2)
+      ctx.drawImage(face,head.left, head.top, head.width, head.height)
     })
   }
 
