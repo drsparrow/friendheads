@@ -119,11 +119,8 @@ $(function(){
 
   var imgSrc = function () {
     id = location.search.split('i=')[1]
-    url = location.search.split('u=')[1]
     if(id) {
       return 'https://firebasestorage.googleapis.com/v0/b/friendheads.appspot.com/o/'+id+'?alt=media'
-    } else if (url) {
-      return url
     }
     return DEFAULT
   }

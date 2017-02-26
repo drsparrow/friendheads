@@ -1,15 +1,4 @@
 
-.url-input {
-  width: 233px;
-  padding: 5px;
-  border-radius: 5px;
-  border: 2px solid gray;
-}
-
-.url-input:focus {
-  outline: 0;
-}
-
 .form-stuff * {
   z-index: 2000;
   position: relative;
