@@ -138,12 +138,26 @@ $(function(){
     $('#audio')[0].play()
   }
 
-  $('#js-content').click(function(e) {
-    if(e.target == this) {
-      addHead(e.clientX, e.clientY)
-    } else if($(e.target).is('.js-floating-head')) {
-      $(e.target).remove()
+  var getHeadIndexAtClick = function (e) {
+    var head;
+    for(var i = 0; i < heads.length; i++) {
+      head = heads[i]
+      if (e.clientX > head.left && e.clientX < head.left+head.width && e.clientY > head.top && e.clientY < head.top+head.height) {
+        return i
+      }
     }
+    return -1
+  }
+
+  $('#js-content').click(function(e) {
+    if(e.target != this) { return }
+    var index = getHeadIndexAtClick(e)
+    if(index != -1) {
+      heads.splice(index, 1)
+    } else {
+      addHead(e.clientX, e.clientY)
+    }
+
   })
 
   $('body').on('keydown', function(e){
