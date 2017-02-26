@@ -57,11 +57,9 @@ $(function(){
     var $head = $('<img>')
     left = (left ? left - size*imgW/2 : getRandomPos('width'))
     top = (top ? top - size*imgH/2 : getRandomPos('height'))
-    console.log(left)
     var src = imgSrc()
 
     // if(flopped) { $head.addClass('flopped') }
-    console.log($('#img')[0])
     heads.push({width: imgW*size, height: imgH*size, left: left, top: top, xDir: getRandomDir(), yDir: getRandomDir()})
   }
 
