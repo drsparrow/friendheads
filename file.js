@@ -1,7 +1,22 @@
 $(function(){
-   $(".file-upload-button").dropzone({
+  var imageFileName
+  var audioFileName
+  var changePage = function () {
+    var loc = window.location + '?i='+imageFileName
+    if(audioFileName) {
+      loc += ('&a=' + audioFileName)
+    }
+    if ($('js-include-hands').is(':checked')) {
+      loc += ('&hands=' + 1)
+    }
+    if ($('js-include-feet').is(':checked')) {
+      loc += ('&feet=' + 1)
+    }
+    window.location = loc
+  }
+  $(".image-upload-button").dropzone({
      url: "dummy",
-     createImageThumbnails: false,
+     createImageThumbnails: true,
      autoProcessQueue: false,
      addRemoveLinks: false,
      clickable: true,
@@ -9,13 +24,44 @@ $(function(){
      accept: function(file) {
        var storageRef = firebase.storage().ref();
 
-       var name = (new Date()).getTime().toString(36)
-       var uploadTask = storageRef.child(name).put(file, {});
+       imageFileName = (new Date()).getTime().toString(36)
+       var uploadTask = storageRef.child(imageFileName).put(file, {});
 
-       uploadTask.on('state_changed', null, null, function() {
-         window.history.replaceState('', document.title, '?i='+name);
-         window.FriendHeads.update()
+       uploadTask.on('state_changed', null, null, function(a,b,c) {
+         if($('.js-advanced-settings').is('.hidden')) {
+           changePage()
+         } else {
+           $('#loading-img').attr('src',uploadTask.snapshot.downloadURL)
+         }
        });
      }
    })
+
+   $(".audio-upload-button").dropzone({
+     url: "dummy",
+     createImageThumbnails: false,
+     autoProcessQueue: false,
+     addRemoveLinks: false,
+     clickable: true,
+     previewTemplate: $('.custom-dz-preview-template').html(),
+     accept: function(file) {
+      //  $('.audio-upload-button .loading').addClass('hidden').removeClass('hidden')
+      $('#submit').attr('disabled', true)
+       var storageRef = firebase.storage().ref();
+       audioFileName = (new Date()).getTime().toString(36)
+       var uploadTask = storageRef.child(audioFileName).put(file, {});
+
+       uploadTask.on('state_changed', null, null, function() {
+         $('#submit').removeAttr('disabled')
+         $('.audio-upload-button .loading').addClass('hidden')
+         $('.js-audio-file-name').text(file.name)
+       });
+     }
+   })
+
+   $('.js-show-advanced-settings').click(function(){
+     $('.js-advanced-settings').removeClass('hidden')
+   })
+
+   $('#submit').click(changePage)
 })

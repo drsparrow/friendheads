@@ -1,5 +1,5 @@
 $(function(){
-  window.FriendHeads = {}
+  window.FriendHeads = window.FriendHeads || {}
   var heads = []
   canvas = document.getElementById("js-content")
   ctx = document.getElementById("js-content").getContext('2d')
@@ -118,7 +118,7 @@ $(function(){
   }
 
   var imgSrc = function () {
-    id = location.search.split('i=')[1]
+    id = window.FriendHeads.params().i
     if(id) {
       return 'https://firebasestorage.googleapis.com/v0/b/friendheads.appspot.com/o/'+id+'?alt=media'
     }
@@ -203,7 +203,7 @@ $(function(){
   window.FriendHeads.update = function () {
     $('.js-form-stuff').addClass('hidden')
     var src = imgSrc()
-    $('.js-floating-head').attr('src', src)
+    $('#img').attr('src', src)
     $('#fav-icon').attr('href', src)
   }
 
