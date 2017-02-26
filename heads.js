@@ -139,8 +139,7 @@ $(function(){
   var playAudio = function() {
     var id = window.FriendHeads.params('a')
     if(!id) { return }
-    $('#audio-source').attr('src', 'https://firebasestorage.googleapis.com/v0/b/friendheads.appspot.com/o/audio-'+id+'?alt=media')
-    $('#audio')[0].play()
+    new Audio('https://firebasestorage.googleapis.com/v0/b/friendheads.appspot.com/o/audio-'+id+'?alt=media').play();
   }
 
   var getHeadIndexAtClick = function (e) {

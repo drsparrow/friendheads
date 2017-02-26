@@ -17,7 +17,7 @@
       <div class='page-title'>Friendheads</div>
       <div class='page-description'>For your friends and their heads</div>
       <div class='image-upload-button'>Upload/Drop an image</div>
-      <a href="javascript:$('.js-advanced-settings').toggle('hidden')" class='advanced-settings-toggle'>Advanced Settings</a>
+      <a href="javascript:$('.js-advanced-settings').removeClass('hidden');$('.advanced-settings-toggle').remove()" class='advanced-settings-toggle'>Advanced Settings</a>
       <div class="advanced-settings js-advanced-settings hidden">
         <label for="js-include-feet">Add feet</label>
         <input type="checkbox" name="feet" id='js-include-feet'>
@@ -36,9 +36,6 @@
     <img id='left-foot' class='hidden' src='left-foot.png'>
     <img id='right-foot' class='hidden' src='right-foot.png'>
 
-    <audio id='audio'>
-      <source id='audio-source'>
-    </audio>
   </body>
 
 
