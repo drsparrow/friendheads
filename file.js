@@ -6,10 +6,10 @@ $(function(){
     if(audioFileName) {
       loc += ('&a=' + audioFileName)
     }
-    if ($('js-include-hands').is(':checked')) {
+    if ($('#js-include-hands').is(':checked')) {
       loc += ('&hands=' + 1)
     }
-    if ($('js-include-feet').is(':checked')) {
+    if ($('#js-include-feet').is(':checked')) {
       loc += ('&feet=' + 1)
     }
     window.location = loc
