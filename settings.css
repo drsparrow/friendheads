@@ -35,6 +35,14 @@
   margin-bottom: 10px;
 }
 
+.audio-upload-button {
+  height: 30px;
+}
+
+.audio-upload-button .loading {
+  width: 15px;
+}
+
 .image-upload-button:hover, .audio-upload-button:hover {
   cursor: pointer;
   color: white;
@@ -60,4 +68,18 @@
 
 .dz-custom-preview-template {
   display: none;
+}
+
+.advanced-settings {
+  background: rgba(0,0,0,.5);
+  border-radius: 8px;
+}
+
+.advanced-settings label {
+  color: white;
+}
+
+.advanced-settings-toggle {
+  color: white;
+  font-size: 16px;
 }
