@@ -3,6 +3,7 @@ $(function(){
   var audioFileName
   var changePage = function () {
     var loc = window.location.pathname + '?i='+imageFileName
+    var hatName = $('input[name="hat"]').val()
     if(audioFileName) {
       loc += ('&a=' + audioFileName)
     }
@@ -11,6 +12,9 @@ $(function(){
     }
     if ($('#js-include-feet').is(':checked')) {
       loc += ('&feet=' + 1)
+    }
+    if (hatName) {
+      loc += ('&hat=' + hatName)
     }
     window.location = loc
   }

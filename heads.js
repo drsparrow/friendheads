@@ -20,6 +20,7 @@ $(function(){
   var hands;
   var footRatio;
   var handRatio;
+  var hatName;
 
   var getRandomDir = function () {
     var rand = Math.random() + 1
@@ -134,6 +135,7 @@ $(function(){
     var params = window.FriendHeads.params()
     params.feet && (feet = true)
     params.hands && (hands = true)
+    hatName = params.hat
   }
 
   var playAudio = function() {
@@ -197,8 +199,10 @@ $(function(){
     var rightFoot = document.getElementById('right-foot')
     var leftHand = document.getElementById('left-hand')
     var rightHand = document.getElementById('right-hand')
+    var hat = document.getElementById(hatName+'-hat') || {}
     footRatio = leftFoot.height/leftFoot.width
     handRatio = leftHand.height/leftHand.width
+    hatRatio = hat.height/hat.width
     heads.forEach(function(head){
       if(feet) {
         ctx.drawImage(leftFoot,head.left, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
@@ -209,6 +213,9 @@ $(function(){
         ctx.drawImage(rightHand,head.left+3*head.width/4, head.top+head.height/3, head.width/2, handRatio*head.width/2)
       }
       ctx.drawImage(face,head.left, head.top, head.width, head.height)
+      if(hatName) {
+        ctx.drawImage(hat,head.left+head.width/8, head.top - head.width/2, head.width/2, hatRatio*head.width/2)
+      }
     })
   }
 
