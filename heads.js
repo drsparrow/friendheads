@@ -67,7 +67,12 @@ $(function(){
     var src = imgSrc()
 
     // if(flopped) { $head.addClass('flopped') }
-    heads.push({width: imgW*size, height: imgH*size, left: left, top: top, xDir: getRandomDir(), yDir: getRandomDir()})
+    var head = {
+      width: imgW*size, height: imgH*size,
+      left: left, top: top,
+      xDir: getRandomDir(), yDir: getRandomDir()
+    }
+    heads = _.sortBy(heads.concat([head]), function(h){return - h.width})
   }
 
   var reverseHeads = function() {
