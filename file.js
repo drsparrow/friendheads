@@ -16,7 +16,7 @@ $(function(){
   }
   $(".image-upload-button").dropzone({
      url: "dummy",
-     createImageThumbnails: true,
+     createImageThumbnails: false,
      autoProcessQueue: false,
      addRemoveLinks: false,
      clickable: true,
