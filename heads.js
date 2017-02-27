@@ -21,6 +21,7 @@ $(function(){
   var footRatio;
   var handRatio;
   var hatName;
+  var snailTrail;
 
   var getRandomDir = function () {
     var rand = Math.random() + 1
@@ -131,11 +132,12 @@ $(function(){
     return DEFAULT
   }
 
-  var setHandsAndFeet = function () {
+  var setOptions = function () {
     var params = window.FriendHeads.params()
-    params.feet && (feet = true)
-    params.hands && (hands = true)
+    feet = !!params.feet
+    hands = !!params.hands
     hatName = params.hat
+    snailTrail = !!params.snail
   }
 
   var playAudio = function() {
@@ -193,7 +195,6 @@ $(function(){
   }
 
   var draw = function () {
-    ctx.clearRect(0,0,$(window).width(), $(window).height())
     var face = document.getElementById('img')
     var leftFoot = document.getElementById('left-foot')
     var rightFoot = document.getElementById('right-foot')
@@ -203,6 +204,7 @@ $(function(){
     footRatio = leftFoot.height/leftFoot.width
     handRatio = leftHand.height/leftHand.width
     hatRatio = hat.height/hat.width
+    if(!snailTrail) { ctx.clearRect(0,0,$(window).width(), $(window).height()) }
     heads.forEach(function(head){
       if(feet) {
         ctx.drawImage(leftFoot,head.left, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
@@ -222,7 +224,7 @@ $(function(){
   var start = function() {
     resizeFunc()
     playAudio()
-    setHandsAndFeet()
+    setOptions()
     var isDefault = (imgSrc() == DEFAULT)
     isDefault && $('.js-form-stuff').removeClass('hidden')
     var img = $('#img')[0]

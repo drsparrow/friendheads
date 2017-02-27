@@ -19,10 +19,10 @@
       <div class='image-upload-button'>Upload/Drop an image</div>
       <a href="javascript:$('.js-advanced-settings').removeClass('hidden');$('.advanced-settings-toggle').remove()" class='advanced-settings-toggle'>Advanced Settings</a>
       <div class="advanced-settings js-advanced-settings hidden">
-        <label for="js-include-feet">Add feet</label>
+        <label for="js-include-feet">Show feet</label>
         <input type="checkbox" name="feet" id='js-include-feet'>
         <br>
-        <label for="js-include-hands">Add hands</label>
+        <label for="js-include-hands">Show hands</label>
         <input type="checkbox" name="hands" id='js-include-hands'>
         <div class='audio-upload-button'>Upload/Drop an mp3 file</div>
         <div class="js-audio-file-name"></div>
@@ -40,6 +40,9 @@
             <input type="radio" name="hat" value="santa">
           </label>
         </div>
+        <label for="js-snail-trail">Snail trail</label>
+        <input type="checkbox" name="snail-trail" id='js-snail-trail'>
+        <br>
         <button id='submit' disabled="disabled">Go</button>
       </div>
     </div>

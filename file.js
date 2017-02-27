@@ -8,13 +8,16 @@ $(function(){
       loc += ('&a=' + audioFileName)
     }
     if ($('#js-include-hands').is(':checked')) {
-      loc += ('&hands=' + 1)
+      loc += '&hands=1'
     }
     if ($('#js-include-feet').is(':checked')) {
-      loc += ('&feet=' + 1)
+      loc += '&feet=1'
     }
     if (hatName) {
       loc += ('&hat=' + hatName)
+    }
+    if($('#js-snail-trail').is(':checked')) {
+      loc += '&snail=1'
     }
     window.location = loc
   }
