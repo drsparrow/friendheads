@@ -1,7 +1,7 @@
 window.FriendHeads = window.FriendHeads || {}
 FriendHeads.samples = [
-  {s: 'bern', hat: 'party', hands: 1},
-  {s: 'hill', hat: 'santa', feet: 1, snail: 1}
+  {si: 'bern', hat: 'party', hands: 1, sa: 'bern'},
+  {si: 'hill', hat: 'santa', feet: 1, snail: 1}
 ]
 $(function(){
   var heads = []
@@ -19,7 +19,7 @@ $(function(){
   var paused = false
   var hue = 0
   var DEFAULT = (function(){
-    var sampleHeads = _.pluck(FriendHeads.samples, 's')
+    var sampleHeads = _.pluck(FriendHeads.samples, 'si')
     return 'heads/'+_.sample(sampleHeads) + '.png'
   })()
   var imgW, imgH;
@@ -133,11 +133,11 @@ $(function(){
 
   var imgSrc = function () {
     var id = window.FriendHeads.params('i')
-    var specialHead = window.FriendHeads.params('s')
+    var specialImage = window.FriendHeads.params('si')
     if(id) {
       return 'https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/image-'+id+'?alt=media'
-    } else if (specialHead) {
-      return 'heads/'+specialHead+'.png'
+    } else if (specialImage) {
+      return 'heads/'+specialImage+'.png'
     }
     return DEFAULT
   }
@@ -152,8 +152,17 @@ $(function(){
 
   var playAudio = function() {
     var id = window.FriendHeads.params('a')
-    if(!id) { return }
-    new Audio('https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/audio-'+id+'?alt=media').play();
+    var specialAudio = window.FriendHeads.params('sa')
+    var audioSrc;
+    if(id) {
+      audioSrc = 'https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/audio-'+id+'?alt=media'
+    } else if (specialAudio) {
+      audioSrc = 'audio/'+specialAudio+'.mp3'
+    }
+    if(!audioSrc) { return }
+    var a = new Audio(audioSrc);
+    a.loop = true
+    new Audio(audioSrc).play()
   }
 
   var getHeadIndexAtClick = function (e) {
@@ -235,7 +244,8 @@ $(function(){
     resizeFunc()
     playAudio()
     setOptions()
-    var isDefault = !(FriendHeads.params('i') || FriendHeads.params('s'))
+
+    var isDefault = !(FriendHeads.params('i') || FriendHeads.params('si'))
     isDefault && $('.js-form-stuff').removeClass('hidden')
     var img = $('#img')[0]
 

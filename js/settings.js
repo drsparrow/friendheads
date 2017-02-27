@@ -10,7 +10,7 @@ $(function(){
 
   FriendHeads.samples.forEach(function(sample){
     var $a = $('<a>', {href: window.location.pathname + '?' + $.param(sample), target: '_blank', class: 'sample-link'})
-    $a.append($('<img>', {src: 'heads/'+sample.s+'.png'}))
+    $a.append($('<img>', {src: 'heads/'+sample.si+'.png'}))
     $('.js-samples').append($a)
   })
 
