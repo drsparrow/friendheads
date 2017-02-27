@@ -79,11 +79,35 @@
   color: white;
 }
 
-.advanced-settings-toggle {
+.extra-option {
   color: white;
   font-size: 16px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.extra-option.advanced-settings-toggle {
+  float: left;
+}
+
+.extra-option.samples-toggle {
+  float: right;
+}
+
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
 }
 
 .hat-selection img{
   width: 50px;
+}
+
+.sample-link {
+  margin: 10px;
+}
+
+.sample-link img {
+  width: 90px;
 }

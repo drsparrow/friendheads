@@ -1,5 +1,9 @@
+window.FriendHeads = window.FriendHeads || {}
+FriendHeads.samples = [
+  {s: 'bern', hat: 'party', hands: 1},
+  {s: 'hill', hat: 'santa', feet: 1, snail: 1}
+]
 $(function(){
-  window.FriendHeads = window.FriendHeads || {}
   var heads = []
   canvas = document.getElementById("js-content")
   ctx = document.getElementById("js-content").getContext('2d')
@@ -14,7 +18,10 @@ $(function(){
   var flopped = false
   var paused = false
   var hue = 0
-  var DEFAULT = 'images/j.png'
+  var DEFAULT = (function(){
+    var sampleHeads = _.pluck(FriendHeads.samples, 's')
+    return 'heads/'+_.sample(sampleHeads) + '.png'
+  })()
   var imgW, imgH;
   var feet;
   var hands;
@@ -126,8 +133,11 @@ $(function(){
 
   var imgSrc = function () {
     var id = window.FriendHeads.params('i')
+    var specialHead = window.FriendHeads.params('s')
     if(id) {
       return 'https://firebasestorage.googleapis.com/v0/b/friendheads.appspot.com/o/image-'+id+'?alt=media'
+    } else if (specialHead) {
+      return 'heads/'+specialHead+'.png'
     }
     return DEFAULT
   }
@@ -225,7 +235,7 @@ $(function(){
     resizeFunc()
     playAudio()
     setOptions()
-    var isDefault = (imgSrc() == DEFAULT)
+    var isDefault = !(FriendHeads.params('i') || FriendHeads.params('s'))
     isDefault && $('.js-form-stuff').removeClass('hidden')
     var img = $('#img')[0]
 
