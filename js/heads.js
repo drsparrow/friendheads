@@ -31,6 +31,7 @@ $(function(){
   var hatName;
   var snailTrail;
   var count = FriendHeads.defaultHeadCount;
+  var color;
 
   var getRandomDir = function () {
     var rand = Math.random() + 1
@@ -151,6 +152,10 @@ $(function(){
     hatName = params.hat
     snailTrail = !!params.snail
     count = params.count || count
+    color = params.color
+    var fullColor = '#'+color
+    $('body').css('background-color', fullColor)
+    ctx.fillStyle = fullColor;
   }
 
   var playAudio = function() {
@@ -227,7 +232,9 @@ $(function(){
     handRatio = leftHand.height/leftHand.width
     hatRatio = hat.height/hat.width
     if(!snailTrail) {
-      ctx.fillStyle = 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)'
+      if(!color) {
+        ctx.fillStyle = 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)'
+      }
       ctx.fillRect(0,0,$(window).width(), $(window).height())
     }
     heads.forEach(function(head){

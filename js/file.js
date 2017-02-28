@@ -3,7 +3,8 @@ $(function(){
   var audioFileName
   var changePage = function () {
     var loc = window.location.pathname + '?i='+imageFileName
-    var hatName = $('input[name="hat"]').val()
+    var hatName = $('input[name="hat"]:checked').val()
+    var background = $('input[name="background-option"]:checked').val()
     var headCount = $('#head-count').val()
     if(audioFileName) {
       loc += ('&a=' + audioFileName)
@@ -17,11 +18,13 @@ $(function(){
     if (hatName) {
       loc += ('&hat=' + hatName)
     }
-    if($('#js-snail-trail').is(':checked')) {
-      loc += '&snail=1'
-    }
     if(headCount != FriendHeads.defaultHeadCount) {
       loc += '&count='+headCount
+    }
+    if(background=='snail'){
+      loc += '&snail=1'
+    } else if(background=='custom') {
+      loc += ('&color=' + $('#background-color').val().split('#')[1])
     }
     window.location = loc
   }
