@@ -4,6 +4,7 @@ $(function(){
   var changePage = function () {
     var loc = window.location.pathname + '?i='+imageFileName
     var hatName = $('input[name="hat"]').val()
+    var headCount = $('#head-count').val()
     if(audioFileName) {
       loc += ('&a=' + audioFileName)
     }
@@ -18,6 +19,9 @@ $(function(){
     }
     if($('#js-snail-trail').is(':checked')) {
       loc += '&snail=1'
+    }
+    if(headCount != FriendHeads.defaultHeadCount) {
+      loc += '&count='+headCount
     }
     window.location = loc
   }

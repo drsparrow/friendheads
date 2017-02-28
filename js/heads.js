@@ -3,6 +3,7 @@ FriendHeads.samples = [
   {si: 'bern', hat: 'party', hands: 1, sa: 'bern'},
   {si: 'hill', hat: 'santa', feet: 1, snail: 1}
 ]
+FriendHeads.defaultHeadCount = 5
 $(function(){
   var heads = []
   canvas = document.getElementById("js-content")
@@ -29,6 +30,7 @@ $(function(){
   var handRatio;
   var hatName;
   var snailTrail;
+  var count = FriendHeads.defaultHeadCount;
 
   var getRandomDir = function () {
     var rand = Math.random() + 1
@@ -148,6 +150,7 @@ $(function(){
     hands = !!params.hands
     hatName = params.hat
     snailTrail = !!params.snail
+    count = params.count || count
   }
 
   var playAudio = function() {
@@ -256,7 +259,7 @@ $(function(){
     img.onload = function () {
       imgW = img.width;
       imgH = img.height;
-      for(var i = 0; i < 3; i++) { addHead() }
+      for(var i = 0; i < count; i++) { addHead() }
       draw()
     }
     window.setInterval(moveHeads, 20)
