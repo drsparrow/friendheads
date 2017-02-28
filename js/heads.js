@@ -223,7 +223,10 @@ $(function(){
     footRatio = leftFoot.height/leftFoot.width
     handRatio = leftHand.height/leftHand.width
     hatRatio = hat.height/hat.width
-    if(!snailTrail) { ctx.clearRect(0,0,$(window).width(), $(window).height()) }
+    if(!snailTrail) {
+      ctx.fillStyle = 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)'
+      ctx.fillRect(0,0,$(window).width(), $(window).height())
+    }
     heads.forEach(function(head){
       if(feet) {
         ctx.drawImage(leftFoot,head.left, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)

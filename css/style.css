@@ -1,6 +1,4 @@
 html, body {
-  animation: colorchange 11s linear infinite;
-  -webkit-animation: colorchange 11s linear infinite; /* Chrome and Safari */
   height: 100%;
   overflow-x: hidden; overflow-y: hidden;
 }
@@ -29,24 +27,6 @@ img {
   cursor: pointer;
   -webkit-filter: none !important;
   filter: none !important;
-}
-
-@keyframes colorchange
-{
-  0%   {background: red;}
-  16%  {background: yellow;}
-  33%  {background: green;}
-  66%  {background: blue;}
-  100% {background: red;}
-}
-
-@-webkit-keyframes colorchange /* Safari and Chrome - necessary duplicate */
-{
-  0%   {background: red;}
-  16%  {background: yellow;}
-  33%  {background: green;}
-  66%  {background: blue;}
-  100% {background: red;}
 }
 
 .flipped {
