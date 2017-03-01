@@ -140,7 +140,7 @@ $(function(){
     var id = window.FriendHeads.params('i')
     var specialImage = window.FriendHeads.params('si')
     if(id) {
-      return 'https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/image-'+id+'?alt=media'
+      return pathFromId(id)
     } else if (specialImage) {
       return 'heads/'+specialImage+'.png'
     }
@@ -156,11 +156,10 @@ $(function(){
     count = params.count || count
     color = params.color
     var fullColor = '#'+color
-    color && $('body').css('background-color', fullColor)
+    color && $('html').css('background-color', fullColor)
     ctx.fillStyle = fullColor;
     background = params.b;
-    var url = 'https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/background-'+background+'?alt=media'
-    background && $('body').css('background', 'url('+url+')')
+    background && $('body').css('background', 'url('+pathFromId(background)+')')
   }
 
   var playAudio = function() {
@@ -168,7 +167,7 @@ $(function(){
     var specialAudio = window.FriendHeads.params('sa')
     var audioSrc;
     if(id) {
-      audioSrc = 'https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/audio-'+id+'?alt=media'
+      audioSrc = pathFromId(id)
     } else if (specialAudio) {
       audioSrc = 'audio/'+specialAudio+'.mp3'
     }
@@ -224,7 +223,7 @@ $(function(){
   })
 
   var pathFromId = function(id) {
-    return 'https://firebasestorage.googleapis.com/v0/b/friendheads.appspot.com/o/'+id+'?alt=media'
+    return 'https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/'+id+'?alt=media'
   }
 
   var draw = function () {

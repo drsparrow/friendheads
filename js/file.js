@@ -47,7 +47,7 @@ $(function(){
        var storageRef = firebase.storage().ref();
 
        imageFileName = (new Date()).getTime().toString(36)
-       var uploadTask = storageRef.child('image-'+imageFileName).put(file, {});
+       var uploadTask = storageRef.child(imageFileName).put(file, {});
 
        uploadTask.on('state_changed', null, null, function(a,b,c) {
          if($('.js-advanced-settings').is(':visible')) {
@@ -73,7 +73,7 @@ $(function(){
       $('#submit').attr('disabled', true)
        var storageRef = firebase.storage().ref();
        audioFileName = (new Date()).getTime().toString(36)
-       var uploadTask = storageRef.child('audio-'+audioFileName).put(file, {});
+       var uploadTask = storageRef.child(audioFileName).put(file, {});
 
        uploadTask.on('state_changed', null, null, function() {
          !disabled && $('#submit').removeAttr('disabled')
@@ -95,7 +95,7 @@ $(function(){
       $('#submit').attr('disabled', true)
        var storageRef = firebase.storage().ref();
        backgroundFileName = (new Date()).getTime().toString(36)
-       var uploadTask = storageRef.child('background-'+backgroundFileName).put(file, {});
+       var uploadTask = storageRef.child(backgroundFileName).put(file, {});
 
        uploadTask.on('state_changed', null, null, function() {
          !disabled && $('#submit').removeAttr('disabled')
