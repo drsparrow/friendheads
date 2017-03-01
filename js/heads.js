@@ -30,6 +30,7 @@ $(function(){
   var handRatio;
   var hatName;
   var snailTrail;
+  var background;
   var count = FriendHeads.defaultHeadCount;
   var color;
 
@@ -155,8 +156,11 @@ $(function(){
     count = params.count || count
     color = params.color
     var fullColor = '#'+color
-    $('body').css('background-color', fullColor)
+    color && $('body').css('background-color', fullColor)
     ctx.fillStyle = fullColor;
+    background = params.b;
+    var url = 'https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/background-'+background+'?alt=media'
+    background && $('body').css('background', 'url('+url+')')
   }
 
   var playAudio = function() {
@@ -234,10 +238,12 @@ $(function(){
     handRatio = leftHand.height/leftHand.width
     hatRatio = hat.height/hat.width
     if(!snailTrail) {
-      if(!color) {
+      if(!color && !background) {
         ctx.fillStyle = 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)'
+        ctx.fillRect(0,0,$(window).width(), $(window).height())
+      } else {
+        ctx.clearRect(0,0,$(window).width(), $(window).height())
       }
-      ctx.fillRect(0,0,$(window).width(), $(window).height())
     }
     heads.forEach(function(head){
       if(feet) {

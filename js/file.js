@@ -1,6 +1,7 @@
 $(function(){
   var imageFileName;
   var audioFileName;
+  var backgroundFileName;
   var disabled = true;
 
   var changePage = function () {
@@ -10,6 +11,9 @@ $(function(){
     var headCount = $('#head-count').val()
     if(audioFileName) {
       loc += ('&a=' + audioFileName)
+    }
+    if(backgroundFileName) {
+      loc += ('&b=' + backgroundFileName)
     }
     if ($('#js-include-hands').is(':checked')) {
       loc += '&hands=1'
@@ -75,6 +79,27 @@ $(function(){
          !disabled && $('#submit').removeAttr('disabled')
          $('.audio-upload-button .loading').addClass('hidden')
          $('.js-audio-file-name').text(file.name)
+       });
+     }
+   })
+
+   $(".background-upload-button").dropzone({
+     url: "dummy",
+     createImageThumbnails: false,
+     autoProcessQueue: false,
+     addRemoveLinks: false,
+     clickable: true,
+     acceptedFiles: 'image/*',
+     previewTemplate: $('.custom-dz-preview-template').html(),
+     accept: function(file) {
+      $('#submit').attr('disabled', true)
+       var storageRef = firebase.storage().ref();
+       backgroundFileName = (new Date()).getTime().toString(36)
+       var uploadTask = storageRef.child('background-'+backgroundFileName).put(file, {});
+
+       uploadTask.on('state_changed', null, null, function() {
+         !disabled && $('#submit').removeAttr('disabled')
+         $('.background-upload-button .loading').addClass('hidden')
        });
      }
    })

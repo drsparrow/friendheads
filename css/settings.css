@@ -24,7 +24,7 @@
   color: white;
 }
 
-.image-upload-button, .audio-upload-button {
+.upload-button {
   border-radius: 5px;
   width: 233px;
   background: white;
@@ -43,7 +43,7 @@
   width: 15px;
 }
 
-.image-upload-button:hover, .audio-upload-button:hover {
+.upload-button:hover {
   cursor: pointer;
   color: white;
   background: gray;

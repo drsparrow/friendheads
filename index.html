@@ -17,7 +17,7 @@
     <div class="js-form-stuff form-stuff hidden center clearfix">
       <div class='page-title'>Friendheads</div>
       <div class='page-description'>For your friends and their heads</div>
-      <div class='image-upload-button'>Upload/Drop an image</div>
+      <div class='image-upload-button upload-button'>Upload/Drop an image</div>
       <span class='js-advanced-settings-toggle extra-option advanced-settings-toggle'>Advanced Settings</span>
       <span class='js-samples-toggle extra-option samples-toggle'>Samples</span>
       <br>
@@ -29,7 +29,7 @@
         <br>
         <label for="js-include-hands">Show hands</label>
         <input type="checkbox" name="hands" id='js-include-hands'>
-        <div class='audio-upload-button'>Upload/Drop an mp3 file</div>
+        <div class='audio-upload-button upload-button'>Upload/Drop an mp3 file</div>
         <div class="js-audio-file-name"></div>
         <form class="hat-selection">
           <label>
@@ -57,11 +57,14 @@
             <canvas id="changing-background-color-canvas" width="20" height="20"></canvas>
             <input type="radio" name="background-option" value="changing">
           </label>
-          <label for='custom-background-option'>
-            Custom
-          </label>
+
+          <label for='custom-background-option'>Custom</label>
           <input id='background-color' value='#ff0000'>
           <input type="radio" name="background-option" value="custom" id='custom-background-option'>
+
+          <input type="radio" name="image-option" value="custom" id='custom-image-option'>
+          <div class='background-upload-button upload-button'>Background Image</div>
+
           <label for="snail-trail">Snail trail</label>
           <input type="radio" name="background-option" value='snail' id='snail-trail'>
         </form>
