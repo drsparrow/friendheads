@@ -51,9 +51,10 @@ $(function(){
     heads.forEach(function(head){
       var top = head.top + speedMult * head.yDir
       var fullHeight = feet ? (2*head.height/3)+(footRatio*head.width/2) : head.height
+      var hatHeight = hatName ? head.width/2 : 0;
       if((top+fullHeight) < 0) {
-        top = height
-      } else if (top > height) {
+        top = height + hatHeight
+      } else if ((top - hatHeight)> height) {
         top = -fullHeight
       }
       head.top = top
