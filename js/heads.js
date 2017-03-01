@@ -168,9 +168,10 @@ $(function(){
       audioSrc = 'audio/'+specialAudio+'.mp3'
     }
     if(!audioSrc) { return }
-    var a = new Audio(audioSrc);
-    a.loop = true
-    new Audio(audioSrc).play()
+    var $audio = $('<audio>', {src: audioSrc, loop: true})
+    $('body').append($audio)
+    $audio[0].load()
+    $audio[0].play()
   }
 
   var getHeadIndexAtClick = function (e) {
