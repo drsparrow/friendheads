@@ -66,7 +66,6 @@ $(function(){
      acceptedFiles: 'audio/*',
      previewTemplate: $('.custom-dz-preview-template').html(),
      accept: function(file) {
-      //  $('.audio-upload-button .loading').addClass('hidden').removeClass('hidden')
       $('#submit').attr('disabled', true)
        var storageRef = firebase.storage().ref();
        audioFileName = (new Date()).getTime().toString(36)
@@ -78,10 +77,6 @@ $(function(){
          $('.js-audio-file-name').text(file.name)
        });
      }
-   })
-
-   $('.js-show-advanced-settings').click(function(){
-     $('.js-advanced-settings').removeClass('hidden')
    })
 
    $('#submit').click(changePage)
