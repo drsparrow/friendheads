@@ -1,6 +1,8 @@
 $(function(){
-  var imageFileName
-  var audioFileName
+  var imageFileName;
+  var audioFileName;
+  var disabled = true;
+
   var changePage = function () {
     var loc = window.location.pathname + '?i='+imageFileName
     var hatName = $('input[name="hat"]:checked').val()
@@ -37,7 +39,7 @@ $(function(){
      acceptedFiles: 'image/*',
      previewTemplate: $('.custom-dz-preview-template').html(),
      accept: function(file) {
-       $('#submit').removeAttr('disabled')
+       $('#submit').attr('disabled', true)
        var storageRef = firebase.storage().ref();
 
        imageFileName = (new Date()).getTime().toString(36)
@@ -45,6 +47,8 @@ $(function(){
 
        uploadTask.on('state_changed', null, null, function(a,b,c) {
          if($('.js-advanced-settings').is(':visible')) {
+           $('#submit').removeAttr('disabled')
+           disabled = false
            $('#loading-img').attr('src',uploadTask.snapshot.downloadURL)
          } else {
            changePage()
@@ -69,7 +73,7 @@ $(function(){
        var uploadTask = storageRef.child('audio-'+audioFileName).put(file, {});
 
        uploadTask.on('state_changed', null, null, function() {
-         $('#submit').removeAttr('disabled')
+         !disabled && $('#submit').removeAttr('disabled')
          $('.audio-upload-button .loading').addClass('hidden')
          $('.js-audio-file-name').text(file.name)
        });
