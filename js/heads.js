@@ -1,9 +1,9 @@
 window.FriendHeads = window.FriendHeads || {}
 FriendHeads.samples = [
-  {si: 'bern', hat: 'spin', hands: 1, sa: 'bern'},
+  {si: 'bern', sa: 'bern', hat: 'spin', hands: 1, size: 1.5},
   {si: 'kony', hat: 'party', snail: 1},
-  {si: 'hill', hat: 'santa', feet: 1,  sa: 'hill'},
-  {si: 'cage', hat: 'bow',   sa: 'cage', sb: 'cage'}
+  {si: 'hill', sa: 'hill', hat: 'santa', feet: 1, count: 10},
+  {si: 'cage', sa: 'cage', sb: 'cage', hat: 'bow'}
 ]
 FriendHeads.defaultHeadCount = 5
 $(function(){
