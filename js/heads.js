@@ -54,7 +54,7 @@ $(function(){
     heads.forEach(function(head){
       var top = head.top + speedMult * head.yDir
       var fullHeight = feet ? (2*head.height/3)+(footRatio*head.width/2) : head.height
-      var hatHeight = hatName ? head.width/2 : 0;
+      var hatHeight = hatName ? hatRatio*head.width/2 - head.height/8 : 0;
       if((top+fullHeight) < 0) {
         top = height + hatHeight
       } else if ((top - hatHeight)> height) {
@@ -269,7 +269,7 @@ $(function(){
       }
       ctx.drawImage(face,head.left, head.top, head.width, head.height)
       if(hatName) {
-        ctx.drawImage(hat,head.left+head.width/8, head.top - head.width/2, head.width/2, hatRatio*head.width/2)
+        ctx.drawImage(hat,head.left+head.width/8, head.top - hatRatio*head.width/2 + head.height/8, head.width/2, hatRatio*head.width/2)
       }
     })
   }
