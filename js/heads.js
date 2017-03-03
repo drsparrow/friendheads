@@ -240,14 +240,16 @@ $(function(){
     footRatio = leftFoot.height/leftFoot.width
     handRatio = leftHand.height/leftHand.width
     hatRatio = hat.height/hat.width
-    if(!snailTrail) {
-      if(!color && !background) {
-        ctx.fillStyle = 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)'
-        ctx.fillRect(0,0,$(window).width(), $(window).height())
-      } else {
-        ctx.clearRect(0,0,$(window).width(), $(window).height())
-      }
+
+    if(snailTrail) {ctx.globalAlpha = .01}
+    if(!background) {
+      ctx.fillStyle = color ? '#' + color : 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)'
+      ctx.fillRect(0,0,$(window).width(), $(window).height())
+    } else {
+      ctx.clearRect(0,0,$(window).width(), $(window).height())
     }
+    ctx.globalAlpha = 1
+
     heads.forEach(function(head){
       if(feet) {
         ctx.drawImage(leftFoot,head.left, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
