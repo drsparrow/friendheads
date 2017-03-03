@@ -16,7 +16,7 @@ $(function(){
   canvas.style.height = "750px";
   $content = $('#js-content')
   var speedMult = 1
-  var sizeMult = 1
+  var sizeMult;
   var flopped = false
   var paused = false
   var hue = 0
@@ -154,6 +154,7 @@ $(function(){
 
   var setOptions = function () {
     var params = window.FriendHeads.params()
+    sizeMult = parseFloat(params.size) || 1;
     feet = !!params.feet
     hands = !!params.hands
     hatName = params.hat
