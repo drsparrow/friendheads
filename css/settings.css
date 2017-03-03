@@ -110,4 +110,11 @@
 
 .sample-link img {
   width: 90px;
+  transition: .2s;
+  margin: 0px;
+}
+
+.sample-link img:hover {
+  margin-bottom: 10px;
+  margin-top: -10px;
 }
