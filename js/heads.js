@@ -74,15 +74,19 @@ $(function(){
   }
 
   var addHead = function (left, top) {
-    var size = 100 * (Math.random() + 1) / imgW
+    var size = 100 * (Math.random() + 1)
+    var adjSize = size/imgW
+    var width = size*sizeMult;
+    var height =imgH*(size/imgW)*sizeMult;
     var $head = $('<img>')
-    left = (left ? left - size*imgW/2 : getRandomPos('width'))
-    top = (top ? top - size*imgH/2 : getRandomPos('height'))
+    left = (left ? left - width/2 : getRandomPos('width'))
+    top = (top ? top - height/2 : getRandomPos('height'))
     var src = imgSrc()
 
     // if(flopped) { $head.addClass('flopped') }
     var head = {
-      width: imgW*size, height: imgH*size,
+      size: size,
+      width: width, height: height,
       left: left, top: top,
       xDir: getRandomDir(), yDir: getRandomDir()
     }
@@ -104,18 +108,18 @@ $(function(){
     } else if (sizeMult < .25) {
       sizeMult = .25
     } else {
-      $('.js-floating-head').each(resizeHead)
+      heads.forEach(resizeHead)
     }
   }
 
-  var resizeHead = function () {
-    var $this = $(this)
-    var prevWidth = $this.width()
-    var prevHeight = $this.height()
-    var newWidth = sizeMult * $this.data('size')
-    $this.width(newWidth)
-    $this.css('left', $this.position().left + (prevWidth - newWidth)/2)
-    $this.css('top', $this.position().top + (prevHeight - $this.height())/2)
+  var resizeHead = function (head) {
+    var prevWidth = head.width
+    var prevHeight = head.height
+    var newWidth = sizeMult * head.size
+    head.width = newWidth
+    head.height = head.width * (prevHeight/prevWidth)
+    head.left = head.left + (prevWidth - newWidth)/2
+    head.top = head.top + (prevHeight - head.height)/2
   }
 
   var flipHeads = function () {
