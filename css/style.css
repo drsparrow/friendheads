@@ -1,14 +1,16 @@
 html, body {
   height: 100%;
-  overflow-x: hidden; overflow-y: hidden;
 }
 
 #js-content {
   position: fixed;
-  overflow-x: hidden; overflow-y: hidden;
   /*border: 1px solid black;*/
   top: 0px;
   left: 0px;
+}
+
+.no-overflow {
+  overflow-x: hidden; overflow-y: hidden;
 }
 
 .floating-head {

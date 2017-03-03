@@ -279,6 +279,7 @@ $(function(){
     var isDefault = !(FriendHeads.params('i') || FriendHeads.params('si'))
     isDefault && $('.js-form-stuff').removeClass('hidden')
     isDefault && setRandomParams()
+    isDefault || $('body, html, #js-content').addClass('no-overflow')
     resizeFunc()
     playAudio()
     setOptions()
