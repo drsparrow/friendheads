@@ -162,8 +162,13 @@ $(function(){
     var fullColor = '#'+color
     color && $('html').css('background-color', fullColor)
     ctx.fillStyle = fullColor;
-    background = params.b;
-    background && $('body').css('background', 'url('+pathFromId(background)+')')
+    if(params.b) {
+      background = params.b
+      $('body').css('background', 'url('+pathFromId(background)+')')
+    } else if(params.sb) {
+      background = params.sb
+      background && $('body').css('background', 'url(backgrounds/'+background+'.png)')
+    }
   }
 
   var playAudio = function() {
