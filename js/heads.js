@@ -1,6 +1,6 @@
 window.FriendHeads = window.FriendHeads || {}
 FriendHeads.samples = [
-  {si: 'bern', hat: 'party', hands: 1, sa: 'bern'},
+  {si: 'bern', hat: 'spin', hands: 1, sa: 'bern'},
   {si: 'kony', hat: 'party', snail: 1},
   {si: 'hill', hat: 'santa', feet: 1,  sa: 'hill'},
   {si: 'cage', hat: 'bow',   sa: 'cage', sb: 'cage'}
