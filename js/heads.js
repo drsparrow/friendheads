@@ -21,10 +21,7 @@ $(function(){
   var flopped = false
   var paused = false
   var hue = 0
-  var DEFAULT = (function(){
-    var sampleHeads = _.pluck(FriendHeads.samples, 'si')
-    return 'heads/'+_.sample(sampleHeads) + '.png'
-  })()
+
   var imgW, imgH;
   var feet;
   var hands;
@@ -150,7 +147,11 @@ $(function(){
     } else if (specialImage) {
       return 'heads/'+specialImage+'.png'
     }
-    return DEFAULT
+  }
+
+  var setRandomParams = function () {
+    var head = _.sample(FriendHeads.samples);
+    FriendHeads._params = _.pick(head, 'si', 'hat', 'feet', 'hands', 'count', 'size')
   }
 
   var setOptions = function () {
@@ -275,12 +276,13 @@ $(function(){
   }
 
   var start = function() {
+    var isDefault = !(FriendHeads.params('i') || FriendHeads.params('si'))
+    isDefault && $('.js-form-stuff').removeClass('hidden')
+    isDefault && setRandomParams()
     resizeFunc()
     playAudio()
     setOptions()
 
-    var isDefault = !(FriendHeads.params('i') || FriendHeads.params('si'))
-    isDefault && $('.js-form-stuff').removeClass('hidden')
     var img = $('#img')[0]
 
     img.src = imgSrc()
