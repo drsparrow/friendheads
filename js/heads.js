@@ -183,7 +183,7 @@ $(function(){
   }
 
   var getHeadIndexAtClick = function (e) {
-    return _.findIndex(heads, function(head){
+    return _.findLastIndex(heads, function(head){
       return (e.clientX > head.left &&
               e.clientX < head.left+head.width &&
               e.clientY > head.top &&
