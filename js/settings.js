@@ -1,11 +1,23 @@
 $(function(){
   $('.js-advanced-settings-toggle').click(function(){
-    $('.js-advanced-settings').removeClass('hidden');
+    $('.extra-option').removeClass('selected')
+    if ($('.js-advanced-settings').is(':visible')){
+      $('.js-advanced-settings').addClass('hidden');
+    } else {
+      $(this).addClass('selected')
+      $('.js-advanced-settings').removeClass('hidden');
+    }
     $('.js-samples').addClass('hidden');
   })
   $('.js-samples-toggle').click(function(){
+    $('.extra-option').removeClass('selected')
+    if($('.js-samples').is(':visible')){
+      $('.js-samples').addClass('hidden');
+    } else {
+      $(this).addClass('selected')
+      $('.js-samples').removeClass('hidden');
+    }
     $('.js-advanced-settings').addClass('hidden');
-    $('.js-samples').removeClass('hidden');
   })
 
   FriendHeads.samples.forEach(function(sample){

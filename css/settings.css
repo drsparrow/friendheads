@@ -70,9 +70,11 @@
   display: none;
 }
 
-.advanced-settings {
+.advanced-settings, .head-samples {
+  margin-top: 8px;
   background: rgba(0,0,0,.5);
   border-radius: 8px;
+  padding: 5px;
 }
 
 .advanced-settings label {
@@ -84,14 +86,25 @@
   font-size: 16px;
   text-decoration: underline;
   cursor: pointer;
+  padding: 6px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  margin-bottom: 4px;
+}
+
+.extra-option.selected {
+  background: rgba(0,0,0,.5);
+  text-decoration: none;
 }
 
 .extra-option.advanced-settings-toggle {
   float: left;
+  margin-left: 25px;
 }
 
 .extra-option.samples-toggle {
   float: right;
+  margin-right: 25px;
 }
 
 .clearfix:after {
