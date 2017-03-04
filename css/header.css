@@ -25,3 +25,12 @@
   color: white;
   text-decoration: none;
 }
+
+.header-content img {
+  width: 30px;
+}
+
+.header-content img:hover {
+  cursor: pointer;
+  filter: brightness(50%);
+}

@@ -9,7 +9,7 @@ FriendHeads.defaultHeadCount = 5
 FriendHeads.hats = ['party', 'top', 'santa', 'bow', 'spin']
 FriendHeads.maxSnail = 9
 $(function(){
-  var heads = []
+  var heads = FriendHeads.heads = [];
   canvas = document.getElementById("js-content")
   ctx = document.getElementById("js-content").getContext('2d')
   ctx.imageSmoothingEnabled = false;
@@ -20,7 +20,6 @@ $(function(){
   $content = $('#js-content')
   var speedMult = 1
   var flopped = false
-  var paused = false
   var hue = 0
 
   var imgW, imgH;
@@ -42,11 +41,11 @@ $(function(){
   }
 
   var moveHeads = function() {
-    if(paused) { return }
+    if(FriendHeads.paused) { return }
     var height = $content.height()
     var width = $content.width()
 
-    heads.forEach(function(head){
+    FriendHeads.heads.forEach(function(head){
       var top = head.top + speedMult * head.yDir
       var fullHeight = opts.feet ? (2*head.height/3)+(footRatio*head.width/2) : head.height
       var hatHeight = opts.hatName ? hatRatio*head.width/2 - head.height/8 : 0;
@@ -86,17 +85,17 @@ $(function(){
       left: left, top: top,
       xDir: getRandomDir(), yDir: getRandomDir()
     }
-    heads = _.sortBy(heads.concat([head]), function(h){return - h.width})
+    FriendHeads.heads = _.sortBy(FriendHeads.heads.concat([head]), function(h){return - h.width})
   }
 
   var reverseHeads = function() {
-    heads.forEach(function(head){
+    FriendHeads.heads.forEach(function(head){
       head.xDir = -head.xDir
       head.yDir = -head.yDir
     })
   }
 
-  var resizeHeads = function(zoomingIn) {
+  FriendHeads.resizeHeads = function(zoomingIn) {
     var diff = opts.sizeMult / 10
     opts.sizeMult += (zoomingIn ? diff : -diff)
     if (opts.sizeMult > 2) {
@@ -104,11 +103,11 @@ $(function(){
     } else if (opts.sizeMult < .25) {
       opts.sizeMult = .25
     } else {
-      heads.forEach(resizeHead)
+      FriendHeads.heads.forEach(FriendHeads.resizeHead)
     }
   }
 
-  var resizeHead = function (head) {
+  FriendHeads.resizeHead = function (head) {
     var prevWidth = head.width
     var prevHeight = head.height
     var newWidth = opts.sizeMult * head.size
@@ -171,7 +170,7 @@ $(function(){
   }
 
   var getHeadIndexAtClick = function (e) {
-    return _.findLastIndex(heads, function(head){
+    return _.findLastIndex(FriendHeads.heads, function(head){
       return (e.clientX > head.left &&
               e.clientX < head.left+head.width &&
               e.clientY > head.top &&
@@ -183,7 +182,7 @@ $(function(){
     if(e.target != this) { return }
     var index = getHeadIndexAtClick(e)
     if(index != -1) {
-      heads.splice(index, 1)
+      FriendHeads.heads.splice(index, 1)
     } else {
       addHead(e.clientX, e.clientY)
     }
@@ -193,16 +192,16 @@ $(function(){
   $('body').on('keydown', function(e){
     var keyCode = e.which
     if(keyCode == 32) { // space bar
-      paused = !paused
+      FriendHeads.paused = !FriendHeads.paused
     } else if (keyCode == 48) { // 0 key
-      paused = false
+      FriendHeads.paused = false
       reverseHeads()
     } else if (keyCode == 38) { // up arrow
       if (speedMult < 20) { speedMult *= 1.5 }
     } else if (keyCode == 40) { // down arrow
       if (speedMult > .1) { speedMult /= 1.5 }
     } else if (keyCode == 187 || keyCode == 189 || keyCode == 173 || keyCode == 61) { // +-
-      resizeHeads(keyCode == 187 || keyCode == 61)
+      FriendHeads.resizeHeads(keyCode == 187 || keyCode == 61)
     } else {
       return
     }
@@ -227,7 +226,7 @@ $(function(){
 
     clearCanv()
 
-    heads.forEach(function(head){
+    FriendHeads.heads.forEach(function(head){
       if(opts.feet) {
         ctx.drawImage(leftFoot,head.left, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
         ctx.drawImage(rightFoot,head.left+head.width/2, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
