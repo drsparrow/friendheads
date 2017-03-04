@@ -9,6 +9,7 @@ $(function(){
     var hatName = $('img.selected-hat').data('hat')
     var background = $('input[name="background-option"]:checked').val()
     var headCount = $('#head-count').val()
+    var snail = $('#snail-trail').val()
     if(audioFileName) {
       loc += ('&a=' + audioFileName)
     }
@@ -27,9 +28,10 @@ $(function(){
     if(headCount != FriendHeads.defaultHeadCount) {
       loc += '&count='+headCount
     }
-    if(background=='snail'){
-      loc += '&snail=1'
-    } else if(background=='custom') {
+    if(snail != '') {
+      loc += '&snail='+snail
+    }
+    if(background=='custom') {
       loc += ('&color=' + $('#background-color').val().split('#')[1])
     }
     window.location = loc

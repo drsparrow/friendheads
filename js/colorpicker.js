@@ -5,12 +5,15 @@ $(function(){
     color: '#ff0000'
   })
 
-  var $canvas = $('#changing-background-color-canvas');
-  var ctx = $canvas[0].getContext('2d')
+  var $canvases = $('#changing-background-color-canvas, #background-canvas');
+  // var ctx0 = $canvas[0].getContext('2d')
+  // var ctx1 = $canvas[1].getContext('2d')
   window.setInterval(function(){
-    if ($canvas.is(':visible')) {
-      ctx.fillStyle = 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)';
-      ctx.fillRect(0,0, $canvas.width(), $canvas.height())
-    }
-  }, 40)
+    $canvases.each(function(){
+      if($(this).is(':visible')){
+        this.getContext('2d').fillStyle = 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)';
+        this.getContext('2d').fillRect(0,0, this.width, this.height)
+      }
+    })
+  }, 50)
 })

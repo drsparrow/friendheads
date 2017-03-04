@@ -2,11 +2,16 @@ html, body {
   height: 100%;
 }
 
-#js-content {
+#js-content, #background-canvas {
   position: fixed;
   /*border: 1px solid black;*/
   top: 0px;
   left: 0px;
+}
+
+#background-canvas {
+  width: 100vw;
+  height: 100vh;
 }
 
 .no-overflow {

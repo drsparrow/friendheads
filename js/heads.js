@@ -138,7 +138,7 @@ $(function(){
     opts.feet = !!params.feet
     opts.hands = !!params.hands
     opts.hatName = params.hat
-    opts.snailTrail = !!params.snail
+    opts.snailTrail = parseFloat(params.snail) || 0
     opts.count = params.count || opts.count
     opts.color = params.color
     var fullColor = '#'+opts.color
@@ -150,6 +150,7 @@ $(function(){
       opts.background = 'backgrounds/'+params.sb+'.png'
     }
     opts.background && $('body').css('background', 'url('+opts.background+')') && $('#background').attr('src',opts.background)
+    opts.snailTrail == 9 && !(opts.background || opts.color) && $('#background-canvas').removeClass('hidden')
   }
 
   var playAudio = function() {
@@ -242,9 +243,20 @@ $(function(){
   }
 
   var clearCanv = function () {
-    if(opts.snailTrail) {ctx.globalAlpha = .01}
+    if (opts.snailTrail == 9) { return }
+    if (!opts.snailTrail) {
+      if (opts.background || opts.color) {
+        ctx.clearRect(0,0,$(window).width(), $(window).height())
+      } else {
+        ctx.fillStyle = 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)'
+        ctx.fillRect(0,0,$(window).width(), $(window).height())
+      }
+      return
+    }
+    var snailVal = 9 - opts.snailTrail
+    if(snailVal != 9) { ctx.globalAlpha = .008 * snailVal }
     if(opts.background) {
-      if(opts.snailTrail) {
+      if(true) {
         var background = $('#background')[0]
         var w = $(window).width()
         var h = $(window).height()
