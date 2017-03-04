@@ -17,10 +17,10 @@ $(function(){
       loc += ('&b=' + backgroundFileName)
     }
     if ($('#js-include-hands').is(':checked')) {
-      loc += '&hands=1'
+      loc += '&hands=y'
     }
     if ($('#js-include-feet').is(':checked')) {
-      loc += '&feet=1'
+      loc += '&feet=y'
     }
     if (hatName) {
       loc += ('&hat=' + hatName)

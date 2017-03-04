@@ -1,8 +1,8 @@
 window.FriendHeads = window.FriendHeads || {}
 FriendHeads.samples = [
-  {si: 'bern', sa: 'bern', hat: 'spin', hands: 1, size: 1.5},
-  {si: 'kony', hat: 'party', snail: 1},
-  {si: 'hill', sa: 'hill', hat: 'santa', feet: 1, count: 10},
+  {si: 'bern', sa: 'bern', hat: 'spin', hands: 'y', size: 1.5},
+  {si: 'kony', hat: 'party', snail: 5},
+  {si: 'hill', sa: 'hill', hat: 'santa', feet: 'y', count: 10},
   {si: 'cage', sa: 'cage', sb: 'cage', hat: 'bow'}
 ]
 FriendHeads.defaultHeadCount = 5
