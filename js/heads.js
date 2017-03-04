@@ -256,14 +256,17 @@ $(function(){
       var background = $('#background')[0]
       var w = $(window).width()
       var h = $(window).height()
+      var backH = background.height
+      var backW = background.width
+      if(!(backW && backH)) { return }
       var curX = 0
       while (curX < w) {
         var curH = 0
         while(curH < h) {
           ctx.drawImage(background,curX,curH)
-          curH += background.height
+          curH += backH
         }
-        curX += background.width
+        curX += backW
       }
     } else {
       ctx.fillStyle = opts.color ? '#' + opts.color : 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)'
