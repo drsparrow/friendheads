@@ -1,19 +1,29 @@
 .header {
   position: fixed;
-  top: -35px;
+  top: -45px;
   width: 100%;
   z-index: 3000;
   margin: 0 0;
   transition: .2s;
-  padding-bottom: 20px;
+  padding-bottom: 40px;
+  opacity: .6;
 }
 
 .header:hover {
   top:0px;
+  opacity: 1;
+}
+
+.header-content .header-left {
+  float: left;
+}
+.header-content .header-right {
+  float: right;
+  margin-right: 30px;
 }
 
 .header-content {
-  height: 25px;
+  height: 35px;
   color: white;
   background: black;
   width: 100%;
@@ -82,4 +92,8 @@ img.arrow:active {
 
 .space-bar-area img:active {
   height: 34px;
+}
+
+.header-content img.disabled {
+  cursor: default;
 }
