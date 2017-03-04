@@ -193,10 +193,10 @@ $(function(){
   $('body').on('keydown', function(e){
     var keyCode = e.which
     if(keyCode == 32) { // space bar
+      paused = !paused
+    } else if (keyCode == 48) { // 0 key
       paused = false
       reverseHeads()
-    } else if (keyCode == 48) { //space bar
-      paused = !paused
     } else if (keyCode == 38) { // up arrow
       if (speedMult < 20) { speedMult *= 1.5 }
     } else if (keyCode == 40) { // down arrow
