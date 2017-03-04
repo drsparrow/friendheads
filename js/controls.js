@@ -5,4 +5,7 @@ $(function(){
   $('.js-minus-button').click(function(){
     FriendHeads.resizeHeads(false)
   })
+  $('.js-space-button').click(function(){
+    FriendHeads.paused = !FriendHeads.paused
+  })
 })
