@@ -7,6 +7,7 @@ FriendHeads.samples = [
 ]
 FriendHeads.defaultHeadCount = 5
 FriendHeads.hats = ['party', 'top', 'santa', 'bow', 'spin']
+FriendHeads.maxSnail = 9
 $(function(){
   var heads = []
   canvas = document.getElementById("js-content")
@@ -150,7 +151,7 @@ $(function(){
       opts.background = 'backgrounds/'+params.sb+'.png'
     }
     opts.background && $('body').css('background', 'url('+opts.background+')') && $('#background').attr('src',opts.background)
-    opts.snailTrail == 9 && !(opts.background || opts.color) && $('#background-canvas').removeClass('hidden')
+    !(opts.background || opts.color) && $('#background-canvas').removeClass('hidden')
   }
 
   var playAudio = function() {
@@ -243,34 +244,26 @@ $(function(){
   }
 
   var clearCanv = function () {
-    if (opts.snailTrail == 9) { return }
+    var maxSnail = FriendHeads.maxSnail
+    if (opts.snailTrail == maxSnail) { return }
     if (!opts.snailTrail) {
-      if (opts.background || opts.color) {
-        ctx.clearRect(0,0,$(window).width(), $(window).height())
-      } else {
-        ctx.fillStyle = 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)'
-        ctx.fillRect(0,0,$(window).width(), $(window).height())
-      }
+      ctx.clearRect(0,0,$(window).width(), $(window).height())
       return
     }
-    var snailVal = 9 - opts.snailTrail
-    if(snailVal != 9) { ctx.globalAlpha = .008 * snailVal }
+    var snailVal = maxSnail - opts.snailTrail
+    ctx.globalAlpha = .008 * snailVal
     if(opts.background) {
-      if(true) {
-        var background = $('#background')[0]
-        var w = $(window).width()
-        var h = $(window).height()
-        var curX = 0
-        while (curX < w) {
-          var curH = 0
-          while(curH < h) {
-            ctx.drawImage(background,curX,curH)
-            curH += background.height
-          }
-          curX += background.width
+      var background = $('#background')[0]
+      var w = $(window).width()
+      var h = $(window).height()
+      var curX = 0
+      while (curX < w) {
+        var curH = 0
+        while(curH < h) {
+          ctx.drawImage(background,curX,curH)
+          curH += background.height
         }
-      } else {
-        ctx.clearRect(0,0,$(window).width(), $(window).height())
+        curX += background.width
       }
     } else {
       ctx.fillStyle = opts.color ? '#' + opts.color : 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)'
