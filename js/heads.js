@@ -130,6 +130,16 @@ $(function(){
     head.top = head.top + (prevHeight - head.height)/2
   }
 
+  FriendHeads.changeSnail = function(isUp) {
+    var val = opts.snailTrail + 5*(isUp ? 1 : -1)
+    if (val < 0){
+      val = 0
+    } else if (val > FriendHeads.maxSnail) {
+      val = FriendHeads.maxSnail
+    }
+    opts.snailTrail = val
+  }
+
   var imgSrc = function () {
     var id = window.FriendHeads.params('i')
     var specialImage = window.FriendHeads.params('si')
@@ -216,6 +226,8 @@ $(function(){
       if (speedMult > .1) { speedMult /= 1.5 }
     } else if (keyCode == 187 || keyCode == 189 || keyCode == 173 || keyCode == 61) { // +-
       FriendHeads.resizeHeads(keyCode == 187 || keyCode == 61)
+    } else if(keyCode == 37 || keyCode == 39) { // left arrow, right arrow
+      FriendHeads.changeSnail(keyCode==39)
     } else {
       return
     }
