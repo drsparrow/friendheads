@@ -44,7 +44,8 @@ $(function(){
     if(FriendHeads.paused) { draw(); return }
     var height = $content.height()
     var width = $content.width()
-
+    var wasHovered = FriendHeads.hovered
+    FriendHeads.hovered = false
     FriendHeads.heads.forEach(function(head){
       var top = head.top + speedMult * head.yDir
       var fullHeight = opts.feet ? (2*head.height/3)+(footRatio*head.width/2) : head.height
@@ -65,8 +66,20 @@ $(function(){
         left = -(rightMost)
       }
       head.left = left
+      if(wasHovered && (FriendHeads.hovered || isHovered(head))) { FriendHeads.hovered = true}
     })
     draw()
+  }
+
+  var isHovered = function(head){
+    var mouse = FriendHeads.mouse
+    if(!mouse) { return }
+    var x = mouse.clientX
+    var y = mouse.clientY
+    return (x > head.left &&
+            x < head.left+head.width &&
+            y > head.top &&
+            y < head.top+head.height);
   }
 
   var addHead = function (left, top) {
@@ -169,24 +182,25 @@ $(function(){
     $audio[0].play()
   }
 
-  var getHeadIndexAtClick = function (e) {
-    return _.findLastIndex(FriendHeads.heads, function(head){
-      return (e.clientX > head.left &&
-              e.clientX < head.left+head.width &&
-              e.clientY > head.top &&
-              e.clientY < head.top+head.height);
-    })
+  var getHeadIndexAtClick = function () {
+    return _.findLastIndex(FriendHeads.heads, isHovered)
   }
 
   $('#js-content').click(function(e) {
     if(e.target != this) { return }
-    var index = getHeadIndexAtClick(e)
+    var index = getHeadIndexAtClick()
     if(index != -1) {
       FriendHeads.heads.splice(index, 1)
     } else {
       addHead(e.clientX, e.clientY)
     }
+  })
 
+  $('#js-content').on('mousemove', function(e) {
+    FriendHeads.mouse = e
+    if(e.target != this) { return }
+    var index = getHeadIndexAtClick()
+    FriendHeads.hovered = (index != -1)
   })
 
   $('body').on('keydown', function(e){
@@ -225,7 +239,7 @@ $(function(){
     hatRatio = hat.height/hat.width
 
     clearCanv()
-
+    $('body').css('cursor', FriendHeads.hovered ? 'pointer' :'default')
     FriendHeads.heads.forEach(function(head){
       if(opts.feet) {
         ctx.drawImage(leftFoot,head.left, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
