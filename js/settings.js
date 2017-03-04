@@ -20,6 +20,18 @@ $(function(){
     $('.js-advanced-settings').addClass('hidden');
   })
 
+  FriendHeads.hats.forEach(function(hat){
+    var $hat = $('<img>', {src: 'hats/'+hat+'.png', 'data-hat': hat, id: hat+'-hat'})
+    $('.hat-selection').append($hat)
+  })
+
+  $('.hat-selection img').click(function(){
+    var $this = $(this)
+    var selected = $this.is('.selected-hat')
+    $('.hat-selection img').removeClass('selected-hat')
+    selected || $this.addClass('selected-hat')
+  })
+
   FriendHeads.samples.forEach(function(sample){
     var $a = $('<a>', {href: window.location.pathname + '?' + $.param(sample), target: '_blank', class: 'sample-link'})
     $a.append($('<img>', {src: 'heads/'+sample.si+'.png'}))

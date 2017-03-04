@@ -6,6 +6,7 @@ FriendHeads.samples = [
   {si: 'cage', sa: 'cage', sb: 'cage', hat: 'bow'}
 ]
 FriendHeads.defaultHeadCount = 5
+FriendHeads.hats = ['party', 'top', 'santa', 'bow', 'spin']
 $(function(){
   var heads = []
   canvas = document.getElementById("js-content")

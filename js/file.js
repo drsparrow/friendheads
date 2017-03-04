@@ -6,7 +6,7 @@ $(function(){
 
   var changePage = function () {
     var loc = window.location.pathname + '?i='+imageFileName
-    var hatName = $('input[name="hat"]:checked').val()
+    var hatName = $('img.selected-hat').data('hat')
     var background = $('input[name="background-option"]:checked').val()
     var headCount = $('#head-count').val()
     if(audioFileName) {

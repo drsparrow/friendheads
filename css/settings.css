@@ -115,6 +115,16 @@
 
 .hat-selection img{
   width: 50px;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: .6;
+}
+
+.hat-selection img.selected-hat {
+  background: rgba(0,0,255,1);
+  border: none;
+  opacity: 1;
 }
 
 .sample-link {
