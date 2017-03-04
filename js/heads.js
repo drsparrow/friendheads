@@ -140,6 +140,18 @@ $(function(){
     opts.snailTrail = val
   }
 
+  FriendHeads.changeSpeed = function(isUp) {
+    var speedDiff = 1.5;
+    var newSpeed = isUp ? speedMult * speedDiff : speedMult / speedDiff
+    if (newSpeed > 20) {
+      newSpeed = 20
+    } else if (newSpeed < .1) {
+      newSpeed = .1
+    }
+
+    speedMult = newSpeed
+  }
+
   var imgSrc = function () {
     var id = window.FriendHeads.params('i')
     var specialImage = window.FriendHeads.params('si')
@@ -220,10 +232,8 @@ $(function(){
     } else if (keyCode == 48) { // 0 key
       FriendHeads.paused = false
       reverseHeads()
-    } else if (keyCode == 38) { // up arrow
-      if (speedMult < 20) { speedMult *= 1.5 }
-    } else if (keyCode == 40) { // down arrow
-      if (speedMult > .1) { speedMult /= 1.5 }
+    } else if (keyCode == 38 || keyCode == 40) { // up arrow, down arrow
+      FriendHeads.changeSpeed(keyCode == 38)
     } else if (keyCode == 187 || keyCode == 189 || keyCode == 173 || keyCode == 61) { // +-
       FriendHeads.resizeHeads(keyCode == 187 || keyCode == 61)
     } else if(keyCode == 37 || keyCode == 39) { // left arrow, right arrow
