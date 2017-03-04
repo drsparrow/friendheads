@@ -14,4 +14,10 @@ $(function(){
   $('.js-left-button').click(function(){
     FriendHeads.changeSnail(false)
   })
+  $('.js-up-button').click(function(){
+    FriendHeads.changeSpeed(true)
+  })
+  $('.js-down-button').click(function(){
+    FriendHeads.changeSpeed(false)
+  })
 })
