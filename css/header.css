@@ -27,13 +27,13 @@
 }
 
 .header-content img {
-  height: 30px;
+  height: 36px;
   cursor: pointer;
 }
 
 .header-content img:active {
   filter: brightness(50%);
-  height: 28px;
+  height: 34px;
   margin-top: 2px;
   margin-left: 1px;
   margin-right: 1px;
