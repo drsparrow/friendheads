@@ -145,12 +145,11 @@ $(function(){
     opts.color && $('html').css('background-color', fullColor)
     ctx.fillStyle = fullColor;
     if(params.b) {
-      opts.background = params.b
-      $('body').css('background', 'url('+pathFromId(opts.background)+')')
+      opts.background = pathFromId(params.b)
     } else if(params.sb) {
-      opts.background = params.sb
-      opts.background && $('body').css('background', 'url(backgrounds/'+opts.background+'.png)')
+      opts.background = 'backgrounds/'+params.sb+'.png'
     }
+    opts.background && $('body').css('background', 'url('+opts.background+')') && $('#background').attr('src',opts.background)
   }
 
   var playAudio = function() {
@@ -224,14 +223,7 @@ $(function(){
     handRatio = leftHand.height/leftHand.width
     hatRatio = hat.height/hat.width
 
-    if(opts.snailTrail) {ctx.globalAlpha = .01}
-    if(!opts.background) {
-      ctx.fillStyle = opts.color ? '#' + opts.color : 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)'
-      ctx.fillRect(0,0,$(window).width(), $(window).height())
-    } else {
-      ctx.clearRect(0,0,$(window).width(), $(window).height())
-    }
-    ctx.globalAlpha = 1
+    clearCanv()
 
     heads.forEach(function(head){
       if(opts.feet) {
@@ -247,6 +239,32 @@ $(function(){
         ctx.drawImage(hat,head.left+head.width/8, head.top - hatRatio*head.width/2 + head.height/8, head.width/2, hatRatio*head.width/2)
       }
     })
+  }
+
+  var clearCanv = function () {
+    if(opts.snailTrail) {ctx.globalAlpha = .01}
+    if(opts.background) {
+      if(opts.snailTrail) {
+        var background = $('#background')[0]
+        var w = $(window).width()
+        var h = $(window).height()
+        var curX = 0
+        while (curX < w) {
+          var curH = 0
+          while(curH < h) {
+            ctx.drawImage(background,curX,curH)
+            curH += background.height
+          }
+          curX += background.width
+        }
+      } else {
+        ctx.clearRect(0,0,$(window).width(), $(window).height())
+      }
+    } else {
+      ctx.fillStyle = opts.color ? '#' + opts.color : 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)'
+      ctx.fillRect(0,0,$(window).width(), $(window).height())
+    }
+    ctx.globalAlpha = 1
   }
 
   var start = function() {
