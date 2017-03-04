@@ -2,8 +2,6 @@
 .form-stuff * {
   z-index: 2000;
   position: relative;
-  font-family: sans-serif;
-  font-size: 18px;
 }
 
 .form-stuff {

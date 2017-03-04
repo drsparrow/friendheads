@@ -1,0 +1,27 @@
+.header {
+  position: fixed;
+  top: -35px;
+  width: 100%;
+  z-index: 3000;
+  margin: 0 0;
+  transition: .2s;
+  padding-bottom: 20px;
+}
+
+.header:hover {
+  top:0px;
+}
+
+.header-content {
+  height: 25px;
+  color: white;
+  background: black;
+  width: 100%;
+  margin: 0 0;
+  padding: 10px;
+}
+
+.header-content a {
+  color: white;
+  text-decoration: none;
+}
