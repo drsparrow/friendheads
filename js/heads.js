@@ -22,15 +22,12 @@ $(function(){
   var hue = 0
 
   var imgW, imgH;
-  var feet;
-  var hands;
   var footRatio;
   var handRatio;
-  var hatName;
-  var snailTrail;
-  var background;
-  var count = FriendHeads.defaultHeadCount;
-  var color;
+
+  var opts = FriendHeads.options = {
+    count: FriendHeads.defaultHeadCount
+  }
 
   var getRandomDir = function () {
     var rand = Math.random() + 1
@@ -49,8 +46,8 @@ $(function(){
 
     heads.forEach(function(head){
       var top = head.top + speedMult * head.yDir
-      var fullHeight = feet ? (2*head.height/3)+(footRatio*head.width/2) : head.height
-      var hatHeight = hatName ? hatRatio*head.width/2 - head.height/8 : 0;
+      var fullHeight = opts.feet ? (2*head.height/3)+(footRatio*head.width/2) : head.height
+      var hatHeight = opts.hatName ? hatRatio*head.width/2 - head.height/8 : 0;
       if((top+fullHeight) < 0) {
         top = height + hatHeight
       } else if ((top - hatHeight)> height) {
@@ -59,8 +56,8 @@ $(function(){
       head.top = top
 
       var left = head.left + speedMult * head.xDir
-      var leftMost = hands ? 1*head.width/4 - head.width/2 : 0;
-      var rightMost = hands ? 3*head.width/4 + head.width/2 : head.width;
+      var leftMost = opts.hands ? 1*head.width/4 - head.width/2 : 0;
+      var rightMost = opts.hands ? 3*head.width/4 + head.width/2 : head.width;
       if(rightMost+left < 0) {
         left = width + -(leftMost)
       } else if (leftMost+left > width) {
@@ -74,8 +71,8 @@ $(function(){
   var addHead = function (left, top) {
     var size = 100 * (Math.random() + 1)
     var adjSize = size/imgW
-    var width = size*sizeMult;
-    var height =imgH*(size/imgW)*sizeMult;
+    var width = size*opts.sizeMult;
+    var height =imgH*(size/imgW)*opts.sizeMult;
     var $head = $('<img>')
     left = (left ? left - width/2 : getRandomPos('width'))
     top = (top ? top - height/2 : getRandomPos('height'))
@@ -98,12 +95,12 @@ $(function(){
   }
 
   var resizeHeads = function(zoomingIn) {
-    var diff = sizeMult / 10
-    sizeMult += (zoomingIn ? diff : -diff)
-    if (sizeMult > 2) {
-      sizeMult = 2
-    } else if (sizeMult < .25) {
-      sizeMult = .25
+    var diff = opts.sizeMult / 10
+    opts.sizeMult += (zoomingIn ? diff : -diff)
+    if (opts.sizeMult > 2) {
+      opts.sizeMult = 2
+    } else if (opts.sizeMult < .25) {
+      opts.sizeMult = .25
     } else {
       heads.forEach(resizeHead)
     }
@@ -112,7 +109,7 @@ $(function(){
   var resizeHead = function (head) {
     var prevWidth = head.width
     var prevHeight = head.height
-    var newWidth = sizeMult * head.size
+    var newWidth = opts.sizeMult * head.size
     head.width = newWidth
     head.height = head.width * (prevHeight/prevWidth)
     head.left = head.left + (prevWidth - newWidth)/2
@@ -136,22 +133,22 @@ $(function(){
 
   var setOptions = function () {
     var params = window.FriendHeads.params()
-    sizeMult = parseFloat(params.size) || 1;
-    feet = !!params.feet
-    hands = !!params.hands
-    hatName = params.hat
-    snailTrail = !!params.snail
-    count = params.count || count
-    color = params.color
-    var fullColor = '#'+color
-    color && $('html').css('background-color', fullColor)
+    opts.sizeMult = parseFloat(params.size) || 1;
+    opts.feet = !!params.feet
+    opts.hands = !!params.hands
+    opts.hatName = params.hat
+    opts.snailTrail = !!params.snail
+    opts.count = params.count || opts.count
+    opts.color = params.color
+    var fullColor = '#'+opts.color
+    opts.color && $('html').css('background-color', fullColor)
     ctx.fillStyle = fullColor;
     if(params.b) {
-      background = params.b
-      $('body').css('background', 'url('+pathFromId(background)+')')
+      opts.background = params.b
+      $('body').css('background', 'url('+pathFromId(opts.background)+')')
     } else if(params.sb) {
-      background = params.sb
-      background && $('body').css('background', 'url(backgrounds/'+background+'.png)')
+      opts.background = params.sb
+      opts.background && $('body').css('background', 'url(backgrounds/'+opts.background+'.png)')
     }
   }
 
@@ -221,14 +218,14 @@ $(function(){
     var rightFoot = document.getElementById('right-foot')
     var leftHand = document.getElementById('left-hand')
     var rightHand = document.getElementById('right-hand')
-    var hat = document.getElementById(hatName+'-hat') || {}
+    var hat = opts.hatName && document.getElementById(opts.hatName+'-hat') || {}
     footRatio = leftFoot.height/leftFoot.width
     handRatio = leftHand.height/leftHand.width
     hatRatio = hat.height/hat.width
 
-    if(snailTrail) {ctx.globalAlpha = .01}
-    if(!background) {
-      ctx.fillStyle = color ? '#' + color : 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)'
+    if(opts.snailTrail) {ctx.globalAlpha = .01}
+    if(!opts.background) {
+      ctx.fillStyle = opts.color ? '#' + opts.color : 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)'
       ctx.fillRect(0,0,$(window).width(), $(window).height())
     } else {
       ctx.clearRect(0,0,$(window).width(), $(window).height())
@@ -236,16 +233,16 @@ $(function(){
     ctx.globalAlpha = 1
 
     heads.forEach(function(head){
-      if(feet) {
+      if(opts.feet) {
         ctx.drawImage(leftFoot,head.left, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
         ctx.drawImage(rightFoot,head.left+head.width/2, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
       }
-      if (hands) {
+      if (opts.hands) {
         ctx.drawImage(leftHand,head.left-1*head.width/4, head.top+head.height/3, head.width/2, handRatio*head.width/2)
         ctx.drawImage(rightHand,head.left+3*head.width/4, head.top+head.height/3, head.width/2, handRatio*head.width/2)
       }
       ctx.drawImage(face,head.left, head.top, head.width, head.height)
-      if(hatName) {
+      if(opts.hatName) {
         ctx.drawImage(hat,head.left+head.width/8, head.top - hatRatio*head.width/2 + head.height/8, head.width/2, hatRatio*head.width/2)
       }
     })
@@ -266,7 +263,7 @@ $(function(){
     img.onload = function () {
       imgW = img.width;
       imgH = img.height;
-      for(var i = 0; i < count; i++) { addHead() }
+      for(var i = 0; i < opts.count; i++) { addHead() }
       draw()
     }
     window.setInterval(moveHeads, 20)
