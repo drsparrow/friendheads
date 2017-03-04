@@ -41,7 +41,7 @@ $(function(){
   }
 
   var moveHeads = function() {
-    if(FriendHeads.paused) { return }
+    if(FriendHeads.paused) { draw(); return }
     var height = $content.height()
     var width = $content.width()
 
