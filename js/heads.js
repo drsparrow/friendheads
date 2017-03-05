@@ -7,7 +7,29 @@ FriendHeads.samples = [
 ]
 FriendHeads.defaultHeadCount = 5
 FriendHeads.hats = ['party', 'top', 'santa', 'bow', 'spin']
-FriendHeads.maxSnail = 9
+FriendHeads.ranges = {
+  snail: [0, 9],
+  speedMult: [0.1, 20],
+  sizeMult: [0.25, 2]
+}
+FriendHeads.maxSnail = FriendHeads.ranges.snail[1]
+FriendHeads.checkRanges = function () {
+  var opts = FriendHeads.options
+  var rngs = FriendHeads.ranges
+  $('.js-control-buttons img').removeClass('disabled')
+
+  if(opts.snailTrail <= rngs.snail[0]) {
+    $('.js-left-button').addClass('disabled')
+  } else if (opts.snailTrail >= rngs.snail[1]) {
+    $('.js-right-button').addClass('disabled')
+  }
+
+  if(opts.speedMult <= rngs.speedMult[0]) {
+    $('.js-down-button').addClass('disabled')
+  } else if(opts.speedMult >= rngs.speedMult[1]) {
+    $('.js-up-button').addClass('disabled')
+  }
+}
 $(function(){
   var heads = FriendHeads.heads = [];
   canvas = document.getElementById("js-content")
@@ -18,7 +40,6 @@ $(function(){
   canvas.style.width = "1000px";
   canvas.style.height = "750px";
   $content = $('#js-content')
-  var speedMult = 1
   var flopped = false
   var hue = 0
 
@@ -27,7 +48,8 @@ $(function(){
   var handRatio;
 
   var opts = FriendHeads.options = {
-    count: FriendHeads.defaultHeadCount
+    count: FriendHeads.defaultHeadCount,
+    speedMult: 1
   }
 
   var getRandomDir = function () {
@@ -42,6 +64,7 @@ $(function(){
 
   var moveHeads = function() {
     if(FriendHeads.paused) { draw(); return }
+    var speedMult = opts.speedMult
     var height = $content.height()
     var width = $content.width()
     var wasHovered = FriendHeads.hovered
@@ -142,14 +165,14 @@ $(function(){
 
   FriendHeads.changeSpeed = function(isUp) {
     var speedDiff = 1.5;
-    var newSpeed = isUp ? speedMult * speedDiff : speedMult / speedDiff
+    var newSpeed = isUp ? opts.speedMult * speedDiff : opts.speedMult / speedDiff
     if (newSpeed > 20) {
       newSpeed = 20
     } else if (newSpeed < .1) {
       newSpeed = .1
     }
 
-    speedMult = newSpeed
+    opts.speedMult = newSpeed
   }
 
   var imgSrc = function () {
@@ -241,7 +264,7 @@ $(function(){
     } else {
       return
     }
-
+    FriendHeads.checkRanges()
     e.preventDefault()
   })
 
@@ -318,6 +341,7 @@ $(function(){
     resizeFunc()
     playAudio()
     setOptions()
+    FriendHeads.checkRanges()
 
     var img = $('#img')[0]
 

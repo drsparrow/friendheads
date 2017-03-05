@@ -96,4 +96,5 @@ img.arrow:active {
 
 .header-content img.disabled {
   cursor: default;
+  opacity: .5;
 }
