@@ -17,6 +17,11 @@
 .header-content .header-left {
   float: left;
 }
+
+.header-content .header-left a {
+  font-size: 37px;
+  vertical-align: middle;
+}
 .header-content .header-right {
   float: right;
   margin-right: 30px;
