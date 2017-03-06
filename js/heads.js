@@ -182,8 +182,8 @@ $(function(){
   }
 
   var imgSrc = function () {
-    var id = window.FriendHeads.params('i')
-    var specialImage = window.FriendHeads.params('si')
+    var id = FriendHeads.params('i')
+    var specialImage = FriendHeads.params('si')
     if(id) {
       return pathFromId(id)
     } else if (specialImage) {
@@ -197,7 +197,7 @@ $(function(){
   }
 
   var setOptions = function () {
-    var params = window.FriendHeads.params()
+    var params = FriendHeads.params()
     opts.sizeMult = parseFloat(params.size) || 1;
     opts.feet = !!params.feet
     opts.hands = !!params.hands
@@ -218,8 +218,8 @@ $(function(){
   }
 
   var playAudio = function() {
-    var id = window.FriendHeads.params('a')
-    var specialAudio = window.FriendHeads.params('sa')
+    var id = FriendHeads.params('a')
+    var specialAudio = FriendHeads.params('sa')
     var audioSrc;
     if(id) {
       audioSrc = pathFromId(id)
@@ -359,10 +359,10 @@ $(function(){
       draw()
     }
     window.setInterval(moveHeads, 20)
-    isDefault || window.setTimeout(function(){window.FriendHeads.update()})
+    isDefault || window.setTimeout(function(){FriendHeads.update()})
   }
 
-  window.FriendHeads.update = function () {
+  FriendHeads.update = function () {
     $('.js-form-stuff').addClass('hidden')
     var src = imgSrc()
     $('#img').attr('src', src)
