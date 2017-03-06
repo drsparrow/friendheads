@@ -130,7 +130,8 @@ $(function(){
     FriendHeads.heads = _.sortBy(FriendHeads.heads.concat([head]), function(h){return - h.width})
   }
 
-  var reverseHeads = function() {
+  FriendHeads.reverseHeads = function() {
+    FriendHeads.paused = false;
     FriendHeads.heads.forEach(function(head){
       head.xDir = -head.xDir
       head.yDir = -head.yDir
@@ -259,8 +260,7 @@ $(function(){
     if(keyCode == 32) { // space bar
       FriendHeads.paused = !FriendHeads.paused
     } else if (keyCode == 48) { // 0 key
-      FriendHeads.paused = false
-      reverseHeads()
+      FriendHeads.reverseHeads()
     } else if (keyCode == 38 || keyCode == 40) { // up arrow, down arrow
       FriendHeads.changeSpeed(keyCode == 38)
     } else if (keyCode == 187 || keyCode == 189 || keyCode == 173 || keyCode == 61) { // +-
