@@ -259,7 +259,7 @@ $(function(){
     var keyCode = e.which
     if(keyCode == 32) { // space bar
       FriendHeads.paused = !FriendHeads.paused
-    } else if (keyCode == 48) { // 0 key
+    } else if (keyCode == 191) { // ? key
       FriendHeads.reverseHeads()
     } else if (keyCode == 38 || keyCode == 40) { // up arrow, down arrow
       FriendHeads.changeSpeed(keyCode == 38)
