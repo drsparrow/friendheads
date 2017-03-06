@@ -3,7 +3,7 @@ $(function(){
   var files = FriendHeads.files;
   var disabled = true;
 
-  var changePage = function () {
+  FriendHeads.getParamsFromForm = function () {
     var params = {i: files.imageFileName}
     var hatName = $('img.selected-hat').data('hat')
     var background = $('input[name="background-option"]:checked').val()
@@ -33,8 +33,13 @@ $(function(){
     if(background=='custom') {
       params.color = $('#background-color').val().split('#')[1]
     }
-    window.location = window.location.pathname + '?' + $.param(params)
+    return params
   }
+
+  var changePage = function () {
+    window.location = window.location.pathname + '?' + $.param(FriendHeads.getParamsFromForm())
+  }
+
   $(".image-upload-button").dropzone({
      url: "dummy",
      createImageThumbnails: false,
