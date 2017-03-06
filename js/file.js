@@ -1,20 +1,19 @@
 $(function(){
-  var imageFileName;
-  var audioFileName;
-  var backgroundFileName;
+  FriendHeads.files = FriendHeads.files || {}
+  var files = FriendHeads.files;
   var disabled = true;
 
   var changePage = function () {
-    var params = {i: imageFileName}
+    var params = {i: files.imageFileName}
     var hatName = $('img.selected-hat').data('hat')
     var background = $('input[name="background-option"]:checked').val()
     var headCount = $('#head-count').val()
     var snail = $('#snail-trail').val()
-    if(audioFileName) {
-      params.a = audioFileName
+    if(files.audioFileName) {
+      params.a = files.audioFileName
     }
-    if(backgroundFileName) {
-      params.b = backgroundFileName
+    if(files.backgroundFileName) {
+      params.b = files.backgroundFileName
     }
     if ($('#js-include-hands').is(':checked')) {
       params.hands = 'y'
@@ -48,8 +47,8 @@ $(function(){
        $('#submit').attr('disabled', true)
        var storageRef = firebase.storage().ref();
 
-       imageFileName = (new Date()).getTime().toString(36)
-       var uploadTask = storageRef.child(imageFileName).put(file, {});
+       files.imageFileName = (new Date()).getTime().toString(36)
+       var uploadTask = storageRef.child(files.imageFileName).put(file, {});
 
        uploadTask.on('state_changed', null, null, function(a,b,c) {
          if($('.js-advanced-settings').is(':visible')) {
@@ -74,8 +73,8 @@ $(function(){
      accept: function(file) {
       $('#submit').attr('disabled', true)
        var storageRef = firebase.storage().ref();
-       audioFileName = (new Date()).getTime().toString(36)
-       var uploadTask = storageRef.child(audioFileName).put(file, {});
+       files.audioFileName = (new Date()).getTime().toString(36)
+       var uploadTask = storageRef.child(files.audioFileName).put(file, {});
 
        uploadTask.on('state_changed', null, null, function() {
          !disabled && $('#submit').removeAttr('disabled')
@@ -96,8 +95,8 @@ $(function(){
      accept: function(file) {
       $('#submit').attr('disabled', true)
        var storageRef = firebase.storage().ref();
-       backgroundFileName = (new Date()).getTime().toString(36)
-       var uploadTask = storageRef.child(backgroundFileName).put(file, {});
+       files.backgroundFileName = (new Date()).getTime().toString(36)
+       var uploadTask = storageRef.child(files.backgroundFileName).put(file, {});
 
        uploadTask.on('state_changed', null, null, function() {
          !disabled && $('#submit').removeAttr('disabled')
