@@ -13,29 +13,7 @@ FriendHeads.ranges = {
   sizeMult: [0.25, 2]
 }
 FriendHeads.maxSnail = FriendHeads.ranges.snail[1]
-FriendHeads.checkRanges = function () {
-  var opts = FriendHeads.options
-  var rngs = FriendHeads.ranges
-  $('.js-control-buttons img').removeClass('disabled')
 
-  if(opts.snailTrail <= rngs.snail[0]) {
-    $('.js-left-button').addClass('disabled')
-  } else if (opts.snailTrail >= rngs.snail[1]) {
-    $('.js-right-button').addClass('disabled')
-  }
-
-  if(opts.speedMult <= rngs.speedMult[0]) {
-    $('.js-down-button').addClass('disabled')
-  } else if(opts.speedMult >= rngs.speedMult[1]) {
-    $('.js-up-button').addClass('disabled')
-  }
-
-  if(opts.sizeMult <= rngs.sizeMult[0]) {
-    $('.js-minus-button').addClass('disabled')
-  } else if(opts.sizeMult >= rngs.sizeMult[1]) {
-    $('.js-plus-button').addClass('disabled')
-  }
-}
 $(function(){
   var heads = FriendHeads.heads = [];
   canvas = document.getElementById("js-content")
