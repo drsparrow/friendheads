@@ -230,9 +230,9 @@ $(function(){
     }
   })
 
-  $('#js-content').on('mousemove', function(e) {
+  $('body').on('mousemove', function(e) {
     FriendHeads.mouse = e
-    if(e.target != this) { return }
+    if(e.target != canvas) {FriendHeads.hovered = false; return }
     var index = getHeadIndexAtClick()
     FriendHeads.hovered = (index != -1)
   })
