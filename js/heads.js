@@ -29,6 +29,12 @@ FriendHeads.checkRanges = function () {
   } else if(opts.speedMult >= rngs.speedMult[1]) {
     $('.js-up-button').addClass('disabled')
   }
+
+  if(opts.sizeMult <= rngs.sizeMult[0]) {
+    $('.js-minus-button').addClass('disabled')
+  } else if(opts.sizeMult >= rngs.sizeMult[1]) {
+    $('.js-plus-button').addClass('disabled')
+  }
 }
 $(function(){
   var heads = FriendHeads.heads = [];
