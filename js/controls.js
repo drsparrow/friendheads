@@ -6,7 +6,7 @@ $(function(){
     FriendHeads.resizeHeads(false)
   })
   $('.js-space-button').click(function(){
-    FriendHeads.paused = !FriendHeads.paused
+    FriendHeads.togglePaused()
   })
   $('.js-right-button').click(function(){
     FriendHeads.changeSnail(true)

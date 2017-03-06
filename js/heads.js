@@ -182,6 +182,10 @@ $(function(){
     opts.speedMult = newSpeed
   }
 
+  FriendHeads.togglePaused = function () {
+    FriendHeads.paused = !FriendHeads.paused
+  }
+
   var imgSrc = function () {
     var id = FriendHeads.params('i')
     var specialImage = FriendHeads.params('si')
@@ -258,7 +262,7 @@ $(function(){
   $('body').on('keydown', function(e){
     var keyCode = e.which
     if(keyCode == 32) { // space bar
-      FriendHeads.paused = !FriendHeads.paused
+      FriendHeads.togglePaused()
     } else if (keyCode == 191) { // ? key
       FriendHeads.reverseHeads()
     } else if (keyCode == 38 || keyCode == 40) { // up arrow, down arrow
