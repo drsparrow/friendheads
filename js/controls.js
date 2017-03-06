@@ -20,4 +20,5 @@ $(function(){
   $('.js-down-button').click(function(){
     FriendHeads.changeSpeed(false)
   })
+  $('.js-control-buttons img').click(FriendHeads.checkRanges)
 })
