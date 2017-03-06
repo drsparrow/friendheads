@@ -30,6 +30,11 @@ $(function(){
     var selected = $this.is('.selected-hat')
     $('.hat-selection img').removeClass('selected-hat')
     selected || $this.addClass('selected-hat')
+    FriendHeads.updatePreview()
+  })
+
+  $('.js-advanced-settings input').change(function(){
+    FriendHeads.updatePreview()
   })
 
   FriendHeads.samples.forEach(function(sample){

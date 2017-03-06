@@ -200,6 +200,11 @@ $(function(){
     !(opts.background || opts.color) && $('#background-canvas').removeClass('hidden')
   }
 
+  FriendHeads.updatePreview = function () {
+    FriendHeads._params = FriendHeads.getParamsFromForm()
+    FriendHeads.setOptions()
+  }
+
   var playAudio = function() {
     var id = FriendHeads.params('a')
     var specialAudio = FriendHeads.params('sa')
