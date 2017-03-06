@@ -16,8 +16,8 @@ FriendHeads.maxSnail = FriendHeads.ranges.snail[1]
 
 $(function(){
   var heads = FriendHeads.heads = [];
-  canvas = document.getElementById("js-content")
-  ctx = document.getElementById("js-content").getContext('2d')
+  var canvas = document.getElementById("js-content")
+  var ctx = document.getElementById("js-content").getContext('2d')
   ctx.imageSmoothingEnabled = false;
   canvas.width = 1000;
   canvas.height = 750;
