@@ -359,7 +359,7 @@ $(function(){
       draw()
     }
     window.setInterval(moveHeads, 20)
-    isDefault || window.setTimeout(function(){FriendHeads.update()})
+    isDefault || window.setTimeout(FriendHeads.update)
   }
 
   FriendHeads.update = function () {
