@@ -179,7 +179,7 @@ $(function(){
     FriendHeads._params = _.pick(head, 'si', 'hat', 'feet', 'hands', 'count', 'size')
   }
 
-  var setOptions = function () {
+  FriendHeads.setOptions = function () {
     var params = FriendHeads.params()
     opts.sizeMult = parseFloat(params.size) || 1;
     opts.feet = !!params.feet
@@ -309,7 +309,7 @@ $(function(){
     isDefault || $('body, html, #js-content').addClass('no-overflow')
     resizeFunc()
     playAudio()
-    setOptions()
+    FriendHeads.setOptions()
     FriendHeads.checkRanges()
 
     var img = $('#img')[0]
