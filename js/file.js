@@ -5,36 +5,36 @@ $(function(){
   var disabled = true;
 
   var changePage = function () {
-    var loc = window.location.pathname + '?i='+imageFileName
+    var params = {i: imageFileName}
     var hatName = $('img.selected-hat').data('hat')
     var background = $('input[name="background-option"]:checked').val()
     var headCount = $('#head-count').val()
     var snail = $('#snail-trail').val()
     if(audioFileName) {
-      loc += ('&a=' + audioFileName)
+      params.a = audioFileName
     }
     if(backgroundFileName) {
-      loc += ('&b=' + backgroundFileName)
+      params.b = backgroundFileName
     }
     if ($('#js-include-hands').is(':checked')) {
-      loc += '&hands=y'
+      params.hands = 'y'
     }
     if ($('#js-include-feet').is(':checked')) {
-      loc += '&feet=y'
+      params.feet = 'y'
     }
     if (hatName) {
-      loc += ('&hat=' + hatName)
+      params.hat = hatName
     }
     if(headCount != FriendHeads.defaultHeadCount) {
-      loc += '&count='+headCount
+      params.count = headCount
     }
     if(snail != '') {
-      loc += '&snail='+snail
+      params.snail = snail
     }
     if(background=='custom') {
-      loc += ('&color=' + $('#background-color').val().split('#')[1])
+      params.color = $('#background-color').val().split('#')[1]
     }
-    window.location = loc
+    window.location = window.location.pathname + '?' + $.param(params)
   }
   $(".image-upload-button").dropzone({
      url: "dummy",
