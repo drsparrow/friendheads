@@ -20,5 +20,8 @@ $(function(){
   $('.js-down-button').click(function(){
     FriendHeads.changeSpeed(false)
   })
+  $('.js-question-button').click(function(){
+    FriendHeads.reverseHeads()
+  })
   $('.js-control-buttons img').click(FriendHeads.checkRanges)
 })
