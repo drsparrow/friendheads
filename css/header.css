@@ -55,6 +55,7 @@
   height: 36px;
 }
 
+.header-content img.active:not(.disabled),
 .header-content img:active:not(.disabled) {
   filter: brightness(50%);
   height: 34px;
@@ -79,6 +80,7 @@ img.left-or-right {
   height: 18px;
 }
 
+img.arrow.active:not(.disabled),
 img.arrow:active:not(.disabled) {
   height: 17px;
   margin-top: 1px;
@@ -95,11 +97,12 @@ img.arrow:active:not(.disabled) {
   margin: auto;
 }
 
+.space-bar-area img.active:not(.disabled),
 .space-bar-area img:active:not(.disabled) {
   height: 34px;
 }
 
 .header-content img.disabled {
   cursor: default;
-  opacity: .5;
+  opacity: .3;
 }
