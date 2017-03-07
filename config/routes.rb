@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root to: 'heads#index'
 
   resources :heads
+  get 'head_image/:id' => 'heads#head_image'
 end

@@ -17,7 +17,12 @@
     <meta property="og:site_name" content="Friendheads"/>
     <meta property="og:title" content="For your friends and their heads"/>
     <meta property="og:description" content="Upload your friendheads and share them with the world."/>
-    <meta property="og:image" content="http://www.friendheads.com/images/og_image.png">
+    <%  %>
+    <% if params[:si] %>
+      <meta property="og:image" content="<%= "https://friendheads.herokuapp.com/heads/#{params[:si]}.png/" %>">
+    <% elsif params[:i] %>
+      <meta property="og:image" content="<%= "https://friendheads.herokuapp.com/head_image/#{params[:i]}/" %>">
+    <% end %>
   </head>
   <body>
     <div class="header">
