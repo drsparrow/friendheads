@@ -1,0 +1,4 @@
+(function () {
+  var c = "eyJhcGlLZXkiOiJBSXphU3lCbWdsdWdwWWx4TXdxcmp1Um0zbThzaGJjNHcyYmIwcVkiLCJhdXRoRG9tYWluIjoiZnJpZW5kaGVhZHMtNTRmYzkuZmlyZWJhc2VhcHAuY29tIiwiZGF0YWJhc2VVUkwiOiJodHRwczovL2ZyaWVuZGhlYWRzLTU0ZmM5LmZpcmViYXNlaW8uY29tIiwic3RvcmFnZUJ1Y2tldCI6ImZyaWVuZGhlYWRzLTU0ZmM5LmFwcHNwb3QuY29tIiwibWVzc2FnaW5nU2VuZGVySWQiOiIxMDM2OTE5NjM4ODMifQ==";
+  firebase.initializeApp(JSON.parse(atob(c)));
+})();
