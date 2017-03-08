@@ -10,10 +10,12 @@ class HeadsController < ApplicationController
   include Magick
   include ActionView::Helpers::AssetUrlHelper
   def head_image
-    u = "https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/blank.png?alt=media"
-    background = Magick::Image.read(u).first
-    u = "https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/#{params[:id]}?alt=media"
-    @overlay = Magick::Image.read(u).first
+    background = Magick::ImageList.new
+    u = open "https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/blank.png?alt=media"
+    background.from_blob(u.read)
+    @overlay = Magick::ImageList.new
+    u = open "https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/#{params[:id]}?alt=media"
+    overlay.from_blob(u.read)
 
     height = background.rows
     width = background.columns.to_f
