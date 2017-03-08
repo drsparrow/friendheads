@@ -21,7 +21,7 @@ $(function(){
   })
 
   FriendHeads.hats.forEach(function(hat){
-    var $hat = $('<img>', {src: 'hats/'+hat+'.png', 'data-hat': hat, id: hat+'-hat'})
+    var $hat = $('<img>', {src: '/hats/'+hat+'.png', 'data-hat': hat, id: hat+'-hat'})
     $('.hat-selection').append($hat)
   })
 
@@ -39,7 +39,7 @@ $(function(){
 
   FriendHeads.samples.forEach(function(sample){
     var $a = $('<a>', {href: window.location.pathname + '?' + $.param(sample), target: '_blank', class: 'sample-link'})
-    $a.append($('<img>', {src: 'heads/'+sample.si+'.png'}))
+    $a.append($('<img>', {src: '/heads/'+sample.si+'.png'}))
     $('.js-samples').append($a)
   })
 

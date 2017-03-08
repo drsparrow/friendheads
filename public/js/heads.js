@@ -173,7 +173,7 @@ $(function(){
     if(id) {
       return pathFromId(id)
     } else if (specialImage) {
-      return 'heads/'+specialImage+'.png'
+      return '/heads/'+specialImage+'.png'
     }
   }
 
@@ -197,7 +197,7 @@ $(function(){
     if(params.b) {
       opts.background = pathFromId(params.b)
     } else if(params.sb) {
-      opts.background = 'backgrounds/'+params.sb+'.png'
+      opts.background = '/backgrounds/'+params.sb+'.png'
     }
     opts.background && $('body').css('background', 'url('+opts.background+')') && $('#background').attr('src',opts.background)
     !(opts.background || opts.color) && $('#background-canvas').removeClass('hidden')
@@ -215,7 +215,7 @@ $(function(){
     if(id) {
       audioSrc = pathFromId(id)
     } else if (specialAudio) {
-      audioSrc = 'audio/'+specialAudio+'.mp3'
+      audioSrc = '/audio/'+specialAudio+'.mp3'
     }
     if(!audioSrc) { return }
     var $audio = $('<audio>', {src: audioSrc, loop: true})
