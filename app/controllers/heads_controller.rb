@@ -10,7 +10,8 @@ class HeadsController < ApplicationController
   include Magick
   include ActionView::Helpers::AssetUrlHelper
   def head_image
-    background = Magick::Image.read("http://friendheads.herokuapp.com/images/blank.png").first
+    u = "https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/blank.png?alt=media"
+    background = Magick::Image.read(u).first
     u = "https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/#{params[:id]}?alt=media"
     @overlay = Magick::Image.read(u).first
 
