@@ -1,8 +1,10 @@
 class HeadsController < ApplicationController
   def index
-    # render text: 'hi'
-
   end
+
+  def show
+  end
+
   require 'RMagick'
 
   include Magick

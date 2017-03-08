@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   root to: 'heads#index'
 
   resources :heads
+  get 'h/:id' => 'heads#show'
+  get 'samples/:sample_id' => 'heads#show'
   get 'head_image/:id' => 'heads#head_image'
 end

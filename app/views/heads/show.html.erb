@@ -1,0 +1,11 @@
+<% content_for :head do %>
+  <% if params[:sample_id] %>
+    <meta property="og:image" content="<%= "https://friendheads.herokuapp.com/heads/#{params[:sample_id]}.png/" %>">
+  <% elsif params[:id] %>
+    <meta property="og:image" content="<%= "https://friendheads.herokuapp.com/head_image/#{params[:id]}/" %>">
+  <% end %>
+<% end %>
+
+<div id='show-page'>
+  <%= render partial: 'main' %>
+</div>

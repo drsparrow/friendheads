@@ -1,5 +1,5 @@
 window.FriendHeads = window.FriendHeads || {}
-console.log('hi')
+
 FriendHeads.samples = [
   {si: 'bern', sa: 'bern', hat: 'spin', hands: 'y', size: 1.5},
   {si: 'kony', hat: 'party', snail: 5},
@@ -311,10 +311,10 @@ $(function(){
   }
 
   var start = function() {
-    var isDefault = !(FriendHeads.params('i') || FriendHeads.params('si'))
-    isDefault && $('.js-form-stuff').removeClass('hidden')
-    isDefault && setRandomParams()
-    isDefault || $('body, html, #js-content').addClass('no-overflow')
+    var isIndex = $('#index-page').length
+    isIndex && $('.js-form-stuff').removeClass('hidden')
+    isIndex && setRandomParams()
+    isIndex || $('body, html, #js-content').addClass('no-overflow')
     resizeFunc()
     playAudio()
     FriendHeads.setOptions()
@@ -330,7 +330,7 @@ $(function(){
       draw()
     }
     window.setInterval(moveHeads, 20)
-    isDefault || window.setTimeout(FriendHeads.update)
+    isIndex || window.setTimeout(FriendHeads.update)
   }
 
   FriendHeads.update = function () {

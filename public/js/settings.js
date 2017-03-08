@@ -38,7 +38,9 @@ $(function(){
   })
 
   FriendHeads.samples.forEach(function(sample){
-    var $a = $('<a>', {href: window.location.pathname + '?' + $.param(sample), target: '_blank', class: 'sample-link'})
+    var image = sample.si
+    var href = window.location.pathname + 'samples/' + image + '/?' + $.param(_.omit(sample, 'si'))
+    var $a = $('<a>', {href: href, target: '_blank', class: 'sample-link'})
     $a.append($('<img>', {src: '/heads/'+sample.si+'.png'}))
     $('.js-samples').append($a)
   })

@@ -37,7 +37,10 @@ $(function(){
   }
 
   var changePage = function () {
-    window.location = window.location.pathname + '?' + $.param(FriendHeads.getParamsFromForm())
+    var params = FriendHeads.getParamsFromForm()
+    var image = params.i;
+    delete params.i;
+    window.location = 'h/' + image + '?' + $.param(params)
   }
 
   $(".image-upload-button").dropzone({
