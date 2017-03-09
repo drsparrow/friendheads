@@ -2,7 +2,6 @@ $(function(){
   FriendHeads.files = FriendHeads.files || {}
   var files = FriendHeads.files;
   var disabled = true;
-  var headBlob;
 
   FriendHeads.getParamsFromForm = function () {
     var params = {i: files.imageFileName}
@@ -69,23 +68,7 @@ $(function(){
         $('#submit').attr('disabled', false)
         $('.img-preview-container').removeClass('hidden')
          $('#temp-img').attr('src', e.target.result);
-         c = new Croppie($('#temp-img')[0],{
-           viewport: {
-             width: 150,
-             height: 150,
-             type: 'circle'
-           },
-           boundary: {
-             width: 250,
-             height: 250
-           },
-           update: function () {
-             c.result('blob').then(function(blob) {
-               headBlob = blob
-               $('#img').attr('src', window.URL.createObjectURL(blob))
-            });
-           }
-         })
+         FriendHeads.files.createCroppie()
        }
 
        reader.readAsDataURL(file)
