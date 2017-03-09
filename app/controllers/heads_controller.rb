@@ -5,6 +5,11 @@ class HeadsController < ApplicationController
   def show
   end
 
+  def create
+    Head.create!(head_params)
+    head :ok
+  end
+
   require 'RMagick'
 
   include Magick
@@ -44,5 +49,9 @@ class HeadsController < ApplicationController
     w = w.to_i
     h = (w*(overlay.rows/overlay.columns.to_f)).to_i
     overlay.adaptive_resize(w, h)
+  end
+
+  def head_params
+    params.require(:head).permit(:data_url)
   end
 end
