@@ -344,7 +344,7 @@ $(function(){
     img.onload = function () {
       imgW = img.width;
       imgH = img.height;
-      for(var i = 0; i < opts.count; i++) { FriendHeads.addHead() }
+      for(var i = FriendHeads.heads.length; i < opts.count; i++) { FriendHeads.addHead() }
       draw()
     }
     window.setInterval(moveHeads, 20)

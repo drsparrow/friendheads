@@ -1,7 +1,8 @@
 $(function(){
   FriendHeads.files = FriendHeads.files || {}
   var files = FriendHeads.files;
-  var disabled = true;
+  var disabled //= true;
+  var headBlob;
 
   FriendHeads.getParamsFromForm = function () {
     var params = {i: files.imageFileName}
@@ -37,10 +38,19 @@ $(function(){
   }
 
   var changePage = function () {
-    var params = FriendHeads.getParamsFromForm()
-    var image = params.i;
-    delete params.i;
-    window.location = 'h/' + image + '?' + $.param(params)
+    var storageRef = firebase.storage().ref();
+    var file = headBlob
+    // debugger
+    files.imageFileName = (new Date()).getTime().toString(36)
+    var uploadTask = storageRef.child(files.imageFileName).put(file, {});
+
+    uploadTask.on('state_changed', null, null, function(a,b,c) {
+      var params = FriendHeads.getParamsFromForm()
+      var image = params.i;
+      delete params.i;
+      window.location = 'h/' + image + '?' + $.param(params)
+    })
+
   }
 
   $(".image-upload-button").dropzone({
@@ -52,25 +62,33 @@ $(function(){
      acceptedFiles: 'image/*',
      previewTemplate: $('.custom-dz-preview-template').html(),
      accept: function(file) {
-       $('#submit').attr('disabled', true)
-       var storageRef = firebase.storage().ref();
+      //  $('#submit').attr('disabled', true)
+       var reader = new FileReader();
 
-       files.imageFileName = (new Date()).getTime().toString(36)
-       var uploadTask = storageRef.child(files.imageFileName).put(file, {});
+       reader.onload = function (e) {
+        $('.img-preview-container').removeClass('hidden')
+         $('#temp-img').attr('src', e.target.result);
+        //  debugger
+         c = new Croppie($('#temp-img')[0],{
+           viewport: {
+             width: 150,
+             height: 150,
+             type: 'circle'
+           },
+           boundary: {
+             width: 250,
+             height: 250
+           },
+           update: function () {
+             c.result('blob').then(function(blob) {
+               headBlob = blob
+               $('#img').attr('src', window.URL.createObjectURL(blob))
+            });
+           }
+         })
+       }
 
-       uploadTask.on('state_changed', null, null, function(a,b,c) {
-         if($('.js-advanced-settings').is(':visible')) {
-           $('#submit').removeAttr('disabled')
-           disabled = false
-           $('#temp-img').attr('src', uploadTask.snapshot.downloadURL)
-           $('#temp-img').load(function(){
-             $('#img').attr('src',uploadTask.snapshot.downloadURL)
-             $('.loading-img').addClass('hidden')
-           })
-         } else {
-           changePage()
-         }
-       });
+       reader.readAsDataURL(file)
      }
    })
 
