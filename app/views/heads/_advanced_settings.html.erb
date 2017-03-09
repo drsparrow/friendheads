@@ -1,0 +1,36 @@
+<div class="advanced-settings js-advanced-settings hidden">
+  <label for="js-include-feet">Show feet</label>
+  <input type="checkbox" name="feet" id='js-include-feet'>
+  <br>
+  <label for="js-include-hands">Show hands</label>
+  <input type="checkbox" name="hands" id='js-include-hands'>
+  <div class="hat-selection"></div>
+  <img id='background'>
+
+  <label for="snail-trail">Snail trail</label>
+  <input type="range" min='0' max='9' id='snail-trail' name='snail' step='1' value='0'>
+
+  <label for="head-count">Head count</label>
+  <input type="range" name="head-count" id='head-count' min='1' max='50'>
+  <span id='head-count-value'></span>
+
+  <form class="background-color-area">
+    <span>Background</span>
+    <label>
+      <span>Changing</span>
+      <canvas id="changing-background-color-canvas" width="20" height="20"></canvas>
+      <input type="radio" name="background-option" value="changing">
+    </label>
+
+    <label for='custom-background-option'>Custom</label>
+    <input id='background-color' value='#ff0000'>
+    <input type="radio" name="background-option" value="custom" id='custom-background-option'>
+
+    <input type="radio" name="background-option" value="background-image" id='custom-image-option'>
+    <div class='background-upload-button upload-button'>Background Image</div>
+
+  </form>
+
+  <br>
+  <button id='submit' disabled="disabled">Go</button>
+</div>

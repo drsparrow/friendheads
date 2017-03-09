@@ -21,8 +21,9 @@ $(function(){
   })
 
   FriendHeads.hats.forEach(function(hat){
-    var $hat = $('<img>', {src: '/hats/'+hat+'.png', 'data-hat': hat, id: hat+'-hat'})
-    $('.hat-selection').append($hat)
+    var options = {src: '/hats/'+hat+'.png', 'data-hat': hat, id: hat+'-hat'}
+    if(hat == FriendHeads.options.hatName) { options.class = 'selected-hat' }
+    $('.hat-selection').append($('<img>', options))
   })
 
   $('.hat-selection img').click(function(){
