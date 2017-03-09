@@ -1,7 +1,7 @@
 $(function(){
   FriendHeads.files = FriendHeads.files || {}
   var files = FriendHeads.files;
-  var disabled //= true;
+  var disabled = true;
   var headBlob;
 
   FriendHeads.getParamsFromForm = function () {
@@ -39,10 +39,10 @@ $(function(){
 
   var changePage = function () {
     var storageRef = firebase.storage().ref();
-    var file = headBlob
     // debugger
+    var s = FriendHeads.files.resize($('#img')[0]);
     files.imageFileName = (new Date()).getTime().toString(36)
-    var uploadTask = storageRef.child(files.imageFileName).put(file, {});
+    var uploadTask = storageRef.child(files.imageFileName).putString(s, 'data_url');
 
     uploadTask.on('state_changed', null, null, function(a,b,c) {
       var params = FriendHeads.getParamsFromForm()
@@ -62,13 +62,13 @@ $(function(){
      acceptedFiles: 'image/*',
      previewTemplate: $('.custom-dz-preview-template').html(),
      accept: function(file) {
-      //  $('#submit').attr('disabled', true)
+      $('#submit').attr('disabled', true)
        var reader = new FileReader();
 
        reader.onload = function (e) {
+        $('#submit').attr('disabled', false)
         $('.img-preview-container').removeClass('hidden')
          $('#temp-img').attr('src', e.target.result);
-        //  debugger
          c = new Croppie($('#temp-img')[0],{
            viewport: {
              width: 150,
