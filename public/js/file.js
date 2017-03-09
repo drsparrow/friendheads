@@ -4,7 +4,7 @@ $(function(){
   var disabled = true;
 
   FriendHeads.getParamsFromForm = function () {
-    var params = {i: files.imageFileName}
+    var params = {}
     var hatName = $('img.selected-hat').data('hat')
     var background = $('input[name="background-option"]:checked').val()
     var headCount = $('#head-count').val()
@@ -43,15 +43,13 @@ $(function(){
     var request = function (dataUrl) {
       var data = { head: {data_url: dataUrl} }
       data[$("meta[name=csrf-param]").attr('content')] = $("meta[name=csrf-token]").attr('content')
-      debugger
       $.ajax({
         type: 'post',
         url: 'heads/',
         data: data,
-        success: function () {
+        success: function (response) {
           var params = FriendHeads.getParamsFromForm()
-          var image = params.i;
-          delete params.i;
+          var image = response.id
           window.location = 'h/' + image + '?' + $.param(params)
         }
       })

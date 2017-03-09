@@ -3,11 +3,12 @@ class HeadsController < ApplicationController
   end
 
   def show
+    @head = Head.find_by(external_id: params[:id])
   end
 
   def create
-    Head.create!(head_params)
-    head :ok
+    h = Head.create!(head_params)
+    render json: {id: h.external_id}
   end
 
   require 'RMagick'

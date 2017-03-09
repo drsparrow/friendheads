@@ -168,6 +168,7 @@ $(function(){
   }
 
   var imgSrc = function () {
+    if($('#img').attr('src')){return $('#img').attr('src')}
     var id = FriendHeads.params('i')
     var specialImage = FriendHeads.params('si')
     if(id) {
