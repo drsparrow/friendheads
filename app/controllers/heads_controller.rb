@@ -14,7 +14,11 @@ class HeadsController < ApplicationController
     u = open "https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/blank.png?alt=media"
     background.from_blob(u.read)
     @overlay = Magick::ImageList.new
-    u = open "https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/#{params[:id]}?alt=media"
+    if params[:sample]
+      u = open "#{Rails.root}/app/assets/images/heads/#{params[:id]}.png"
+    else
+      u = open "https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/#{params[:id]}?alt=media"
+    end
     overlay.from_blob(u.read)
 
     height = background.rows
