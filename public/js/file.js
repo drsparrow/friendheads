@@ -36,12 +36,16 @@ $(function(){
     return params
   }
 
-  var changePage = function () {
+  var changePage = function (file) {
     var storageRef = firebase.storage().ref();
-    // debugger
-    var s = FriendHeads.files.resize($('#img')[0]);
     files.imageFileName = (new Date()).getTime().toString(36)
-    var uploadTask = storageRef.child(files.imageFileName).putString(s, 'data_url');
+
+    if (file) {
+      var uploadTask = storageRef.child(files.imageFileName).put(file, {});
+    } else {
+      var s = FriendHeads.files.resize($('#img')[0]);
+      var uploadTask = storageRef.child(files.imageFileName).putString(s, 'data_url');
+    }
 
     uploadTask.on('state_changed', null, null, function(a,b,c) {
       var params = FriendHeads.getParamsFromForm()
@@ -62,18 +66,22 @@ $(function(){
      previewTemplate: $('.custom-dz-preview-template').html(),
      accept: function(file) {
       $('#submit').attr('disabled', true)
-       var reader = new FileReader();
+      if($('.js-advanced-settings').is(':visible')) {
+        var reader = new FileReader();
 
-       reader.onload = function (e) {
-        $('#submit').attr('disabled', false)
-        $('.img-preview-container').removeClass('hidden')
-         $('#temp-img').attr('src', e.target.result);
-         FriendHeads.files.createCroppie()
-       }
+        reader.onload = function (e) {
+          $('#submit').attr('disabled', false)
+          $('.img-preview-container').removeClass('hidden')
+          $('#temp-img').attr('src', e.target.result);
+          FriendHeads.files.createCroppie()
+        }
 
-       reader.readAsDataURL(file)
-     }
-   })
+        reader.readAsDataURL(file)
+      } else {
+        changePage(file)
+      }
+    }
+  })
 
    $(".audio-upload-button").dropzone({
      url: "dummy",
@@ -118,5 +126,7 @@ $(function(){
      }
    })
 
-   $('#submit').click(changePage)
+   $('#submit').click(function(){
+     changePage()
+   })
 })
