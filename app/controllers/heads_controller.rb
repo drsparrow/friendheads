@@ -26,10 +26,11 @@ class HeadsController < ApplicationController
 
     half = width/2
     third = width/3
+    fourth = width/4
     fifth = width/5
 
     background.composite!(get_overlay(third), 0, 0, Magick::OverCompositeOp)
-    background.composite!(get_overlay(fifth), third, height/2, Magick::OverCompositeOp)
+    background.composite!(get_overlay(fourth), third - third/10, height/2, Magick::OverCompositeOp)
     background.composite!(get_overlay(third), 2*third, height/4, Magick::OverCompositeOp)
     background.composite!(get_overlay(fifth), half, height/20, Magick::OverCompositeOp)
     send_data background.to_blob, :type => 'image/png', :disposition => 'inline'
