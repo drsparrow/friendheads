@@ -92,7 +92,7 @@ $(function(){
             y < head.top+head.height);
   }
 
-  var addHead = function (left, top) {
+  FriendHeads.addHead = function (left, top) {
     var size = 100 * (Math.random() + 1)
     var adjSize = size/imgW
     var width = size*opts.sizeMult;
@@ -206,6 +206,24 @@ $(function(){
   FriendHeads.updatePreview = function () {
     FriendHeads._params = FriendHeads.getParamsFromForm()
     FriendHeads.setOptions()
+    var headDiff = FriendHeads.heads.length - opts.count
+    // debugger
+    if(headDiff < 0) {
+      var func = 'addHead'
+    } else if (headDiff > 0) {
+      var func = 'removeHead'
+    }
+
+    for(var i = 0; i < Math.abs(headDiff); i++) {
+      FriendHeads[func]()
+    }
+  }
+
+  FriendHeads.removeHead = function (index) {
+    if (!arguments.length) {
+      index = _.random(FriendHeads.heads.length - 1)
+    }
+    FriendHeads.heads.splice(index, 1)
   }
 
   var playAudio = function() {
@@ -232,9 +250,9 @@ $(function(){
     if(e.target != this) { return }
     var index = getHeadIndexAtClick()
     if(index != -1) {
-      FriendHeads.heads.splice(index, 1)
+      FriendHeads.removeHead(index)
     } else {
-      addHead(e.clientX, e.clientY)
+      FriendHeads.addHead(e.clientX, e.clientY)
     }
   })
 
@@ -326,7 +344,7 @@ $(function(){
     img.onload = function () {
       imgW = img.width;
       imgH = img.height;
-      for(var i = 0; i < opts.count; i++) { addHead() }
+      for(var i = 0; i < opts.count; i++) { FriendHeads.addHead() }
       draw()
     }
     window.setInterval(moveHeads, 20)
