@@ -62,7 +62,11 @@ $(function(){
          if($('.js-advanced-settings').is(':visible')) {
            $('#submit').removeAttr('disabled')
            disabled = false
-           $('#loading-img').attr('src',uploadTask.snapshot.downloadURL)
+           $('#temp-img').attr('src', uploadTask.snapshot.downloadURL)
+           $('#temp-img').load(function(){
+             $('#img').attr('src',uploadTask.snapshot.downloadURL)
+             $('.loading-img').addClass('hidden')
+           })
          } else {
            changePage()
          }
