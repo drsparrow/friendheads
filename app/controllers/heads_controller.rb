@@ -11,7 +11,7 @@ class HeadsController < ApplicationController
   include ActionView::Helpers::AssetUrlHelper
   def head_image
     background = Magick::ImageList.new
-    u = open "https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/blank.png?alt=media"
+    u = open "#{Rails.root}/public/images/blank.png"
     background.from_blob(u.read)
     @overlay = Magick::ImageList.new
     if params[:sample]
