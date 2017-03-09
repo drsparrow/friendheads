@@ -3,13 +3,12 @@
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
 
-  <% og_image_url = "https://friendheads.herokuapp.com/head_image/#{params[:id] || params[:sample_id]}" %>
-  <% og_image_url += (params[:sample_id] ? '/?sample=true' : '') %>
+  <% og_image_url = head_og_image_url(@head.external_id) %>
 
   <meta property="og:image" content="<%= og_image_url %>">
 <% end %>
 
 <div id='show-page'>
-  <img id='img' class='hidden' src='<%=@head.data_url %>'>
+  <img id='img' class='hidden' src='<%=head_image_path(@head.external_id) %>'>
   <%= render partial: 'main' %>
 </div>
