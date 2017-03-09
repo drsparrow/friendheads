@@ -37,22 +37,37 @@ $(function(){
   }
 
   var changePage = function (file) {
-    var storageRef = firebase.storage().ref();
-    files.imageFileName = (new Date()).getTime().toString(36)
+    // var storageRef = firebase.storage().ref();
+    // files.imageFileName = (new Date()).getTime().toString(36)
 
-    if (file) {
-      var uploadTask = storageRef.child(files.imageFileName).put(file, {});
-    } else {
-      var s = FriendHeads.files.resize($('#img')[0]);
-      var uploadTask = storageRef.child(files.imageFileName).putString(s, 'data_url');
+    var request = function (dataUrl) {
+      var data = { head: {data_url: dataUrl} }
+      data[$("meta[name=csrf-param]").attr('content')] = $("meta[name=csrf-token]").attr('content')
+      debugger
+      $.ajax({
+        type: 'post',
+        url: 'heads/',
+        data: data,
+        success: function () {
+          var params = FriendHeads.getParamsFromForm()
+          var image = params.i;
+          delete params.i;
+          window.location = 'h/' + image + '?' + $.param(params)
+        }
+      })
     }
 
-    uploadTask.on('state_changed', null, null, function(a,b,c) {
-      var params = FriendHeads.getParamsFromForm()
-      var image = params.i;
-      delete params.i;
-      window.location = 'h/' + image + '?' + $.param(params)
-    })
+    if (file) {
+      var r = new FileReader()
+      r.onload = function (e) {
+        request(e.target.result)
+      }
+      var dataUrl = r.readAsDataURL(file)
+    } else {
+      request(FriendHeads.files.resize($('#img')[0]))
+    }
+
+
 
   }
 
