@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get 'samples/:sample_id' => 'heads#show'
   get 'head_og_image/:id' => 'heads#head_og_image', as: :head_og_image
   get 'head_image/:id' => 'heads#head_image', as: :head_image
+  get 'head_background_image/:id' => 'heads#head_background_image', as: :head_background_image
 end

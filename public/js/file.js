@@ -12,9 +12,6 @@ $(function(){
     if(files.audioFileName) {
       params.a = files.audioFileName
     }
-    if(files.backgroundFileName) {
-      params.b = files.backgroundFileName
-    }
     if ($('#js-include-hands').is(':checked')) {
       params.hands = 'y'
     }
@@ -61,7 +58,8 @@ $(function(){
       var dataUrl = r.readAsDataURL(file)
     } else {
       var resized = FriendHeads.files.resize($('#img')[0])
-      request({data_url: resized})
+      var resizedBackground = FriendHeads.files.resize($('#background')[0])
+      request({data_url: resized, background_data_url: resizedBackground})
     }
 
   }
@@ -102,15 +100,11 @@ $(function(){
      acceptedFiles: 'image/*',
      previewTemplate: $('.custom-dz-preview-template').html(),
      accept: function(file) {
-      $('#submit').attr('disabled', true)
-       var storageRef = firebase.storage().ref();
-       files.backgroundFileName = (new Date()).getTime().toString(36)
-       var uploadTask = storageRef.child(files.backgroundFileName).put(file, {});
-
-       uploadTask.on('state_changed', null, null, function() {
-         !disabled && $('#submit').removeAttr('disabled')
-         $('.background-upload-button .loading').addClass('hidden')
-       });
+       var reader = new FileReader();
+       reader.onload = function (e) {
+         $('#background').attr('src', e.target.result)
+       }
+       reader.readAsDataURL(file)
      }
    })
 

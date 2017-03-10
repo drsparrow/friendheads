@@ -10,6 +10,7 @@
 <% end %>
 
 <div id='show-page'>
+  <img id='background' src='<%=head_background_image_path(@head.external_id) %>'>
   <img id='img' class='hidden' src='<%=head_image_path(@head.external_id) %>'>
   <%= render partial: 'main' %>
 </div>

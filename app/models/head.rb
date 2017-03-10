@@ -9,4 +9,8 @@ class Head < ApplicationRecord
     Base64.decode64(data_url['data:image/png;base64,'.length .. -1])
   end
 
+  def background_to_blob
+    Base64.decode64(background_data_url['data:image/png;base64,'.length .. -1])
+  end
+
 end

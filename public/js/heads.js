@@ -195,12 +195,8 @@ $(function(){
     var fullColor = '#'+opts.color
     opts.color && $('html').css('background-color', fullColor)
     ctx.fillStyle = fullColor;
-    if(params.b) {
-      opts.background = pathFromId(params.b)
-    } else if(params.sb) {
-      opts.background = '/backgrounds/'+params.sb+'.png'
-    }
-    opts.background && $('body').css('background', 'url('+opts.background+')') && $('#background').attr('src',opts.background)
+    opts.background = $('#background').attr('src')
+    opts.background && $('body').css('background', 'url('+opts.background+')')
     !(opts.background || opts.color) && $('#background-canvas').removeClass('hidden')
   }
 

@@ -48,6 +48,11 @@ class HeadsController < ApplicationController
     send_data @head.to_blob, :type => 'image/png',:disposition => 'inline'
   end
 
+  def head_background_image
+    @head = Head.find_by_external_id(params[:id])
+    send_data @head.background_to_blob, :type => 'image/png',:disposition => 'inline'
+  end
+
   private
 
   attr_reader :overlay
@@ -59,6 +64,6 @@ class HeadsController < ApplicationController
   end
 
   def head_params
-    params.require(:head).permit(:data_url)
+    params.require(:head).permit(:data_url, :background_data_url)
   end
 end
