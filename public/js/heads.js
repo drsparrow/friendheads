@@ -320,8 +320,7 @@ $(function(){
 
     img.src = imgSrc()
     img.onload = function () {
-      imgW = img.width;
-      imgH = img.height;
+      FriendHeads.setImageRatio()
       for(var i = FriendHeads.heads.length; i < opts.count; i++) { FriendHeads.addHead() }
       draw()
     }
@@ -336,6 +335,22 @@ $(function(){
     $('#fav-icon').attr('href', src)
   }
 
+  FriendHeads.setImageRatio = function () {
+    var img = $('#img')[0]
+    imgW = img.width;
+    imgH = img.height;
+  }
+
+  FriendHeads.updateImage = function (src) {
+    $('#img').attr('src', src)
+    $('#img').load(function(){
+      FriendHeads.setImageRatio()
+      FriendHeads.heads.forEach(function(head){
+        var width = head.width
+        head.height = head.width * (imgH/imgW)
+      })
+    })
+  }
 
   var resizeFunc = function(){
     draw()

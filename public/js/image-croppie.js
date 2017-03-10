@@ -15,7 +15,7 @@ FriendHeads.files.createCroppie = function (type) {
     },
     update: function () {
       this.result('blob').then(function(blob) {
-        $('#img').attr('src', window.URL.createObjectURL(blob))
+        FriendHeads.updateImage(window.URL.createObjectURL(blob))
      });
     }
   })
@@ -31,6 +31,7 @@ $(function(){
   $('#crop-none').click(function(){
     FriendHeads.files.croppie && FriendHeads.files.croppie.destroy()
     FriendHeads.files.croppie = null;
-    $('#img').attr('src', $('#temp-img').attr('src'))
+
+    FriendHeads.updateImage($('#temp-img').attr('src'))
   })
 })
