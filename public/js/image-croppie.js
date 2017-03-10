@@ -22,10 +22,15 @@ FriendHeads.files.createCroppie = function (type) {
 }
 
 $(function(){
-  $('#square').click(function(){
+  $('#crop-square').click(function(){
     FriendHeads.files.createCroppie('square')
   })
-  $('#circle').click(function(){
+  $('#crop-circle').click(function(){
     FriendHeads.files.createCroppie('circle')
+  })
+  $('#crop-none').click(function(){
+    FriendHeads.files.croppie && FriendHeads.files.croppie.destroy()
+    FriendHeads.files.croppie = null;
+    $('#img').attr('src', $('#temp-img').attr('src'))
   })
 })

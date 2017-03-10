@@ -148,4 +148,13 @@
 
 .img-preview-container {
   height: 300px;
+  width: 300px;
+  background: rgba(0,0,0,.3);
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.img-preview-container img {
+  max-width: 300px;
+  max-height: 250px;
 }
