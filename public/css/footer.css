@@ -1,0 +1,27 @@
+.footer {
+  position: fixed;
+  bottom: 0px;
+  height: 40px;
+  width: 100%;
+  padding: 15px;
+}
+
+.footer .social {
+  padding: 0 15px;
+  float: right;
+  height: 100%;
+  margin: 5px 15px;
+}
+
+.footer .social img {
+  opacity: .8;
+  height: 40px;
+  margin: 0;
+}
+
+.footer .social img:hover {
+  cursor: pointer;
+  opacity: 1;
+  height: 44px;
+  margin: -2px;
+}
