@@ -85,4 +85,8 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_controller.default_url_options = { :host => "www.friendheads.com" }
+
+  config.action_dispatch.default_headers = {
+    'X-Frame-Options' => 'ALLOWALL'
+  }
 end
