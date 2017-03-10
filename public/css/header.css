@@ -9,7 +9,7 @@
   opacity: .6;
 }
 
-.header:hover {
+.header:hover, .header.hovered {
   top:0px;
   opacity: 1;
 }
