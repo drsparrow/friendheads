@@ -21,11 +21,7 @@ class HeadsController < ApplicationController
     u = open "#{Rails.root}/public/images/blank.png"
     background.from_blob(u.read)
     @overlay = Magick::ImageList.new
-    # if params[:sample]
-    #   u = open "#{Rails.root}/app/assets/images/heads/#{params[:id]}.png"
-    # else
-    #   u = open "https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/#{params[:id]}?alt=media"
-    # end
+
     @head = Head.find_by_external_id(params[:id])
     overlay.from_blob(@head.to_blob)
 
