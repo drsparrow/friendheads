@@ -15,10 +15,12 @@ window.fbAsyncInit = function() {
    fjs.parentNode.insertBefore(js, fjs);
  }(document, 'script', 'facebook-jssdk'));
 
- var blah = function () {
-     FB.ui(
-   {
-    method: 'share',
-    href: window.location.href
-  }, function(response){console.log(response)});
- }
+
+$(function(){
+  $('.js-facebook-share').click(function () {
+    FB.ui({
+      method: 'share',
+      href: window.location.href
+    });
+  })
+})
