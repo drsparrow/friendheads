@@ -72,7 +72,7 @@ $(function(){
      addRemoveLinks: false,
      clickable: true,
      acceptedFiles: 'image/*',
-     previewTemplate: $('.custom-dz-preview-template').html(),
+     previewTemplate: '<span></span>',
      accept: function(file) {
       $('#submit').attr('disabled', true)
       if($('.js-advanced-settings').is(':visible')) {
@@ -99,7 +99,7 @@ $(function(){
      addRemoveLinks: false,
      clickable: true,
      acceptedFiles: 'image/*',
-     previewTemplate: $('.custom-dz-preview-template').html(),
+     previewTemplate: '<span></span>',
      accept: function(file) {
        var reader = new FileReader();
        reader.onload = function (e) {
