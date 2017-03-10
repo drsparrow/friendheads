@@ -50,7 +50,12 @@ class HeadsController < ApplicationController
 
   def head_background_image
     @head = Head.find_by_external_id(params[:id])
-    send_data @head.background_to_blob, :type => 'image/png',:disposition => 'inline'
+    blob = @head.background_to_blob
+    if blob
+      send_data blob, :type => 'image/png',:disposition => 'inline'
+    else
+      head :ok
+    end
   end
 
   private
