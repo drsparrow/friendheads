@@ -183,9 +183,9 @@ $(function(){
     var fullColor = '#'+opts.color
     opts.color && $('html').css('background-color', fullColor)
     ctx.fillStyle = fullColor;
-    opts.background = $('#background').attr('src')
-    opts.background && $('body').css('background', 'url('+opts.background+')')
-    !(opts.background || opts.color) && $('#background-canvas').removeClass('hidden')
+    opts.background = $('#background').attr('src');
+    opts.background && $('body').css('background', 'url('+opts.background+')');
+    (opts.background || opts.color) ? $('#background-canvas').addClass('hidden') : $('#background-canvas').removeClass('hidden');
   }
 
   FriendHeads.updatePreview = function () {
@@ -257,7 +257,7 @@ $(function(){
     handRatio = leftHand.height/leftHand.width
     hatRatio = hat.height/hat.width
 
-    clearCanv()
+    coverCanvas()
     $('body').css('cursor', FriendHeads.hovered ? 'pointer' :'default')
     FriendHeads.heads.forEach(function(head){
       if(opts.feet) {
@@ -275,11 +275,15 @@ $(function(){
     })
   }
 
-  var clearCanv = function () {
+  FriendHeads.clearCanv = function () {
+    ctx.clearRect(0,0,$(window).width(), $(window).height())
+  }
+
+  var coverCanvas = function () {
     var maxSnail = FriendHeads.maxSnail
     if (opts.snailTrail == maxSnail) { return }
     if (!opts.snailTrail) {
-      ctx.clearRect(0,0,$(window).width(), $(window).height())
+      FriendHeads.clearCanv()
       return
     }
     var snailVal = maxSnail - opts.snailTrail

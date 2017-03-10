@@ -104,6 +104,8 @@ $(function(){
        var reader = new FileReader();
        reader.onload = function (e) {
          $('#background').attr('src', e.target.result)
+         FriendHeads.clearCanv()
+         FriendHeads.updatePreview()
        }
        reader.readAsDataURL(file)
      }
