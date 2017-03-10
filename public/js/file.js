@@ -96,28 +96,6 @@ $(function(){
     }
   })
 
-   $(".audio-upload-button").dropzone({
-     url: "dummy",
-     createImageThumbnails: false,
-     autoProcessQueue: false,
-     addRemoveLinks: false,
-     clickable: true,
-     acceptedFiles: 'audio/*',
-     previewTemplate: $('.custom-dz-preview-template').html(),
-     accept: function(file) {
-      $('#submit').attr('disabled', true)
-       var storageRef = firebase.storage().ref();
-       files.audioFileName = (new Date()).getTime().toString(36)
-       var uploadTask = storageRef.child(files.audioFileName).put(file, {});
-
-       uploadTask.on('state_changed', null, null, function() {
-         !disabled && $('#submit').removeAttr('disabled')
-         $('.audio-upload-button .loading').addClass('hidden')
-         $('.js-audio-file-name').text(file.name)
-       });
-     }
-   })
-
    $(".background-upload-button").dropzone({
      url: "dummy",
      createImageThumbnails: false,
