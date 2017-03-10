@@ -312,7 +312,7 @@ $(function(){
     isIndex && $('.js-form-stuff').removeClass('hidden')
     isIndex || $('body, html, #js-content').addClass('no-overflow')
     resizeFunc()
-    playAudio()
+    isIndex || playAudio()
     FriendHeads.setOptions()
     FriendHeads.checkRanges()
 
