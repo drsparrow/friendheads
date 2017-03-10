@@ -37,11 +37,9 @@ $(function(){
   }
 
   var changePage = function (file) {
-    // var storageRef = firebase.storage().ref();
-    // files.imageFileName = (new Date()).getTime().toString(36)
 
-    var request = function (dataUrl) {
-      var data = { head: {data_url: dataUrl} }
+    var request = function (headOptions) {
+      var data = {head: headOptions}
       data[$("meta[name=csrf-param]").attr('content')] = $("meta[name=csrf-token]").attr('content')
       $.ajax({
         type: 'post',
@@ -58,14 +56,13 @@ $(function(){
     if (file) {
       var r = new FileReader()
       r.onload = function (e) {
-        request(e.target.result)
+        request({data_url: e.target.result})
       }
       var dataUrl = r.readAsDataURL(file)
     } else {
-      request(FriendHeads.files.resize($('#img')[0]))
+      var resized = FriendHeads.files.resize($('#img')[0])
+      request({data_url: resized})
     }
-
-
 
   }
 
