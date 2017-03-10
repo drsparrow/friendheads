@@ -2,7 +2,7 @@ class Head < ApplicationRecord
   validates_presence_of :data_url
 
   before_create do
-    self.external_id = rand(10).to_s + SecureRandom.base58(4)
+    self.external_id = random_external_id
   end
 
   def to_blob
@@ -20,5 +20,19 @@ class Head < ApplicationRecord
 
   def options_as_query
     get_options.to_query
+  end
+
+  private
+
+  def random_external_id
+    "#{rand_chars(2)}#{rand_num}#{rand_chars(2)}"
+  end
+
+  def rand_num
+    rand(10)
+  end
+
+  def rand_chars(length)
+    SecureRandom.base58(length)
   end
 end
