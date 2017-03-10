@@ -1,5 +1,6 @@
 class HeadsController < ApplicationController
   def index
+    @head = Head.random_default
   end
 
   def show

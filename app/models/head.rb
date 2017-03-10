@@ -1,6 +1,12 @@
 class Head < ApplicationRecord
   validates_presence_of :data_url
 
+  DEFAULT_HEADS = %w(bern kony2012 cage hill locke)
+
+  def self.random_default
+    where(external_id: DEFAULT_HEADS).to_a.sample
+  end
+
   before_create do
     self.external_id = random_external_id
   end

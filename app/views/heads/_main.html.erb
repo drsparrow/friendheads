@@ -39,6 +39,9 @@
   <meta name="twitter:description" content="Upload your friendheads and share them with the world."/>
 <% end %>
 
+<div id='head-options' data-options='<%= @head.options_as_query %>'></div>
+<img id='img' class='hidden' src='<%=head_image_path(@head.external_id) %>'>
+
 <div class="hidden js-page-data" data-i='<%= "#{params[:id]}" %>' data-si='<%= "#{params[:sample_id]}" %>'></div>
 <div class="header">
   <div class="header-content">
@@ -64,7 +67,13 @@
   <span class='js-advanced-settings-toggle extra-option advanced-settings-toggle'>Advanced Settings</span>
   <span class='js-samples-toggle extra-option samples-toggle'>Samples</span>
   <br>
-  <div class="js-samples hidden head-samples"></div>
+  <div class="js-samples hidden head-samples">
+    <% Head::DEFAULT_HEADS.each do |h| %>
+      <a href='/<%= h %>' target="_blank" class='sample-link'>
+        <img src='/heads/<%=h%>.png' alt='<%=h%>'>
+      </a>
+    <% end %>
+  </div>
 
   <%= render 'advanced_settings' %>
 </div>

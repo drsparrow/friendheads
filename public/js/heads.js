@@ -1,12 +1,5 @@
 window.FriendHeads = window.FriendHeads || {}
 
-FriendHeads.samples = [
-  {si: 'bern', sa: 'bern', hat: 'spin', hands: 'y', size: 1.5},
-  {si: 'kony', hat: 'party', snail: 5},
-  {si: 'cage', sa: 'cage', sb: 'cage', hat: 'bow'},
-  {si: 'hill', sa: 'hill', hat: 'santa', feet: 'y', count: 10},
-  {si: 'locke', color: '000', hat: 'top', count: 8, snail: 5}
-]
 FriendHeads.defaultHeadCount = 5
 FriendHeads.hats = ['party', 'top', 'santa', 'bow', 'spin']
 FriendHeads.ranges = {
@@ -178,11 +171,6 @@ $(function(){
     }
   }
 
-  var setRandomParams = function () {
-    var head = _.sample(FriendHeads.samples);
-    FriendHeads._params = _.pick(head, 'si', 'hat', 'feet', 'hands', 'count', 'size')
-  }
-
   FriendHeads.setOptions = function () {
     var params = FriendHeads.params()
     opts.sizeMult = parseFloat(params.size) || 1;
@@ -224,15 +212,9 @@ $(function(){
   }
 
   var playAudio = function() {
-    var id = FriendHeads.params('a')
     var specialAudio = FriendHeads.params('sa')
-    var audioSrc;
-    if(id) {
-      audioSrc = pathFromId(id)
-    } else if (specialAudio) {
-      audioSrc = '/audio/'+specialAudio+'.mp3'
-    }
-    if(!audioSrc) { return }
+    if(!specialAudio) { return }
+    var audioSrc = '/audio/'+specialAudio+'.mp3'
     var $audio = $('<audio>', {src: audioSrc, loop: true})
     $('body').append($audio)
     $audio[0].load()
@@ -328,7 +310,6 @@ $(function(){
   var start = function() {
     var isIndex = $('#index-page').length
     isIndex && $('.js-form-stuff').removeClass('hidden')
-    isIndex && setRandomParams()
     isIndex || $('body, html, #js-content').addClass('no-overflow')
     resizeFunc()
     playAudio()

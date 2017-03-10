@@ -132,6 +132,7 @@
 
 .sample-link {
   margin: 10px;
+  text-decoration: none;
 }
 
 .sample-link img {
