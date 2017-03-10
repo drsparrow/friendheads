@@ -46,7 +46,7 @@ $(function(){
         success: function (response) {
           var params = FriendHeads.getParamsFromForm()
           var image = response.id
-          window.location = 'h/' + image
+          window.location = '/' + image
         }
       })
     }
