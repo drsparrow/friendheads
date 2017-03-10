@@ -10,6 +10,7 @@
 <% end %>
 
 <div id='show-page'>
+  <div id='head-options' data-options='<%= @head.options_as_query %>'></div>
   <img id='background' src='<%=head_background_image_path(@head.external_id) %>'>
   <img id='img' class='hidden' src='<%=head_image_path(@head.external_id) %>'>
   <%= render partial: 'main' %>

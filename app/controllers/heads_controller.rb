@@ -64,6 +64,6 @@ class HeadsController < ApplicationController
   end
 
   def head_params
-    params.require(:head).permit(:data_url, :background_data_url)
+    params.require(:head).permit(:data_url, :background_data_url, :options)
   end
 end

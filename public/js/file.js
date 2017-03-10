@@ -37,6 +37,7 @@ $(function(){
 
     var request = function (headOptions) {
       var data = {head: headOptions}
+      data.head.options = JSON.stringify(FriendHeads.getParamsFromForm())
       data[$("meta[name=csrf-param]").attr('content')] = $("meta[name=csrf-token]").attr('content')
       $.ajax({
         type: 'post',
@@ -45,7 +46,7 @@ $(function(){
         success: function (response) {
           var params = FriendHeads.getParamsFromForm()
           var image = response.id
-          window.location = 'h/' + image + '?' + $.param(params)
+          window.location = 'h/' + image
         }
       })
     }
