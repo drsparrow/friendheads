@@ -53,7 +53,7 @@
     this.iframe.setAttribute('allowtransparency', true);
 
     var style = {
-      position: 'absolute',
+      position: 'fixed',
       top: '0px',
       left: '0px',
       overflow: 'hidden',
