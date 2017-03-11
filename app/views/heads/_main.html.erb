@@ -54,7 +54,7 @@
   <div class="js-samples hidden head-samples">
     <% Head::DEFAULT_HEADS.each do |h| %>
       <a href='/<%= h %>' target="_blank" class='sample-link'>
-        <img src='/heads/<%=h%>.png' alt='<%=h%>'>
+        <%= image_tag "heads/#{h}.png" %>
       </a>
     <% end %>
   </div>
