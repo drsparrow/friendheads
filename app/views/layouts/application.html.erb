@@ -4,6 +4,7 @@
     <title>Friendheads</title>
     <%= csrf_meta_tags %>
 
+    <%= stylesheet_link_tag 'application', media: 'all' %>
 
     <% if content_for?(:head) %>
       <%= yield(:head) %>
