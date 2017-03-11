@@ -86,4 +86,9 @@
 
   <%= link_to('View demo', demo_path({id: 3, head: @external_id}.compact)) %>
   <br><br>
+
+  <script src="/js/embed.js"></script>
+  <script>
+    (new Friendheads('<%= @head.external_id %>')).add();
+  </script>
 </div>
