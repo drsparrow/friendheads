@@ -23,7 +23,7 @@ class EmbedController < ApplicationController
 
   def setup_widget_js
     <<-JAVASCRIPT
-      FriendheadsWidget.headId = '#{@head.external_id}';
+      FriendheadsWidget.init('#{@head.external_id}');
     JAVASCRIPT
   end
 

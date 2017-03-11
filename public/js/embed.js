@@ -3,38 +3,47 @@
   var widget = window.FriendheadsWidget = {};
   FriendheadsWidget._count = 0;
 
-  widget.add = function(num) {
-    num = arguments.length ? num : 1;
-    widget._count += (num);
-    var id = widget.headId;
+  ['add', 'destroy', 'count'].forEach(function(func){
+    widget[func] = function() {
+      console.error('FriendheadsWidget not initialized')
+    }
+  })
 
-    if(!widget.iframe) {
-      createIframe()
+  widget.init = function (headId) {
+    widget._headId = headId || '_404_';
+
+    widget.add = function(num) {
+      num = arguments.length ? num : 1;
+      widget.count(widget.count() + num);
+
+      updateIframe();
+
+      return widget._count;
     }
 
-    updateIframe();
+    widget.destroy = function() {
+      if(!widget.iframe) { return false; }
 
-    return widget._count;
-  }
-
-  widget.destroy = function() {
-    if(!widget.iframe) { return false; }
-
-    document.body.removeChild(widget.iframe);
-    delete widget.iframe;
-    return true;
-  }
-
-  widget.count = function () {
-    if(arguments.length) {
-      widget._count = arguments[0];
-      updateIframe()
+      document.body.removeChild(widget.iframe);
+      delete widget.iframe;
+      return true;
     }
-    return widget._count;
-  };
+
+    widget.count = function () {
+      if(arguments.length) {
+        widget._count = arguments[0];
+        if(widget._count < 0) { widget._count = 0; }
+        updateIframe()
+      }
+      return widget._count;
+    };
+  }
 
   var updateIframe = function () {
-    widget.iframe.src = 'https://friendheads.herokuapp.com/' + widget.headId + '?embedded=1#'+widget._count;
+    if(!widget.iframe) {
+      createIframe()
+    };
+    widget.iframe.src = 'https://friendheads.herokuapp.com/' + widget._headId + '?embedded=1#'+widget._count;
   }
 
   var createIframe = function () {
