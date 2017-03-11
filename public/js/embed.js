@@ -1,56 +1,47 @@
 ;(function(){
 
-  var widget = window.FriendheadsWidget = {};
-  FriendheadsWidget._count = 0;
+  window.Friendheads = function (headId) {
+    this.iframe = null;
+    this._headId = headId;
+    this._count = 0;
+  };
 
-  ['add', 'destroy', 'count'].forEach(function(func){
-    widget[func] = function() {
-      console.error('FriendheadsWidget not initialized')
-    }
-  })
+  var proto = Friendheads.prototype;
 
-  widget.init = function (headId) {
-    widget._headId = headId || '_404_';
+  proto.add = function (num) {
+    num = arguments.length ? num : 1;
+    this.count(this.count() + num);
 
-    widget.add = function(num) {
-      num = arguments.length ? num : 1;
-      widget.count(widget.count() + num);
+    this._updateIframe();
 
-      updateIframe();
-
-      return widget._count;
-    }
-
-    widget.destroy = function() {
-      if(!widget.iframe) { return false; }
-
-      document.body.removeChild(widget.iframe);
-      delete widget.iframe;
-      return true;
-    }
-
-    widget.count = function () {
-      if(arguments.length) {
-        widget._count = arguments[0];
-        if(widget._count < 0) { widget._count = 0; }
-        updateIframe()
-      }
-      return widget._count;
-    };
+    return this.count();
   }
 
-  var updateIframe = function () {
-    if(!widget.iframe) {
-      createIframe()
+  proto.count = function () {
+    if(arguments.length) {
+      this._count = arguments[0];
+      if(this._count < 0) { this._count = 0; }
+      this._updateIframe()
+    }
+    return this._count;
+  };
+
+  proto.destroy = function() {
+    this.iframe && document.body.removeChild(this.iframe);
+  };
+
+  proto._updateIframe = function () {
+    if(!this.iframe) {
+      this._createIframe()
     };
-    widget.iframe.src = 'https://friendheads.herokuapp.com/' + widget._headId + '?embedded=1#'+widget._count;
+    this.iframe.src = 'https://friendheads.herokuapp.com/' + this._headId + '?embedded=1#'+this.count();
   }
 
-  var createIframe = function () {
-    var iframe = document.createElement('iframe');
+  proto._createIframe = function () {
+    this.iframe = document.createElement('iframe');
 
-    iframe.setAttribute('tabindex', -1);
-    iframe.setAttribute('allowtransparency', true);
+    this.iframe.setAttribute('tabindex', -1);
+    this.iframe.setAttribute('allowtransparency', true);
 
     var style = {
       position: 'fixed',
@@ -65,11 +56,10 @@
     };
 
     for(var key in style) {
-      iframe.style[key] = style[key];
+      this.iframe.style[key] = style[key];
     }
 
-    document.body.append(iframe);
-    widget.iframe = iframe;
+    document.body.append(this.iframe);
   }
 
 })();
