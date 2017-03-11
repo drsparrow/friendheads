@@ -69,6 +69,9 @@
 
     if (this._container) {
       var container = this._container;
+      if(container instanceof (window.jQuery || Array)) { // container is dom element if jQuery, or first element if Array
+        container = container[0];
+      }
     } else {
       var container = document.body
       style.width = '100vw';
