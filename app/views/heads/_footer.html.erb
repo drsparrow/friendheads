@@ -1,4 +1,12 @@
 <div class="footer clearfix">
+  <% if params[:action] == 'show' %>
+    <div class="embed">
+      <a href='<%=  %>' target="_blank">
+        <%= image_tag 'embed' %>
+      </a>
+    </div>
+  <% end %>
+
   <div class="social">
     <img src="/images/facebook.png" alt="facebook" class='js-facebook-share'>
     <a target="_blank" class='js-twitter-share-anchor'>

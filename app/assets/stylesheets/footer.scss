@@ -6,22 +6,32 @@
   padding: 15px;
 
   .social {
-    padding: 0 15px;
+    width: 100px;
+    padding: 0;
     float: right;
     height: 100%;
     margin: 5px 15px;
+  }
 
-    img {
-      opacity: .8;
-      height: 40px;
-      margin: 0;
-    }
+  img {
+    opacity: .8;
+    height: 40px;
+    margin: 0;
+  }
 
-    img:hover {
-      cursor: pointer;
-      opacity: 1;
-      height: 44px;
-      margin: -2px;
-    }
+  img:hover {
+    cursor: pointer;
+    opacity: 1;
+    height: 44px;
+    margin: -2px;
+  }
+
+  .embed {
+    width: 100px;
+    padding: 0;
+    float: left;
+    height: 100%;
+    margin: 5px 15px;
+
   }
 }
