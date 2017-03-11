@@ -3,9 +3,8 @@
   var widget = window.FriendheadsWidget = {};
   FriendheadsWidget.count = 0;
 
-
-  widget.add = function() {
-    widget.count += 1;
+  widget.add = function(num) {
+    widget.count += (num || 1);
     var id = widget.headId;
 
     if(!widget.iframe) {
@@ -13,6 +12,16 @@
     }
 
     widget.iframe.src = 'https://friendheads.herokuapp.com/' + widget.headId + '?embedded=1#'+widget.count;
+
+    return widget.count;
+  }
+
+  widget.destroy = function() {
+    if(!widget.iframe) { return false; }
+
+    document.body.removeChild(widget.iframe);
+    delete widget.iframe;
+    return true;
   }
 
   var createIframe = function () {
