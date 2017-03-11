@@ -170,7 +170,7 @@ $(function(){
     opts.hands = !!params.hands
     opts.hatName = params.hat
     opts.snailTrail = parseFloat(params.snail) || 0;
-    opts.count = opts.embedded ? 1 : (params.count || opts.count);
+    opts.count = opts.embedded ? FriendheadsApp.countFromHash() : (params.count || opts.count);
 
     if (opts.embedded) { return }
     opts.color = params.color

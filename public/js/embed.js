@@ -15,8 +15,6 @@
     num = arguments.length ? num : 1;
     this.count(this.count() + num);
 
-    this._updateIframe();
-
     return this.count();
   }
 

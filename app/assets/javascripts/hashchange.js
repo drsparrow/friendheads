@@ -1,6 +1,10 @@
+window.FriendheadsApp = window.FriendheadsApp || {}
+FriendheadsApp.countFromHash = function () {
+  return parseInt(window.location.hash.slice(1) || 1);
+  FriendheadsApp.updateCount(count);
+};
 $(function(){
   $(window).on('hashchange', function(){
-    var count = parseInt(window.location.hash.slice(1) || 1)
-    FriendheadsApp.updateCount(count)
+    FriendheadsApp.updateCount(FriendheadsApp.countFromHash())
   })
 })
