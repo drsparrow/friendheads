@@ -59,7 +59,8 @@ $(function(){
       var dataUrl = r.readAsDataURL(file)
     } else {
       var resized = FriendheadsApp.files.resize($('#img')[0])
-      var resizedBackground = FriendheadsApp.files.resize($('#background')[0])
+      var background = $('#background')[0];
+      var resizedBackground = background.src ? FriendheadsApp.files.resize(background) : null
       request({data_url: resized, background_data_url: resizedBackground})
     }
 
