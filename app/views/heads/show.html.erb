@@ -13,7 +13,7 @@
 <% end %>
 
 <div id='show-page'>
-  <% if @head.background_data_url %>
+  <% if @head.background_data_url && !@embedded%>
     <img id='background' src='<%=head_background_image_path(@head.external_id) %>'>
   <% else %>
     <img id='background'>
