@@ -22,6 +22,7 @@ class DemosController < ApplicationController
     @opacity_js = opacity_js
     @opacity_init_js = opacity_init_js
     @other_parent_js = other_parent_js
+    @multi_heads_js = multi_heads_js
   end
 
   def easy_setup
@@ -92,6 +93,15 @@ class DemosController < ApplicationController
       var element = document.getElementById('my-friendheads-container'); // HTMLElement or jQuery object
       var options = { container: element };
       var friendheads = new Friendheads('#{@head.external_id}', options);
+    JAVASCRIPT
+  end
+
+  def multi_heads_js
+    <<-JAVASCRIPT.gsub( /^\s+/, "")
+      var ariHeads = new Friendheads('ari');
+      var meHeads = new Friendheads('#{@head.external_id}');
+      ariHeads.add(4);
+      meHeads.add(4);
     JAVASCRIPT
   end
 
