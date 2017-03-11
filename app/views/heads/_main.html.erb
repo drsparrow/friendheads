@@ -20,7 +20,14 @@
   <meta name="twitter:description" content="Upload your friendheads and share them with the world."/>
 <% end %>
 
-<div id='head-options' data-options='<%= @head.options_as_query %>'></div>
+<% if action_name == 'index' %>
+  <% options = @head.body_options_as_query %>
+<% else %>
+  <% options = @head.options_as_query %>
+<% end %>
+
+<div id='head-options' data-options='<%= options %>'></div>
+
 <img id='img' class='hidden' src='<%=head_image_path(@head.external_id) %>'>
 
 <div class="hidden js-page-data" data-i='<%= "#{params[:id]}" %>' data-si='<%= "#{params[:sample_id]}" %>'></div>

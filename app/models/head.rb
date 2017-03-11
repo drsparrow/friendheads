@@ -28,6 +28,10 @@ class Head < ApplicationRecord
     get_options.to_query
   end
 
+  def body_options_as_query
+    get_options.slice('hat', 'feet', 'hands').to_query
+  end
+
   private
 
   def random_external_id
