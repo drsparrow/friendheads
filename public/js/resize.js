@@ -1,7 +1,7 @@
-window.FriendHeads = window.FriendHeads || {}
-FriendHeads.files = FriendHeads.files || {}
+window.FriendheadsApp = window.FriendheadsApp || {}
+FriendheadsApp.files = FriendheadsApp.files || {}
 
-FriendHeads.files.resize = function (img) {
+FriendheadsApp.files.resize = function (img) {
   // http://stackoverflow.com/questions/10333971/html5-pre-resize-images-before-uploading
   var canvas = document.getElementById('resize-canvas')
   var ctx = canvas.getContext("2d");

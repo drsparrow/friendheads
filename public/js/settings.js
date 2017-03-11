@@ -20,9 +20,9 @@ $(function(){
     $('.js-advanced-settings').addClass('hidden');
   })
 
-  FriendHeads.hats.forEach(function(hat){
+  FriendheadsApp.hats.forEach(function(hat){
     var options = {src: '/hats/'+hat+'.png', 'data-hat': hat, id: hat+'-hat'}
-    if(hat == FriendHeads.options.hatName) { options.class = 'selected-hat' }
+    if(hat == FriendheadsApp.options.hatName) { options.class = 'selected-hat' }
     $('.hat-selection').append($('<img>', options))
   })
 
@@ -31,11 +31,11 @@ $(function(){
     var selected = $this.is('.selected-hat')
     $('.hat-selection img').removeClass('selected-hat')
     selected || $this.addClass('selected-hat')
-    FriendHeads.updatePreview()
+    FriendheadsApp.updatePreview()
   })
 
   $('.js-advanced-settings input').change(function(){
-    FriendHeads.updatePreview()
+    FriendheadsApp.updatePreview()
   })
 
 })

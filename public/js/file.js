@@ -1,9 +1,9 @@
 $(function(){
-  FriendHeads.files = FriendHeads.files || {}
-  var files = FriendHeads.files;
+  FriendheadsApp.files = FriendheadsApp.files || {}
+  var files = FriendheadsApp.files;
   var disabled = true;
 
-  FriendHeads.getParamsFromForm = function () {
+  FriendheadsApp.getParamsFromForm = function () {
     var params = {}
     var hatName = $('img.selected-hat').data('hat')
     var background = $('input[name="background-option"]:checked').val()
@@ -21,7 +21,7 @@ $(function(){
     if (hatName) {
       params.hat = hatName
     }
-    if(headCount != FriendHeads.defaultHeadCount) {
+    if(headCount != FriendheadsApp.defaultHeadCount) {
       params.count = headCount
     }
     if(snail != '') {
@@ -37,14 +37,14 @@ $(function(){
 
     var request = function (headOptions) {
       var data = {head: headOptions}
-      data.head.options = JSON.stringify(FriendHeads.getParamsFromForm())
+      data.head.options = JSON.stringify(FriendheadsApp.getParamsFromForm())
       data[$("meta[name=csrf-param]").attr('content')] = $("meta[name=csrf-token]").attr('content')
       $.ajax({
         type: 'post',
         url: 'heads/',
         data: data,
         success: function (response) {
-          var params = FriendHeads.getParamsFromForm()
+          var params = FriendheadsApp.getParamsFromForm()
           var image = response.id
           window.location = '/' + image
         }
@@ -58,8 +58,8 @@ $(function(){
       }
       var dataUrl = r.readAsDataURL(file)
     } else {
-      var resized = FriendHeads.files.resize($('#img')[0])
-      var resizedBackground = FriendHeads.files.resize($('#background')[0])
+      var resized = FriendheadsApp.files.resize($('#img')[0])
+      var resizedBackground = FriendheadsApp.files.resize($('#background')[0])
       request({data_url: resized, background_data_url: resizedBackground})
     }
 
@@ -82,7 +82,7 @@ $(function(){
           $('#submit').attr('disabled', false)
           $('.img-preview-container').removeClass('hidden')
           $('#temp-img').attr('src', e.target.result);
-          FriendHeads.files.createCroppie()
+          FriendheadsApp.files.createCroppie()
         }
 
         reader.readAsDataURL(file)
@@ -104,8 +104,8 @@ $(function(){
        var reader = new FileReader();
        reader.onload = function (e) {
          $('#background').attr('src', e.target.result)
-         FriendHeads.clearCanv()
-         FriendHeads.updatePreview()
+         FriendheadsApp.clearCanv()
+         FriendheadsApp.updatePreview()
        }
        reader.readAsDataURL(file)
      }

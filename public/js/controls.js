@@ -1,5 +1,5 @@
 (function(){
-  window.FriendHeads = window.FriendHeads || {}
+  window.FriendheadsApp = window.FriendheadsApp || {}
   var $button = function (key) {
     return $('.js-'+key+'-button')
   };
@@ -13,9 +13,9 @@
     pressButton($button(key))
   }
 
-  FriendHeads.checkRanges = function () {
-    var opts = FriendHeads.options
-    var rngs = FriendHeads.ranges
+  FriendheadsApp.checkRanges = function () {
+    var opts = FriendheadsApp.options
+    var rngs = FriendheadsApp.ranges
     $('.js-control-buttons img').removeClass('disabled')
 
     if(opts.snailTrail <= rngs.snail[0]) {
@@ -41,55 +41,55 @@
     $('body').on('keydown', function(e){
       var keyCode = e.which
       if(keyCode == 32) { // space bar
-        FriendHeads.togglePaused()
+        FriendheadsApp.togglePaused()
         pressKey('space')
       } else if (keyCode == 191) { // ? key
-        FriendHeads.reverseHeads()
+        FriendheadsApp.reverseHeads()
         pressKey('question')
       } else if (keyCode == 38 || keyCode == 40) { // up arrow, down arrow
         var isUp = (keyCode == 38)
-        FriendHeads.changeSpeed(isUp)
+        FriendheadsApp.changeSpeed(isUp)
         isUp ? pressKey('up') : pressKey('down')
       } else if (keyCode == 187 || keyCode == 189 || keyCode == 173 || keyCode == 61) { // +-
         var isPlus = (keyCode == 187 || keyCode == 61)
-        FriendHeads.resizeHeads(isPlus)
+        FriendheadsApp.resizeHeads(isPlus)
         isPlus ? pressKey('plus') : pressKey('minus')
       } else if(keyCode == 37 || keyCode == 39) { // left arrow, right arrow
         var isRight = (keyCode==39)
-        FriendHeads.changeSnail(isRight)
+        FriendheadsApp.changeSnail(isRight)
         isRight ? pressKey('right') : pressKey('left')
       } else {
         return
       }
-      FriendHeads.checkRanges()
+      FriendheadsApp.checkRanges()
       e.preventDefault()
     })
 
 
     $button('plus').click(function(){
-      FriendHeads.resizeHeads(true)
+      FriendheadsApp.resizeHeads(true)
     })
     $button('minus').click(function(){
-      FriendHeads.resizeHeads(false)
+      FriendheadsApp.resizeHeads(false)
     })
     $button('space').click(function(){
-      FriendHeads.togglePaused()
+      FriendheadsApp.togglePaused()
     })
     $button('right').click(function(){
-      FriendHeads.changeSnail(true)
+      FriendheadsApp.changeSnail(true)
     })
     $button('left').click(function(){
-      FriendHeads.changeSnail(false)
+      FriendheadsApp.changeSnail(false)
     })
     $button('up').click(function(){
-      FriendHeads.changeSpeed(true)
+      FriendheadsApp.changeSpeed(true)
     })
     $button('down').click(function(){
-      FriendHeads.changeSpeed(false)
+      FriendheadsApp.changeSpeed(false)
     })
     $button('question').click(function(){
-      FriendHeads.reverseHeads()
+      FriendheadsApp.reverseHeads()
     })
-    $('.js-control-buttons img').click(FriendHeads.checkRanges)
+    $('.js-control-buttons img').click(FriendheadsApp.checkRanges)
   })
 })()

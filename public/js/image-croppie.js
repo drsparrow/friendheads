@@ -1,9 +1,9 @@
-window.FriendHeads = window.FriendHeads || {}
-FriendHeads.files = FriendHeads.files || {}
+window.FriendheadsApp = window.FriendheadsApp || {}
+FriendheadsApp.files = FriendheadsApp.files || {}
 
-FriendHeads.files.createCroppie = function (type) {
-  FriendHeads.files.croppie && FriendHeads.files.croppie.destroy()
-  FriendHeads.files.croppie = new Croppie($('#temp-img')[0],{
+FriendheadsApp.files.createCroppie = function (type) {
+  FriendheadsApp.files.croppie && FriendheadsApp.files.croppie.destroy()
+  FriendheadsApp.files.croppie = new Croppie($('#temp-img')[0],{
     viewport: {
       width: 150,
       height: 150,
@@ -15,7 +15,7 @@ FriendHeads.files.createCroppie = function (type) {
     },
     update: function () {
       this.result('blob').then(function(blob) {
-        FriendHeads.updateImage(window.URL.createObjectURL(blob))
+        FriendheadsApp.updateImage(window.URL.createObjectURL(blob))
      });
     }
   })
@@ -23,15 +23,15 @@ FriendHeads.files.createCroppie = function (type) {
 
 $(function(){
   $('#crop-square').click(function(){
-    FriendHeads.files.createCroppie('square')
+    FriendheadsApp.files.createCroppie('square')
   })
   $('#crop-circle').click(function(){
-    FriendHeads.files.createCroppie('circle')
+    FriendheadsApp.files.createCroppie('circle')
   })
   $('#crop-none').click(function(){
-    FriendHeads.files.croppie && FriendHeads.files.croppie.destroy()
-    FriendHeads.files.croppie = null;
+    FriendheadsApp.files.croppie && FriendheadsApp.files.croppie.destroy()
+    FriendheadsApp.files.croppie = null;
 
-    FriendHeads.updateImage($('#temp-img').attr('src'))
+    FriendheadsApp.updateImage($('#temp-img').attr('src'))
   })
 })

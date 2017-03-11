@@ -1,11 +1,11 @@
 $(function(){
-  window.FriendHeads = window.FriendHeads || {};
+  window.FriendheadsApp = window.FriendheadsApp || {};
 
-  window.FriendHeads.params = function() { // http://stackoverflow.com/questions/8486099/how-do-i-parse-a-url-query-parameters-in-javascript
+  window.FriendheadsApp.params = function() { // http://stackoverflow.com/questions/8486099/how-do-i-parse-a-url-query-parameters-in-javascript
     var query = $('#head-options').data('options') || '';
     var result = $('.js-page-data').data();
-    if (FriendHeads._params) {
-      result = FriendHeads._params;
+    if (FriendheadsApp._params) {
+      result = FriendheadsApp._params;
     } else {
       query.split("&").forEach(function(part) {
         var item = part.split("=");

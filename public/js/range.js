@@ -1,7 +1,7 @@
 $(function(){
   var $headCount = $('#head-count');
 
-  $headCount.val(FriendHeads.defaultHeadCount)
+  $headCount.val(FriendheadsApp.defaultHeadCount)
 
   var changeFunc = function(){
     $('#head-count-value').text(this.value)
