@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Embed example</title>
+    <script src="/js/embed.js"></script>
+  </head>
+  <body>
+    <br><br>
+    <center>
+
+      <div style='border: 1px solid red;'>
+        This friendheads instance has no container so it will fill the body
+        <br><br>
+        <button onclick='ariHeads.add(3)'>Add some ariHeads</button>
+        <br><br>
+        <button onclick='ariHeads.add(-3)'>Remove some ariHeads</button>
+        <br><br>
+        <label>
+          Opacity
+          <input type="range" min='0' max='1' step='.1' onchange='ariHeads.opacity(this.value)' value='1'>
+        </label>
+        <br><br>
+      </div>
+      <br>
+      <div style='border: 1px solid red; position: relative;' id='my-container'>
+        This friendheads instance lives inside this <b>relatively positioned</b> container
+        <br><br>
+        <button onclick='meHeads.add(3)'>Add some meHeads</button>
+        <br><br>
+        <button onclick='meHeads.add(-3)'>Remove some meHeads</button>
+        <br><br>
+        <label>
+          Opacity
+          <input type="range" min='0' max='1' step='.1' onchange='meHeads.opacity(this.value)' value='.8'>
+        </label>
+        <br><br>
+      </div>
+
+    </center>
+
+    <script>
+      var ariHeads = new Friendheads('ari');
+
+      var container = document.getElementById('my-container');
+      var meHeads = new Friendheads('<%= @head.external_id %>', {opacity: .8, container: container});
+    </script>
+  </body>
+</html>

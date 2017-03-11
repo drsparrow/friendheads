@@ -1,18 +1,22 @@
 class DemosController < ApplicationController
 
+  before_filter :find_head_and_external_id
+
   def index
-    @external_id = params[:head]
-    @head = @external_id ? Head.find_by_external_id(@external_id) : Head.random_default
     set_ivars
     render :index, layout: 'demo'
   end
 
   def show
-    @external_id = params[:head] || Head::DEFAULT_HEADS.sample
     render params[:id], layout: 'demo'
   end
 
   private
+
+  def find_head_and_external_id
+    @external_id = params[:head]
+    @head = @external_id ? Head.find_by_external_id(@external_id) : Head.random_default
+  end
 
   def set_ivars
     @easy_setup = easy_setup
