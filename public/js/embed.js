@@ -1,19 +1,20 @@
 ;(function(){
 
   var widget = window.FriendheadsWidget = {};
-  FriendheadsWidget.count = 0;
+  FriendheadsWidget._count = 0;
 
   widget.add = function(num) {
-    widget.count += (num || 1);
+    num = arguments.length ? num : 1;
+    widget._count += (num);
     var id = widget.headId;
 
     if(!widget.iframe) {
       createIframe()
     }
 
-    widget.iframe.src = 'https://friendheads.herokuapp.com/' + widget.headId + '?embedded=1#'+widget.count;
+    updateIframe();
 
-    return widget.count;
+    return widget._count;
   }
 
   widget.destroy = function() {
@@ -22,6 +23,18 @@
     document.body.removeChild(widget.iframe);
     delete widget.iframe;
     return true;
+  }
+
+  widget.count = function () {
+    if(arguments.length) {
+      widget._count = arguments[0];
+      updateIframe()
+    }
+    return widget._count;
+  };
+
+  var updateIframe = function () {
+    widget.iframe.src = 'https://friendheads.herokuapp.com/' + widget.headId + '?embedded=1#'+widget._count;
   }
 
   var createIframe = function () {

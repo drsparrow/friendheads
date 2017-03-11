@@ -6,6 +6,9 @@ class EmbedController < ApplicationController
     @easy_setup = easy_setup
     @master_setup = master_setup
     @add_head_js = add_head_js
+    @add_head_js_plus = add_head_js(3)
+    @add_head_js_minus = add_head_js(-2)
+    @count_js = count_js
   end
 
   private
@@ -49,9 +52,16 @@ class EmbedController < ApplicationController
     JAVASCRIPT
   end
 
-  def add_head_js
+  def add_head_js(num='')
     <<-JAVASCRIPT
-      FriendheadsWidget.add()
+      FriendheadsWidget.add(#{num});
+    JAVASCRIPT
+  end
+
+  def count_js
+    <<-JAVASCRIPT
+      FriendheadsWidget.count(); // get count
+      FriendheadsWidget.count(7); // set count
     JAVASCRIPT
   end
 
