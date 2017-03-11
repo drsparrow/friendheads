@@ -4,8 +4,10 @@
   height: 40px;
   width: 100%;
   padding: 15px;
+  pointer-events: none;
 
   .social {
+    pointer-events: auto;
     width: 100px;
     padding: 0;
     float: right;
@@ -27,11 +29,20 @@
   }
 
   .embed {
-    width: 100px;
+    pointer-events: auto;
     padding: 0;
     float: left;
     height: 100%;
     margin: 5px 15px;
 
+    img {
+      // border: 1px solid white;
+      border-radius: 3px;
+      box-shadow: 0 0 10px rgb(0,255,183);
+
+      &:hover {
+        border: none;
+      }
+    }
   }
 }
