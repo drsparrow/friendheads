@@ -1,7 +1,6 @@
 window.FriendheadsApp = window.FriendheadsApp || {}
 
 FriendheadsApp.defaultHeadCount = 5
-FriendheadsApp.hats = ['party', 'top', 'santa', 'bow', 'spin']
 FriendheadsApp.ranges = {
   snail: [0, 9],
   speedMult: [0.1, 20],

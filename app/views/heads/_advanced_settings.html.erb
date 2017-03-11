@@ -10,7 +10,11 @@
   <br>
   <label for="js-include-hands">Show hands</label>
   <input type="checkbox" name="hands" id='js-include-hands'>
-  <div class="hat-selection"></div>
+  <div class="hat-selection">
+    <% ['party', 'top', 'santa', 'bow', 'spin'].each do |hat| %>
+      <%= image_tag "hats/#{hat}", id: "#{hat}-hat", data: {hat: hat} %>
+    <% end %>
+  </div>
 
   <label for="snail-trail">Snail trail</label>
   <input type="range" min='0' max='9' id='snail-trail' name='snail' step='1' value='0'>

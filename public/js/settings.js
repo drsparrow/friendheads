@@ -20,12 +20,6 @@ $(function(){
     $('.js-advanced-settings').addClass('hidden');
   })
 
-  FriendheadsApp.hats.forEach(function(hat){
-    var options = {src: '/hats/'+hat+'.png', 'data-hat': hat, id: hat+'-hat'}
-    if(hat == FriendheadsApp.options.hatName) { options.class = 'selected-hat' }
-    $('.hat-selection').append($('<img>', options))
-  })
-
   $('.hat-selection img').click(function(){
     var $this = $(this)
     var selected = $this.is('.selected-hat')
