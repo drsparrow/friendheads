@@ -1,20 +1,31 @@
-.embed-info {
+body.embed-info {
   background: rgb(59,246,135);
 
-  pre {
-    margin: 5px;
+  .embed-page {
+    width: 500px;
+    margin: auto;
+    pre {
+      margin: 5px;
 
-    code {
-      text-align: left;
+      code {
+        text-align: left;
+        font-size: 12px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 10px 10px 20px 0px;
+      }
+    }
+
+
+    .small-info {
       font-size: 12px;
-      width: 400px;
-      margin: 0 auto;
-      padding: 10px 10px 20px 0px;
+    }
+
+    .big-info {
+      font-size: 18px;
+      margin-top: 15px;
     }
   }
 
 
-  .info {
-    font-size: 12px;
-  }
 }
