@@ -44,7 +44,7 @@
 
 <div class="hidden js-page-data" data-i='<%= "#{params[:id]}" %>' data-si='<%= "#{params[:sample_id]}" %>'></div>
 
-<% if @embeded %>
+<% if @embedded %>
   <div id='embebed-iframe'></div>
 <% else %>
   <%= render 'head' %>
@@ -74,6 +74,6 @@
 <img id='left-foot' class='hidden' src='/limbs/left-foot.png'>
 <img id='right-foot' class='hidden' src='/limbs/right-foot.png'>
 
-<% unless @embeded %>
+<% unless @embedded %>
   <%= render 'footer' %>
 <% end %>

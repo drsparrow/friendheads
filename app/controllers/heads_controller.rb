@@ -4,7 +4,7 @@ class HeadsController < ApplicationController
   end
 
   def show
-    @embeded = !!params[:embeded]
+    @embedded = !!params[:embedded]
     @head = Head.find_by(external_id: params[:id]) or raise ActionController::RoutingError.new(404)
   end
 

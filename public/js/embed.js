@@ -6,7 +6,7 @@
   widget.add = function(id) {
     var iframe = document.createElement('iframe');
 
-    iframe.src = 'https://friendheads.herokuapp.com/' + id + '?embeded=1';
+    iframe.src = 'https://friendheads.herokuapp.com/' + id + '?embedded=1';
     iframe.setAttribute('tabindex', -1);
     iframe.setAttribute('allowtransparency', true);
 

@@ -173,7 +173,7 @@ $(function(){
 
   FriendHeads.setOptions = function () {
     var params = FriendHeads.params()
-    opts.embeded = $('#embebed-iframe').length
+    opts.embedded = $('#embebed-iframe').length
     opts.sizeMult = parseFloat(params.size) || 1;
     opts.feet = !!params.feet
     opts.hands = !!params.hands
@@ -181,7 +181,7 @@ $(function(){
     opts.snailTrail = parseFloat(params.snail) || 0
     opts.count = params.count || opts.count
 
-    if (opts.embeded) { return }
+    if (opts.embedded) { return }
     opts.color = params.color
     var fullColor = '#'+opts.color
     opts.color && $('html').css('background-color', fullColor)
@@ -283,7 +283,7 @@ $(function(){
   }
 
   var coverCanvas = function () {
-    if(opts.embeded) {
+    if(opts.embedded) {
       FriendHeads.clearCanv(); return;
     }
     var maxSnail = FriendHeads.maxSnail
