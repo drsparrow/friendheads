@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Friendheads</title>
+
+    <%= stylesheet_link_tag 'demos', media: 'all' %>
+  </head>
+
+  <body class='<%= "#{controller_name}-#{action_name}" %>'>
+    <%= yield %>
+  </body>
+
+  <% if action_name == 'show' %>
+    <br><br>
+    <center>
+      <%= link_to('back to demos', demos_path({head: @external_id}.compact)) %>
+    </center>
+  <% end %>
+</html>

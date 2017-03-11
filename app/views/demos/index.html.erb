@@ -1,8 +1,7 @@
 <div class="embed-page center">
 
-
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="/vendor/highlight.min.css">
+  <script src="/vendor/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 
   <h1>Embedding friendheads</h1>
@@ -21,7 +20,7 @@
     <% end %>
   </div>
 
-  <a href="/samples/embed.html">View demo</a>
+  <%= link_to('View demo', demo_path({id: 1, head: @external_id}.compact)) %>
 
   <br><br>
 
@@ -40,7 +39,6 @@
 
   <pre><code class='javascript'><%= @advanced_js %></code></pre>
 
-  <a href="/samples/embed2.html">View demo</a>
-
+  <%= link_to('View demo', demo_path({id: 2, head: @external_id}.compact)) %>
 
 </div>

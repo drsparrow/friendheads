@@ -6,6 +6,12 @@ class DemosController < ApplicationController
     @easy_setup = easy_setup
     @master_setup = init_script_tag
     @advanced_js = advanced_js
+    render :index, layout: 'demo'
+  end
+
+  def show
+    @external_id = params[:head] || Head::DEFAULT_HEADS.sample
+    render params[:id], layout: 'demo'
   end
 
   private
