@@ -3,7 +3,8 @@ body.demos-index {
 
   text-align: center;
   .embed-page {
-    width: 500px;
+    width: 550px;
+    padding: 0px;
     margin: auto;
     pre {
       margin: 5px;
@@ -13,7 +14,7 @@ body.demos-index {
         font-size: 12px;
         width: 100%;
         margin: 0 auto;
-        padding: 10px 10px 20px 0px;
+        padding: 10px 15px 20px 15px;
       }
     }
 
@@ -23,8 +24,9 @@ body.demos-index {
     }
 
     .big-info {
+      text-align: left;
       font-size: 18px;
-      margin-top: 15px;
+      margin: 15px 5px 0px 5px;
     }
   }
 

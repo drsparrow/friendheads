@@ -17,7 +17,7 @@ class DemosController < ApplicationController
   private
 
   def easy_setup
-    tag = <<-HTML
+    tag = <<-HTML.gsub(/^\s+/, "").chomp
     #{init_script_tag}<script>#{easy_setup_js}</script>
     HTML
 
@@ -25,13 +25,13 @@ class DemosController < ApplicationController
   end
 
   def easy_setup_js
-    <<-JAVASCRIPT
+    <<-JAVASCRIPT.gsub( /^\s+/, "").chomp
     document.addEventListener("DOMContentLoaded",function(){(new Friendheads('#{@head.external_id}')).add();});
     JAVASCRIPT
   end
 
   def init_script_tag
-    <<-HTML
+    <<-HTML.gsub( /^\s+/, "").chomp
     <script src="http://www.friendheads.com/js/embed.js"></script>
     HTML
   end
