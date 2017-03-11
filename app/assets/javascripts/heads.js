@@ -312,9 +312,9 @@ $(function(){
     isIndex && $('.js-form-stuff').removeClass('hidden')
     isIndex || $('body, html, #js-content').addClass('no-overflow')
     resizeFunc()
-    isIndex || playAudio()
     FriendheadsApp.setOptions()
     FriendheadsApp.checkRanges()
+    if(!isIndex && !opts.embedded) { playAudio() }
 
     var img = $('#img')[0]
 
