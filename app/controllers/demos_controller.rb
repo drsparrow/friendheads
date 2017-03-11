@@ -3,10 +3,7 @@ class DemosController < ApplicationController
   def index
     @external_id = params[:head]
     @head = @external_id ? Head.find_by_external_id(@external_id) : Head.random_default
-    @easy_setup = easy_setup
-    @master_setup = init_script_tag
-    @advanced_js = advanced_js
-    @head_id_message = head_id_message
+    set_ivars
     render :index, layout: 'demo'
   end
 
@@ -16,6 +13,13 @@ class DemosController < ApplicationController
   end
 
   private
+
+  def set_ivars
+    @easy_setup = easy_setup
+    @master_setup = init_script_tag
+    @advanced_js = advanced_js
+    @head_id_message = head_id_message
+  end
 
   def easy_setup
     tag = <<-HTML.gsub(/^\s+/, "").chomp
@@ -38,16 +42,22 @@ class DemosController < ApplicationController
   end
 
   def advanced_js
-    <<-JAVASCRIPT
+    js = <<-JAVASCRIPT.gsub( /^\s+/, "")
       var friendheads = new Friendheads('#{@head.external_id}'); // #{head_id_message}
+    JAVASCRIPT
 
+    js += "\n" + <<-JAVASCRIPT.gsub( /^\s+/, "")
       friendheads.add(); // add one head
       friendheads.add(7); // add 7 head
       friendheads.add(-2); // remove 2 heads
+    JAVASCRIPT
 
+    js += "\n" + <<-JAVASCRIPT.gsub( /^\s+/, "")
       friendheads.count(); // get head count
       friendheads.count(5); // set head count
+    JAVASCRIPT
 
+    js += "\n" + <<-JAVASCRIPT.gsub( /^\s+/, "")
       friendheads.destroy(); // remove instance from dom
     JAVASCRIPT
   end
