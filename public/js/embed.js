@@ -1,9 +1,12 @@
 ;(function(){
 
-  window.Friendheads = function (headId) {
+  window.Friendheads = function (headId, options) {
+    options = options || {};
     this.iframe = null;
     this._headId = headId;
     this._count = 0;
+    this._opacity = options.hasOwnProperty('opacity') ? options.opacity : 1;
+    this._parent = options.parent;
   };
 
   var proto = Friendheads.prototype;
@@ -23,7 +26,15 @@
       if(this._count < 0) { this._count = 0; }
       this._updateIframe()
     }
-    return this._count;
+    return parseInt(this._count);
+  };
+
+  proto.opacity = function () {
+    if(arguments.length) {
+      this._opacity = parseFloat(arguments[0]);
+      this.iframe.style.opacity = this._opacity;
+    }
+    return this._opacity;
   };
 
   proto.destroy = function() {
@@ -44,22 +55,31 @@
     this.iframe.setAttribute('allowtransparency', true);
 
     var style = {
-      position: 'fixed',
+      position: 'absolute',
       top: '0px',
       left: '0px',
-      width: '100vw',
-      height: '100vh',
       overflow: 'hidden',
       display: 'block',
       border: 'none',
+      width: '100%',
+      height: '100%',
+      opacity: this.opacity(),
       'pointer-events': 'none'
     };
+
+    if (this._parent) {
+      var parent = this._parent;
+    } else {
+      var parent = document.body
+      style.width = '100vw';
+      style.height = '100vh';
+    }
 
     for(var key in style) {
       this.iframe.style[key] = style[key];
     }
 
-    document.body.append(this.iframe);
+    parent.append(this.iframe);
   }
 
 })();
