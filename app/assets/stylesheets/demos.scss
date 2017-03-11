@@ -1,9 +1,52 @@
 body.demos-index {
   background: rgb(59,246,135);
+  font-family: sans-serif;
+
+  .demos-header {
+    background: black;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    left: 0px;
+    padding: 10px;
+    border-bottom: 2px solid white;
+
+    .link-to-root {
+      a {
+        float: left;
+        color: white;
+        font-size: 27px;
+        text-decoration: none;
+        vertical-align: middle;
+      }
+    }
+
+    .link-to-head {
+      a {
+        float: right;
+
+        img {
+          margin-right: 28px;
+          border-radius: 100%;
+          border: 1px solid white;
+          max-width: 40px;
+          max-height: 40px;
+          opacity: .9;
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  .post-demos-header {
+    height: 45px;
+  }
 
   text-align: center;
   .embed-page {
-    width: 580px;
+    width: 645px;
     padding: 0px;
     margin: auto;
     pre {

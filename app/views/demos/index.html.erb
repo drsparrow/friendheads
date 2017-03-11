@@ -4,6 +4,23 @@
   <script src="/vendor/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 
+  <div class="demos-header">
+    <div class="link-to-root">
+      <%= link_to 'Friendheads', '/' %>
+    </div>
+
+    <% if @external_id %>
+      <div class="link-to-head">
+
+        <%= link_to "/#{@external_id}" do %>
+          <%= image_tag head_image_url(@external_id) %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="post-demos-header"></div>
+
   <h1>Embedding friendheads</h1>
 
   <h3>Simple config</h3>
