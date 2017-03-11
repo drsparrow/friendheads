@@ -19,7 +19,7 @@
 
   proto.count = function () {
     if(arguments.length) {
-      this._count = arguments[0];
+      this._count = parseInt(arguments[0]);
       if(this._count < 0) { this._count = 0; }
       this._updateIframe()
     }

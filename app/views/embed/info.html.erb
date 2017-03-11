@@ -5,7 +5,9 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script>
 
-  <h3>Embedding friendheads</h3>
+  <h1>Embedding friendheads</h1>
+
+  <h3>Simple config</h3>
 
   <div class="big-info">
     To add a friendhead automatically to your page, just add these script tags:
@@ -21,31 +23,19 @@
 
   <br><br>
 
+  <h3>Advanced config</h3>
+
+
   <div class="big-info">
-    Or if you would like to trigger the head on your own, add the tags without the listener:
+    Just add the single script tag
   </div>
 
   <pre><code class='html'><%= @master_setup %></code></pre>
 
   <div class="big-info">
-    Then simply add your head with
+    Then add and remove your heads later with js
   </div>
 
-  <pre><code class='javascript'><%= @add_head_js %></code></pre>
-
-  <div class="big-info">
-    Add multiple heads by passing in an arg
-  </div>
-  <pre><code class='javascript'><%= @add_head_js_plus %></code></pre>
-
-  <div class="big-info">
-    Or remove heads
-  </div>
-  <pre><code class='javascript'><%= @add_head_js_minus %></code></pre>
-
-  <div class="big-info">
-    You can even get and set the head count directly
-  </div>
-  <pre><code class='javascript'><%= @count_js %></code></pre>
+  <pre><code class='javascript'><%= @advanced_js %></code></pre>
 
 </div>
