@@ -1,0 +1,40 @@
+<div class="embed-page center">
+
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.10.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <h3>Embedding friendheads</h3>
+
+  <div class="">
+    To have add your heads automatically to your page, just add the script tags
+  </div>
+
+  <pre><code class='html'><%= @both_script_tags %></code></pre>
+
+  <div class="info">
+    <% unless @external_id %>
+    (replace '<%= @head.external_id %>' with your head's id)
+    <% end %>
+  </div>
+
+  <br><br>
+
+  <div class="">
+    Or if you would like to trigger the heads on your own, just add the first tag.
+  </div>
+
+  <pre><code class='html'><%= @first_script_tag %></code></pre>
+
+  <div class="">
+    Then simply add your head with
+  </div>
+
+  <pre><code class='javascript'><%= @add_head_js %></code></pre>
+
+  <div class="">
+    
+  </div>
+
+</div>

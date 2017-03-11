@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   root to: 'heads#index'
 
   resources :heads
+
+  get '/embedding' => 'embed#info'
+
   get '/:id' => 'heads#show'
   get 'samples/:sample_id' => 'heads#show'
 
