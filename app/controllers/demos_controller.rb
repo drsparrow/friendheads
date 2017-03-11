@@ -1,7 +1,7 @@
-class EmbedController < ApplicationController
+class DemosController < ApplicationController
 
-  def info
-    @external_id = params[:id]
+  def index
+    @external_id = params[:head]
     @head = @external_id ? Head.find_by_external_id(@external_id) : Head.random_default
     @easy_setup = easy_setup
     @master_setup = init_script_tag

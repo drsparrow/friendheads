@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :heads
 
-  get '/embedding' => 'embed#info'
+  resources :demos
 
   get '/:id' => 'heads#show'
   get 'samples/:sample_id' => 'heads#show'

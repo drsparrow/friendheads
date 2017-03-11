@@ -1,7 +1,7 @@
 <div class="footer clearfix">
   <% if params[:action] == 'show' %>
     <div class="embed">
-      <a href='<%= embedding_path(id: @head.external_id) %>' target="_blank">
+      <a href='<%= demos_path(head: @head.external_id) %>' target="_blank">
         <%= image_tag 'embed' %>
       </a>
     </div>
