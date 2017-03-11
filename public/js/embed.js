@@ -6,7 +6,7 @@
     this._headId = headId;
     this._count = 0;
     this._opacity = options.hasOwnProperty('opacity') ? options.opacity : 1;
-    this._parent = options.parent;
+    this._container = options.container;
   };
 
   var proto = Friendheads.prototype;
@@ -67,10 +67,10 @@
       'pointer-events': 'none'
     };
 
-    if (this._parent) {
-      var parent = this._parent;
+    if (this._container) {
+      var container = this._container;
     } else {
-      var parent = document.body
+      var container = document.body
       style.width = '100vw';
       style.height = '100vh';
     }
@@ -79,7 +79,7 @@
       this.iframe.style[key] = style[key];
     }
 
-    parent.append(this.iframe);
+    container.append(this.iframe);
   }
 
 })();
