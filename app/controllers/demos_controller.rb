@@ -94,7 +94,7 @@ class DemosController < ApplicationController
 
   def other_parent_js
     <<-JAVASCRIPT.gsub( /^\s+/, "")
-      var element = document.getElementById('my-friendheads-container'); // HTMLElement or jQuery object
+      var element = document.getElementById('my-friendheads-container'); // positioned HTMLElement or jQuery object
       var options = { container: element };
       var friendheads = new Friendheads('#{@head.external_id}', options);
     JAVASCRIPT
