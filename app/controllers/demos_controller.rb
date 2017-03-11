@@ -6,6 +6,7 @@ class DemosController < ApplicationController
     @easy_setup = easy_setup
     @master_setup = init_script_tag
     @advanced_js = advanced_js
+    @head_id_message = head_id_message
     render :index, layout: 'demo'
   end
 
@@ -38,7 +39,7 @@ class DemosController < ApplicationController
 
   def advanced_js
     <<-JAVASCRIPT
-      var friendheads = new Friendheads('#{@head.external_id}');
+      var friendheads = new Friendheads('#{@head.external_id}'); // #{head_id_message}
 
       friendheads.add(); // add one head
       friendheads.add(7); // add 7 head
@@ -49,6 +50,14 @@ class DemosController < ApplicationController
 
       friendheads.destroy(); // remove instance from dom
     JAVASCRIPT
+  end
+
+  def head_id_message
+    if @external_id
+      "'#{@external_id}' is your head's id"
+    else
+      "replace '#{@head.external_id}' with your head's id"
+    end
   end
 
 end
