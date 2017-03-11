@@ -64,10 +64,10 @@
 <canvas id="background-canvas" class='hidden'></canvas>
 <canvas id="js-content"></canvas>
 
-<img id='left-hand' class='hidden' src='/limbs/left.png'>
-<img id='right-hand' class='hidden' src='/limbs/right.png'>
-<img id='left-foot' class='hidden' src='/limbs/left-foot.png'>
-<img id='right-foot' class='hidden' src='/limbs/right-foot.png'>
+<%= image_tag "limbs/left.png", class: 'hidden', id: 'left-hand' %>
+<%= image_tag "limbs/right.png", class: 'hidden', id: 'right-hand' %>
+<%= image_tag "limbs/left-foot.png", class: 'hidden', id: 'left-foot' %>
+<%= image_tag "limbs/right-foot.png", class: 'hidden', id: 'right-foot' %>
 
 <% unless @embedded %>
   <%= render 'footer' %>
