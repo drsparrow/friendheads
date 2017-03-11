@@ -3,7 +3,7 @@
   <head>
     <title>Embed example</title>
     <script src="/js/embed.js"></script>
-    <script>document.addEventListener("DOMContentLoaded",function(){(new Friendheads('kony2012')).add();});</script>
+    <script>document.addEventListener("DOMContentLoaded",function(){(new Friendheads('<%= @head.external_id %>')).add();});</script>
   </head>
   <body>
     <br><br>
