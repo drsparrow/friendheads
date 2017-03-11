@@ -178,8 +178,8 @@ $(function(){
     opts.feet = !!params.feet
     opts.hands = !!params.hands
     opts.hatName = params.hat
-    opts.snailTrail = parseFloat(params.snail) || 0
-    opts.count = params.count || opts.count
+    opts.snailTrail = parseFloat(params.snail) || 0;
+    opts.count = opts.embedded ? 1 : (params.count || opts.count);
 
     if (opts.embedded) { return }
     opts.color = params.color
@@ -194,8 +194,11 @@ $(function(){
   FriendHeads.updatePreview = function () {
     FriendHeads._params = FriendHeads.getParamsFromForm()
     FriendHeads.setOptions()
-    var headDiff = FriendHeads.heads.length - opts.count
-    // debugger
+    FriendHeads.updateCount(opts.count)
+  }
+
+  FriendHeads.updateCount = function (newCount) {
+    var headDiff = FriendHeads.heads.length - newCount;
     if(headDiff < 0) {
       var func = 'addHead'
     } else if (headDiff > 0) {

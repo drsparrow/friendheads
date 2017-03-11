@@ -1,12 +1,23 @@
 ;(function(){
 
   var widget = window.FriendheadsWidget = {};
-  FriendheadsWidget.iframes = {};
+  FriendheadsWidget.count = 0;
 
-  widget.add = function(id) {
+
+  widget.add = function() {
+    widget.count += 1;
+    var id = widget.headId;
+
+    if(!widget.iframe) {
+      createIframe()
+    }
+
+    widget.iframe.src = 'https://friendheads.herokuapp.com/' + widget.headId + '?embedded=1#'+widget.count;
+  }
+
+  var createIframe = function () {
     var iframe = document.createElement('iframe');
 
-    iframe.src = 'https://friendheads.herokuapp.com/' + id + '?embedded=1';
     iframe.setAttribute('tabindex', -1);
     iframe.setAttribute('allowtransparency', true);
 
@@ -27,29 +38,7 @@
     }
 
     document.body.append(iframe);
-    widget.iframes[id] = widget.iframes[id] || []
-    widget.iframes[id].push(iframe);
-
-    return iframe;
-  }
-
-  widget.clear = function () {
-    for (var id in widget.iframes) {
-      widget.remove(id)
-    }
-
-    widget.iframes = {};
-  };
-
-  widget.remove = function (id) {
-    var iframes = widget.iframes[id];
-    if(!iframes) { return false }
-    iframes.forEach(function(iframe){
-      document.body.removeChild(iframe);
-    });
-
-    delete widget.iframes[id];
-    return true;
+    widget.iframe = iframe;
   }
 
 })();
