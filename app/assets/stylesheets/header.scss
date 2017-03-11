@@ -8,6 +8,12 @@
   padding-bottom: 40px;
   opacity: .6;
 
+  @media (max-width: 650px) {
+    .header-content .header-right {
+      display: none;
+    }
+  }
+
   .header-content .header-left {
     float: left;
   }
