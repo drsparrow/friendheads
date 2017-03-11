@@ -13,7 +13,9 @@
   <% if action_name == 'show' %>
     <br><br>
     <center>
-      <%= link_to('back to demos', demos_path({head: @external_id}.compact)) %>
+      <%= link_to('Back to demos', demos_path({head: @external_id}.compact)) %>
+      <br><br>
+      <%= link_to 'Back to Friendheads', '/' %>
     </center>
   <% end %>
 </html>
