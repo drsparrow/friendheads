@@ -43,23 +43,12 @@
 <img id='img' class='hidden' src='<%=head_image_path(@head.external_id) %>'>
 
 <div class="hidden js-page-data" data-i='<%= "#{params[:id]}" %>' data-si='<%= "#{params[:sample_id]}" %>'></div>
-<div class="header">
-  <div class="header-content">
-    <div class='header-left'><a href="/">FriendHeads</a></div>
-    <div class='header-right js-control-buttons'>
-      <span class='space-bar-area'><img src="/images/space.png" alt="space-bar" class='js-space-button space-bar'></span>
-      <img src="/images/minus.png" alt="-" class='js-minus-button plus-or-minus'>
-      <img src="/images/plus.png" alt="+" class='js-plus-button plus-or-minus'>
-      <img src="/images/question.png" alt="?" class='js-question-button plus-or-minus'>
-      <img src="/images/left.png" alt="left" class='js-left-button left-or-right arrow'>
-      <div class="up-and-down">
-        <img src="/images/up.png" alt="up" class='js-up-button arrow'>
-        <img src="/images/down.png" alt="down" class='js-down-button arrow'>
-      </div>
-      <img src="/images/right.png" alt="right" class='js-right-button left-or-right arrow'>
-    </div>
-  </div>
-</div>
+
+<% if @embeded %>
+  <div id='embebed-iframe'></div>
+<% else %>
+  <%= render 'head' %>
+<% end %>
 <div class="js-form-stuff form-stuff hidden center clearfix">
   <div class='page-title'>Friendheads</div>
   <div class='page-description'>For your friends and their heads</div>
@@ -85,5 +74,6 @@
 <img id='left-foot' class='hidden' src='/limbs/left-foot.png'>
 <img id='right-foot' class='hidden' src='/limbs/right-foot.png'>
 
-
-<%= render 'footer' %>
+<% unless @embeded %>
+  <%= render 'footer' %>
+<% end %>

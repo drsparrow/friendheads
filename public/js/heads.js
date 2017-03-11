@@ -173,12 +173,15 @@ $(function(){
 
   FriendHeads.setOptions = function () {
     var params = FriendHeads.params()
+    opts.embeded = $('#embebed-iframe').length
     opts.sizeMult = parseFloat(params.size) || 1;
     opts.feet = !!params.feet
     opts.hands = !!params.hands
     opts.hatName = params.hat
     opts.snailTrail = parseFloat(params.snail) || 0
     opts.count = params.count || opts.count
+
+    if (opts.embeded) { return }
     opts.color = params.color
     var fullColor = '#'+opts.color
     opts.color && $('html').css('background-color', fullColor)
@@ -280,6 +283,9 @@ $(function(){
   }
 
   var coverCanvas = function () {
+    if(opts.embeded) {
+      FriendHeads.clearCanv(); return;
+    }
     var maxSnail = FriendHeads.maxSnail
     if (opts.snailTrail == maxSnail) { return }
     if (!opts.snailTrail) {
