@@ -30,7 +30,7 @@
   proto.opacity = function () {
     if(arguments.length) {
       this._opacity = parseFloat(arguments[0]);
-      this.iframe.style.opacity = this._opacity;
+      this.iframe && (this.iframe.style.opacity = this._opacity);
     }
     return this._opacity;
   };
