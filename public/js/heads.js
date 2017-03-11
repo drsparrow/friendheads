@@ -160,14 +160,7 @@ $(function(){
   }
 
   var imgSrc = function () {
-    if($('#img').attr('src')){return $('#img').attr('src')}
-    var id = FriendheadsApp.params('i')
-    var specialImage = FriendheadsApp.params('si')
-    if(id) {
-      return pathFromId(id)
-    } else if (specialImage) {
-      return '/heads/'+specialImage+'.png'
-    }
+    return $('#img').attr('src')
   }
 
   FriendheadsApp.setOptions = function () {
@@ -246,10 +239,6 @@ $(function(){
     var index = getHeadIndexAtClick()
     FriendheadsApp.hovered = (index != -1)
   })
-
-  var pathFromId = function(id) {
-    return 'https://firebasestorage.googleapis.com/v0/b/friendheads-54fc9.appspot.com/o/'+id+'?alt=media'
-  }
 
   var draw = function () {
     var face = document.getElementById('img')
