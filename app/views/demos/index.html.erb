@@ -21,7 +21,6 @@
   </div>
 
   <%= link_to('View demo', demo_path({id: 1, head: @external_id}.compact)) %>
-
   <br><br>
 
   <h3>Advanced config</h3>
@@ -40,5 +39,27 @@
   <pre><code class='javascript'><%= @advanced_js %></code></pre>
 
   <%= link_to('View demo', demo_path({id: 2, head: @external_id}.compact)) %>
+  <br><br>
+
+  <h3>More advanced config</h3>
+
+  <div class="big-info">
+    You can easily get and set the opacity of the heads
+  </div>
+
+  <pre><code class='javascript'><%= @opacity_js %></code></pre>
+
+  <div class="big-info">
+    Or initialize with an opacity
+  </div>
+
+  <pre><code class='javascript'><%= @opacity_init_js %></code></pre>
+
+  <div class="big-info">
+    Add heads to a node other than the body
+  </div>
+
+  <pre><code class='javascript'><%= @other_parent_js %></code></pre>
+
 
 </div>

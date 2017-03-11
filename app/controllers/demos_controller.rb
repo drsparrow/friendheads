@@ -19,6 +19,9 @@ class DemosController < ApplicationController
     @master_setup = init_script_tag
     @advanced_js = advanced_js
     @head_id_message = head_id_message
+    @opacity_js = opacity_js
+    @opacity_init_js = opacity_init_js
+    @other_parent_js = other_parent_js
   end
 
   def easy_setup
@@ -68,6 +71,28 @@ class DemosController < ApplicationController
     else
       "replace '#{@head.external_id}' with your head's id"
     end
+  end
+
+  def opacity_js
+    <<-JAVASCRIPT.gsub( /^\s+/, "")
+      friendheads.opacity(); // get opacity
+      friendheads.opacity(.6); // set opacity (some float from 0 to 1)
+    JAVASCRIPT
+  end
+
+  def opacity_init_js
+    <<-JAVASCRIPT.gsub( /^\s+/, "")
+      var options = { opacity: .7 };
+      var friendheads = new Friendheads('#{@head.external_id}', options);
+    JAVASCRIPT
+  end
+
+  def other_parent_js
+    <<-JAVASCRIPT.gsub( /^\s+/, "")
+      var element = document.getElementById('my-friendheads-container');
+      var options = { container: element };
+      var friendheads = new Friendheads('#{@head.external_id}', options);
+    JAVASCRIPT
   end
 
 end
