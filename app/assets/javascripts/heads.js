@@ -9,7 +9,6 @@ FriendheadsApp.ranges = {
 FriendheadsApp.maxSnail = FriendheadsApp.ranges.snail[1]
 
 $(function(){
-  console.log('in')
   var heads = FriendheadsApp.heads = [];
   var canvas = document.getElementById("js-content")
   var ctx = document.getElementById("js-content").getContext('2d')
