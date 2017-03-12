@@ -34,16 +34,21 @@
 
 <% if @embedded %>
   <div id='embebed-iframe'></div>
-<% else %>
+<% elsif action_name == 'show' %>
   <%= render 'head' %>
 <% end %>
+
 <div class="js-form-stuff form-stuff hidden center clearfix">
   <div class='page-title'>Friendheads</div>
   <div class='page-description'>For your friends and their heads</div>
+
+  <%= render 'image_preview' %>
+
   <div class='image-upload-button upload-button'>Upload/Drop an image</div>
   <span class='js-advanced-settings-toggle extra-option advanced-settings-toggle'>Advanced Settings</span>
   <span class='js-samples-toggle extra-option samples-toggle'>Samples</span>
   <br>
+
   <div class="js-samples hidden head-samples">
     <% Head::DEFAULT_HEADS.each do |h| %>
       <a href='/<%= h %>' target="_blank" class='sample-link'>

@@ -138,11 +138,10 @@
 }
 
 .img-preview-container {
-  height: 300px;
-  width: 300px;
-  background: rgba(0,0,0,.3);
+  cursor: default;
+  width: 250px;
   margin: auto;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .img-preview-container img {
@@ -158,22 +157,23 @@
   border: 2px solid white;
   border-radius: 3px;
   padding: 8px 22px;
+  cursor: pointer;
 }
 
 .img-preview-container-container {
-  width: 300px;
-  margin: auto;
-  position: relative;
-  .close-button {
-    color: rgba(255,255,255,.8);
-    position: absolute;
+  position: fixed;
+  width: 280px;
+  padding: 4px;
+  background: rgb(0,255,183);
+  z-index: 4000;
+  border: 3px solid black;
+  border-radius: 4px;
+  top: -280px;
+  left: -240px;
+  transition: .4s;
+
+  &:hover {
     top: 5px;
-    right: 5px;
-    width: 50px;
-    margin: auto;
-    &:hover {
-      cursor: pointer;
-      color:rgb(255,255,255);
-    }
+    left: 5px;
   }
 }

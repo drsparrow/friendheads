@@ -75,22 +75,21 @@ $(function(){
      acceptedFiles: 'image/*',
      previewTemplate: '<span></span>',
      accept: function(file) {
-      $('#submit').attr('disabled', true)
-      if($('.js-advanced-settings').is(':visible')) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-          $('#submit').attr('disabled', false)
-          $('.img-preview-container').removeClass('hidden')
-          $('.js-close-button').removeClass('hidden');
-          $('#temp-img').attr('src', e.target.result);
-          FriendheadsApp.files.createCroppie()
-        }
-
-        reader.readAsDataURL(file)
-      } else {
-        changePage(file)
+      $('.js-submit-form').attr('disabled', true)
+      if(!$('.js-advanced-settings').is(':visible')) {
+        $('.js-advanced-settings-toggle').click()
       }
+
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        $('.js-submit-form').attr('disabled', false)
+        $('.img-preview-container-container, .js-submit-form').removeClass('hidden')
+        $('#temp-img').attr('src', e.target.result);
+        FriendheadsApp.files.createCroppie()
+      }
+
+      reader.readAsDataURL(file)
     }
   })
 
@@ -113,7 +112,7 @@ $(function(){
      }
    })
 
-   $('#submit').click(function(){
+   $('.js-submit-form').click(function(){
      changePage()
    })
 })
