@@ -297,7 +297,7 @@ $(function(){
   }
 
   FriendheadsApp.drawBackground = function (myCanvas) {
-    var context = myCanvas.getContext('2d') || ctx
+    var context = (myCanvas ? myCanvas.getContext('2d') : ctx);
     var background = $('#background')[0]
     var w = (myCanvas || canvas).width;
     var h = (myCanvas || canvas).height;
