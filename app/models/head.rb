@@ -7,9 +7,7 @@ class Head < ApplicationRecord
     where(external_id: DEFAULT_HEADS).to_a.sample
   end
 
-  before_create do
-    self.external_id = random_external_id
-  end
+  before_create :set_external_id
 
   def to_blob
     Base64.decode64(data_url['data:image/png;base64,'.length .. -1])
@@ -38,6 +36,12 @@ class Head < ApplicationRecord
   end
 
   private
+
+  def set_external_id
+    my_random_external_id = random_external_id
+    return set_external_id if Head.where(external_id: my_random_external_id).exists?
+    self.external_id = my_random_external_id
+  end
 
   def random_external_id
     "#{rand_chars(2)}#{rand_num}#{rand_chars(2)}"
