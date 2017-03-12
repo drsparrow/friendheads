@@ -27,6 +27,7 @@ $(function(){
   var rightHand = document.getElementById('right-hand')
   var footRatio = leftFoot.height/leftFoot.width
   var handRatio = leftHand.height/leftHand.width
+  var face, hat, hatRatio;
 
   var imgW, imgH;
 
@@ -245,26 +246,28 @@ $(function(){
   })
 
   var draw = function () {
-    var face = document.getElementById('img')
-    var hat = opts.hatName && document.getElementById(opts.hatName+'-hat') || {}
+    face = document.getElementById('img')
+    hat = opts.hatName && document.getElementById(opts.hatName+'-hat') || {}
     hatRatio = hat.height/hat.width
 
     coverCanvas()
     $('body').css('cursor', FriendheadsApp.hovered ? 'pointer' :'default')
-    FriendheadsApp.heads.forEach(function(head){
-      if(opts.feet) {
-        ctx.drawImage(leftFoot,head.left, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
-        ctx.drawImage(rightFoot,head.left+head.width/2, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
-      }
-      if (opts.hands) {
-        ctx.drawImage(leftHand,head.left-1*head.width/4, head.top+head.height/3, head.width/2, handRatio*head.width/2)
-        ctx.drawImage(rightHand,head.left+3*head.width/4, head.top+head.height/3, head.width/2, handRatio*head.width/2)
-      }
-      ctx.drawImage(face,head.left, head.top, head.width, head.height)
-      if(opts.hatName) {
-        ctx.drawImage(hat,head.left+head.width/8, head.top - hatRatio*head.width/2 + head.height/8, head.width/2, hatRatio*head.width/2)
-      }
-    })
+    FriendheadsApp.heads.forEach(function(){ FriendheadsApp.drawHead() })
+  }
+
+  FriendheadsApp.drawHead = function(head){
+    if(opts.feet) {
+      ctx.drawImage(leftFoot,head.left, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
+      ctx.drawImage(rightFoot,head.left+head.width/2, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
+    }
+    if (opts.hands) {
+      ctx.drawImage(leftHand,head.left-1*head.width/4, head.top+head.height/3, head.width/2, handRatio*head.width/2)
+      ctx.drawImage(rightHand,head.left+3*head.width/4, head.top+head.height/3, head.width/2, handRatio*head.width/2)
+    }
+    ctx.drawImage(face,head.left, head.top, head.width, head.height)
+    if(opts.hatName) {
+      ctx.drawImage(hat,head.left+head.width/8, head.top - hatRatio*head.width/2 + head.height/8, head.width/2, hatRatio*head.width/2)
+    }
   }
 
   FriendheadsApp.clearCanv = function () {
