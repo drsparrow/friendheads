@@ -21,6 +21,8 @@ $(function(){
   var flopped = false
   var hue = 0
 
+  var isIndex = $('#index-page').length;
+
   var leftFoot = document.getElementById('left-foot')
   var rightFoot = document.getElementById('right-foot')
   var leftHand = document.getElementById('left-hand')
@@ -281,12 +283,11 @@ $(function(){
     }
     var maxSnail = FriendheadsApp.maxSnail
     if (opts.snailTrail == maxSnail) { return }
-    if (!opts.snailTrail) {
+    if (!opts.snailTrail && !isIndex) {
       FriendheadsApp.clearCanv()
       return
     }
-    var snailVal = maxSnail - opts.snailTrail
-    ctx.globalAlpha = .008 * snailVal
+    ctx.globalAlpha = opts.snailTrail ? (.008 * (maxSnail - opts.snailTrail)) : 1
     if(opts.background) {
       FriendheadsApp.drawBackground()
     } else {
@@ -317,7 +318,6 @@ $(function(){
   }
 
   var start = function() {
-    var isIndex = $('#index-page').length
     isIndex && $('.js-form-stuff').removeClass('hidden')
     isIndex || $('body, html, #js-content').addClass('no-overflow')
     resizeFunc()
