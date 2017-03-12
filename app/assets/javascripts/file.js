@@ -1,7 +1,6 @@
 $(function(){
   FriendheadsApp.files = FriendheadsApp.files || {}
   var files = FriendheadsApp.files;
-  var disabled = true;
 
   FriendheadsApp.getParamsFromForm = function () {
     var params = {}
@@ -75,7 +74,7 @@ $(function(){
      acceptedFiles: 'image/*',
      previewTemplate: '<span></span>',
      accept: function(file) {
-      $('.js-submit-form').attr('disabled', true)
+      $('.js-submit-form').attr('disabled', true).addClass('disabled')
       if(!$('.js-advanced-settings').is(':visible')) {
         $('.js-advanced-settings-toggle').click()
       }
@@ -83,7 +82,7 @@ $(function(){
       var reader = new FileReader();
 
       reader.onload = function (e) {
-        $('.js-submit-form').attr('disabled', false)
+        $('.js-submit-form').attr('disabled', false).removeClass('disabled').removeClass('hidden')
         $('.img-preview-container-container, .js-submit-form').removeClass('hidden')
         $('#temp-img').attr('src', e.target.result);
         FriendheadsApp.files.createCroppie()
