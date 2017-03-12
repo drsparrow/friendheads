@@ -27,8 +27,8 @@ $(function(){
   var rightFoot = document.getElementById('right-foot')
   var leftHand = document.getElementById('left-hand')
   var rightHand = document.getElementById('right-hand')
-  var footRatio = leftFoot.height/leftFoot.width
-  var handRatio = leftHand.height/leftHand.width
+  var footRatio = 367/200; // hardcoded to not wait for load
+  var handRatio = 225/300; // hardcoded to not wait for load
   var face, hat, hatRatio;
 
   var imgW, imgH;
