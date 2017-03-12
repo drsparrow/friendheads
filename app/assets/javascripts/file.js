@@ -83,7 +83,7 @@ $(function(){
 
       reader.onload = function (e) {
         $('.js-submit-form').attr('disabled', false).removeClass('disabled').removeClass('hidden')
-        $('.img-preview-container-container, .js-submit-form').removeClass('hidden')
+        $('.img-preview-container-container-hover-area, .js-submit-form').removeClass('hidden')
         $('#temp-img').attr('src', e.target.result);
         FriendheadsApp.files.createCroppie()
       }

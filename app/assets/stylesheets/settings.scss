@@ -5,9 +5,9 @@
 }
 
 .form-stuff {
+  margin: auto;
   margin-top: 10vh;
-  margin-left: 12vw;
-  margin-right: 12vw;
+  width: 700px;
   background: rgba(0,0,0,.5);
   padding: 10px;
   position: relative;
@@ -167,22 +167,28 @@
   }
 }
 
-.img-preview-container-container {
-  position: fixed;
-  width: 280px;
-  padding: 4px;
-  background: rgb(0,255,183);
-  z-index: 4000;
-  border: 3px solid black;
-  border-radius: 4px;
+.img-preview-container-container-hover-area {
   top: -280px;
   left: -240px;
+  position: fixed;
   transition: .4s;
+  z-index: 4000;
+  padding: 20px;
 
-  &:hover {
-    top: 5px;
-    left: 5px;
+  &:hover, &.hovered {
+    top: -15px;
+    left: -15px;
   }
+
+  .img-preview-container-container {
+    width: 280px;
+    min-height: 300px;
+    padding: 4px;
+    background: rgb(0,255,183);
+    border: 3px solid black;
+    border-radius: 4px;
+  }
+
 }
 
 .head-count-value {

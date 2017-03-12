@@ -34,4 +34,8 @@ $(function(){
 
     FriendheadsApp.updateImage($('#temp-img').attr('src'))
   })
+
+  $('.img-preview-container-container-hover-area').one('mouseenter', function(){
+    $('.img-preview-container-container-hover-area').removeClass('hovered');
+  })
 })
