@@ -41,3 +41,16 @@ img {
 .pull-right {
   float: right;
 }
+
+.big-loading {
+  z-index: 999999;
+  position: absolute;
+  top: 30vh;
+  width: 100%;
+
+  img {
+    height: 30vh;
+    margin: auto;
+    display: block;
+  }
+}

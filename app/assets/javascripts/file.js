@@ -119,6 +119,7 @@ $(function(){
    })
 
    $('.js-submit-form').click(function(){
+     $('.big-loading').removeClass('hidden')
      changePage()
    })
 })

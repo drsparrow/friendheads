@@ -2,6 +2,10 @@
   <img id='background' class='hidden'>
   <%= render partial: 'main' %>
   <canvas id="resize-canvas" class='hidden'></canvas>
+
+  <div class="big-loading hidden">
+    <%= image_tag 'load.gif' %>
+  </div>
 </div>
 
 <% content_for :head do %>
