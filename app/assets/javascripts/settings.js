@@ -32,4 +32,14 @@ $(function(){
     FriendheadsApp.updatePreview()
   })
 
+  $('.js-close-button').click(function(){
+    if($('.img-preview-container').is(':visible')){
+      $('.img-preview-container').addClass('hidden');
+      this.innerText = 'open'
+    } else {
+      $('.img-preview-container').removeClass('hidden');
+      this.innerText = 'close'
+    }
+  })
+
 })
