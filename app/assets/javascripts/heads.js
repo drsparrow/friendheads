@@ -21,9 +21,14 @@ $(function(){
   var flopped = false
   var hue = 0
 
+  var leftFoot = document.getElementById('left-foot')
+  var rightFoot = document.getElementById('right-foot')
+  var leftHand = document.getElementById('left-hand')
+  var rightHand = document.getElementById('right-hand')
+  var footRatio = leftFoot.height/leftFoot.width
+  var handRatio = leftHand.height/leftHand.width
+
   var imgW, imgH;
-  var footRatio;
-  var handRatio;
 
   var opts = FriendheadsApp.options = {
     count: FriendheadsApp.defaultHeadCount,
@@ -241,13 +246,7 @@ $(function(){
 
   var draw = function () {
     var face = document.getElementById('img')
-    var leftFoot = document.getElementById('left-foot')
-    var rightFoot = document.getElementById('right-foot')
-    var leftHand = document.getElementById('left-hand')
-    var rightHand = document.getElementById('right-hand')
     var hat = opts.hatName && document.getElementById(opts.hatName+'-hat') || {}
-    footRatio = leftFoot.height/leftFoot.width
-    handRatio = leftHand.height/leftHand.width
     hatRatio = hat.height/hat.width
 
     coverCanvas()
