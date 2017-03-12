@@ -10,6 +10,7 @@ FriendheadsApp.buildIcon = function () {
   context.fillStyle = 'rgb(0,255,183)'
   context.fillRect(0,0,WIDTH, HEIGHT);
   if(FriendheadsApp.drawBackground(canvas)) {
+    context.fillStyle = 'rgb(255,255,255)';
     context.globalAlpha = .5;
     context.fillRect(0,0,WIDTH, HEIGHT);
     context.globalAlpha = 1
