@@ -30,6 +30,11 @@ class HeadImagesController < ApplicationController
     end
   end
 
+  def og_images
+    @ids = Head.all.order(created_at: :desc).pluck(:external_id)
+    render 'og'
+  end
+
   private
 
   def find_head

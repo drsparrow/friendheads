@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root to: 'heads#index'
 
+  get 'og' => 'head_images#og_images'
+
   resources :heads
 
   resources :demos
