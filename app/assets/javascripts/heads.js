@@ -303,7 +303,7 @@ $(function(){
     var h = (myCanvas || canvas).height;
     var backH = background.height
     var backW = background.width
-    if(!(backW && backH)) { return }
+    if(!(backW && backH)) { return false; }
     var curX = 0
     while (curX < w) {
       var curH = 0
@@ -313,6 +313,7 @@ $(function(){
       }
       curX += backW
     }
+    return true;
   }
 
   var start = function() {

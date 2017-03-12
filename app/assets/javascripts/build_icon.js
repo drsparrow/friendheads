@@ -9,10 +9,11 @@ FriendheadsApp.buildIcon = function () {
   canvas.height = HEIGHT;
   context.fillStyle = 'rgb(0,255,183)'
   context.fillRect(0,0,WIDTH, HEIGHT);
-  FriendheadsApp.drawBackground(canvas)
-  context.globalAlpha = .5;
-  context.fillRect(0,0,WIDTH, HEIGHT);
-  context.globalAlpha = 1
+  if(FriendheadsApp.drawBackground(canvas)) {
+    context.globalAlpha = .5;
+    context.fillRect(0,0,WIDTH, HEIGHT);
+    context.globalAlpha = 1
+  }
 
   var width = WIDTH/3
   var head = { left: 0, top: 0, width: width, height: width*FriendheadsApp.imageRatio }
