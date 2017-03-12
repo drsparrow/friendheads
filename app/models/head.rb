@@ -1,5 +1,6 @@
 class Head < ApplicationRecord
   validates_presence_of :data_url
+  validate :all_valid_data_urls
 
   DEFAULT_HEADS = %w(bern kony2012 cage hill locke)
 
@@ -53,5 +54,15 @@ class Head < ApplicationRecord
 
   def rand_chars(length)
     SecureRandom.base58(length)
+  end
+
+  def all_valid_data_urls
+    return if [data_url, background_data_url, og_data_url].all? { |s| valid_data_url?(s) }
+    errors.add(:base, 'not valid data_url')
+  end
+
+  def valid_data_url?(val)
+    return true unless val.present?
+    val.starts_with?("data:image/png;base64,")
   end
 end
