@@ -296,10 +296,11 @@ $(function(){
     ctx.globalAlpha = 1
   }
 
-  FriendheadsApp.drawBackground = function () {
+  FriendheadsApp.drawBackground = function (myCanvas) {
+    var context = myCanvas.getContext('2d') || ctx
     var background = $('#background')[0]
-    var w = $(window).width()
-    var h = $(window).height()
+    var w = (myCanvas || canvas).width;
+    var h = (myCanvas || canvas).height;
     var backH = background.height
     var backW = background.width
     if(!(backW && backH)) { return }
@@ -307,7 +308,7 @@ $(function(){
     while (curX < w) {
       var curH = 0
       while(curH < h) {
-        ctx.drawImage(background,curX,curH)
+        context.drawImage(background,curX,curH)
         curH += backH
       }
       curX += backW

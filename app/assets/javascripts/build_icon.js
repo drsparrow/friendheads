@@ -5,10 +5,14 @@ FriendheadsApp.buildIcon = function () {
   var HEIGHT = 630;
   var canvas = $('#icon-canvas')[0]
   var context = canvas.getContext('2d')
-  canvas.width = WIDTH
-  canvas.height = HEIGHT
+  canvas.width = WIDTH;
+  canvas.height = HEIGHT;
   context.fillStyle = 'rgb(0,255,183)'
   context.fillRect(0,0,WIDTH, HEIGHT);
+  FriendheadsApp.drawBackground(canvas)
+  context.globalAlpha = .5;
+  context.fillRect(0,0,WIDTH, HEIGHT);
+  context.globalAlpha = 1
 
   var width = WIDTH/3
   var head = { left: 0, top: 0, width: width, height: width*FriendheadsApp.imageRatio }
