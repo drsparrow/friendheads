@@ -288,26 +288,30 @@ $(function(){
     var snailVal = maxSnail - opts.snailTrail
     ctx.globalAlpha = .008 * snailVal
     if(opts.background) {
-      var background = $('#background')[0]
-      var w = $(window).width()
-      var h = $(window).height()
-      var backH = background.height
-      var backW = background.width
-      if(!(backW && backH)) { return }
-      var curX = 0
-      while (curX < w) {
-        var curH = 0
-        while(curH < h) {
-          ctx.drawImage(background,curX,curH)
-          curH += backH
-        }
-        curX += backW
-      }
+      FriendheadsApp.drawBackground()
     } else {
       ctx.fillStyle = opts.color ? '#' + opts.color : 'hsl('+(.01*(new Date()).getTime()) % 360+',100%,50%)'
       ctx.fillRect(0,0,$(window).width(), $(window).height())
     }
     ctx.globalAlpha = 1
+  }
+
+  FriendheadsApp.drawBackground = function () {
+    var background = $('#background')[0]
+    var w = $(window).width()
+    var h = $(window).height()
+    var backH = background.height
+    var backW = background.width
+    if(!(backW && backH)) { return }
+    var curX = 0
+    while (curX < w) {
+      var curH = 0
+      while(curH < h) {
+        ctx.drawImage(background,curX,curH)
+        curH += backH
+      }
+      curX += backW
+    }
   }
 
   var start = function() {
