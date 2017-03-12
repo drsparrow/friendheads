@@ -20,6 +20,11 @@ class Head < ApplicationRecord
     Base64.decode64(background_data_url['data:image/png;base64,'.length .. -1])
   end
 
+  def og_to_blob
+    return unless og_data_url
+    Base64.decode64(og_data_url['data:image/png;base64,'.length .. -1])
+  end
+
   def get_options
     JSON.parse(options || '{}')
   end

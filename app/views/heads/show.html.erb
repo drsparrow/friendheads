@@ -17,4 +17,8 @@
     <img id='background'>
   <% end %>
   <%= render partial: 'main' %>
+
+  <% unless @head.og_data_url %>
+    <canvas id="icon-canvas" data-path='<%= update_head_og_image_path(@head.external_id) %>' class='' width='1200' height="630" style="position:fixed;top:0px;z-index:99999;border:5px solid black"></canvas>
+  <% end %>
 </div>

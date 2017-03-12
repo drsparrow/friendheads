@@ -252,21 +252,22 @@ $(function(){
 
     coverCanvas()
     $('body').css('cursor', FriendheadsApp.hovered ? 'pointer' :'default')
-    FriendheadsApp.heads.forEach(function(){ FriendheadsApp.drawHead() })
+    FriendheadsApp.heads.forEach(function(head){ FriendheadsApp.drawHead(head) })
   }
 
-  FriendheadsApp.drawHead = function(head){
+  FriendheadsApp.drawHead = function(head, context){
+    context = context || ctx
     if(opts.feet) {
-      ctx.drawImage(leftFoot,head.left, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
-      ctx.drawImage(rightFoot,head.left+head.width/2, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
+      context.drawImage(leftFoot,head.left, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
+      context.drawImage(rightFoot,head.left+head.width/2, head.top+2*head.height/3, head.width/2, footRatio*head.width/2)
     }
     if (opts.hands) {
-      ctx.drawImage(leftHand,head.left-1*head.width/4, head.top+head.height/3, head.width/2, handRatio*head.width/2)
-      ctx.drawImage(rightHand,head.left+3*head.width/4, head.top+head.height/3, head.width/2, handRatio*head.width/2)
+      context.drawImage(leftHand,head.left-1*head.width/4, head.top+head.height/3, head.width/2, handRatio*head.width/2)
+      context.drawImage(rightHand,head.left+3*head.width/4, head.top+head.height/3, head.width/2, handRatio*head.width/2)
     }
-    ctx.drawImage(face,head.left, head.top, head.width, head.height)
+    context.drawImage(face,head.left, head.top, head.width, head.height)
     if(opts.hatName) {
-      ctx.drawImage(hat,head.left+head.width/8, head.top - hatRatio*head.width/2 + head.height/8, head.width/2, hatRatio*head.width/2)
+      context.drawImage(hat,head.left+head.width/8, head.top - hatRatio*head.width/2 + head.height/8, head.width/2, hatRatio*head.width/2)
     }
   }
 
@@ -341,6 +342,7 @@ $(function(){
     var img = $('#img')[0]
     imgW = img.width;
     imgH = img.height;
+    FriendheadsApp.imageRatio = imgH/imgW
   }
 
   FriendheadsApp.updateImage = function (src) {
@@ -349,7 +351,7 @@ $(function(){
       FriendheadsApp.setImageRatio()
       FriendheadsApp.heads.forEach(function(head){
         var width = head.width
-        head.height = head.width * (imgH/imgW)
+        head.height = head.width * FriendheadsApp.imageRatio
       })
     })
   }

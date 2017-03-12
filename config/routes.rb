@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   get 'head_og_image/:id' => 'head_images#head_og_image', as: :head_og_image
   get 'head_image/:id' => 'head_images#head_image', as: :head_image
   get 'head_background_image/:id' => 'head_images#head_background_image', as: :head_background_image
+
+  put 'head_og_image/:id' => 'head_images#update', as: :update_head_og_image
 end
