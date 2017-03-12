@@ -5,7 +5,14 @@ class HeadsController < ApplicationController
 
   def show
     @embedded = !!params[:embedded]
-    @head = Head.find_by(external_id: params[:id]) or raise ActionController::RoutingError.new(404)
+    @head = Head.find_by(external_id: params[:id])
+    return if @head
+
+    if @embedded
+      @head = Head.find(external_id: '_404_')
+    else
+      raise ActionController::RoutingError.new(404)
+    end
   end
 
   def create
