@@ -53,7 +53,6 @@
     this.iframe.setAttribute('allowtransparency', true);
 
     var style = {
-      position: 'fixed',
       top: '0px',
       left: '0px',
       overflow: 'hidden',
@@ -65,15 +64,19 @@
       'pointer-events': 'none'
     };
 
+    debugger
+
     if (this._container) {
       var container = this._container;
       if(container instanceof (window.jQuery || Array)) { // container is dom element if jQuery, or first element if Array
         container = container[0];
       }
+      style.position = 'absolute';
     } else {
       var container = document.body
       style.width = '100vw';
       style.height = '100vh';
+      style.position = 'fixed';
     }
 
     for(var key in style) {
