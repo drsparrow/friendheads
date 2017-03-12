@@ -1,6 +1,6 @@
 $(function(){
   window.setTimeout(function(){
-    var meta = btoa(window.location.pathname+window.location.search)
+    var meta = window.location.pathname;
     var src = 'https://ariuk.herokuapp.com/images/friendheads?meta=' + meta
     var $img = $('<img>').attr('src', src)
     $('body').append($img);
