@@ -2,7 +2,11 @@ $(function(){
   $('#background-color').spectrum({
     preferredFormat: "hex",
     showButtons: false,
-    color: '#ff0000'
+    color: '#ff0000',
+    change: function () {
+      FriendheadsApp.clearCanv();
+      FriendheadsApp.updatePreview();
+    }
   })
 
   var $canvases = $('#changing-background-color-canvas, #background-canvas');
