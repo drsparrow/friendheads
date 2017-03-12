@@ -107,6 +107,7 @@ $(function(){
          $('#background').attr('src', e.target.result)
          FriendheadsApp.clearCanv()
          FriendheadsApp.updatePreview()
+         $('.js-remove-background').removeClass('hidden')
        }
        reader.readAsDataURL(file)
      }

@@ -32,4 +32,11 @@ $(function(){
     FriendheadsApp.updatePreview()
   })
 
+  $('.js-remove-background').click(function (){
+    $('#background').attr('src', null)
+    FriendheadsApp.clearCanv()
+    FriendheadsApp.updatePreview()
+    $(this).addClass('hidden')
+  })
+
 })
