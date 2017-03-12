@@ -178,7 +178,7 @@ $(function(){
     opts.color && $('html').css('background-color', fullColor)
     ctx.fillStyle = fullColor;
     opts.background = $('#background').attr('src');
-    opts.background && $('body').css('background', 'url('+opts.background+')');
+    opts.background && $('html').css('background', 'url('+opts.background+')');
     (opts.background || opts.color) ? $('#background-canvas').addClass('hidden') : $('#background-canvas').removeClass('hidden');
   }
 
