@@ -64,8 +64,6 @@
       'pointer-events': 'none'
     };
 
-    debugger
-
     if (this._container) {
       var container = this._container;
       if(container instanceof (window.jQuery || Array)) { // container is dom element if jQuery, or first element if Array
