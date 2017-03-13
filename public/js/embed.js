@@ -81,7 +81,7 @@
       this.iframe.style[key] = style[key];
     }
 
-    container.append(this.iframe);
+    container.appendChild(this.iframe);
   }
 
 })();
